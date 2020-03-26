@@ -32,9 +32,11 @@ describe("transplan kidney donor page test", () => {
         .check()
         .get(screeningHtn0.nextBtn).click()
         .get(screeningHtn0.medicationQtyTxt).should("be.visible")
-        .get(screeningHtn0.medicationQtySelect)//.should("be.visible")
-        .then(el => {
-            assert.include(el.text(), "Select One")
+        .get('select[id="selectID"]')
+        .select('Select One')
+        // .get(screeningHtn0.medicationQtySelect)//.should("be.visible")
+        // .then(el => {
+            // assert.include(el.text(), "Select One")
         })
 
         
@@ -42,6 +44,3 @@ describe("transplan kidney donor page test", () => {
         // .then(el => {
         //   assert.include(el.text(), );
     });
-
-
-})
