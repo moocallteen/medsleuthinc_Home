@@ -1,6 +1,6 @@
 module.exports ={
     introStartSurBtn : 'button[aria-describedby="dialog_prolog"]',
-    dialogProlog : 'div[id="dialog_prolog"]',
+    // dialogProlog : 'div[id="dialog_prolog"]',
     transplantCandidateRadioBtn : 'input[id="item.referral.query.0.0.0"]',
     candidatesSomeoneRadioBtn : 'input[id="item.referral.query.0.0.1"]',
     socialMediaRadioBtn : 'input[id="item.referral.query.0.0.2"]',

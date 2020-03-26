@@ -10,16 +10,40 @@ describe("transplan kidney donor referral.0 page test", () => {
     });
 
     it("should check the referral.0 page elements", () => {
-        var text = "How did you learn about the opportunity for living organ donation?";
+        // var text = "From someone I know on behalf of the transplant candidate (a family member or friend)";
+          var textNextBtn = "Next";
         cy.visit("/referral.0")
-          .get(landingPage.introNextBtn)
+          .get(landingPage.introStartSurBtn)
           .click()
-          .get(landingPage.dialogProlog)
+          
+          .get(landingPage.transplantCandidateRadioBtn)
           .should("be.visible")
-          .get(landingPage.headerBar)
+          .get(landingPage.candidatesSomeoneRadioBtn)
           .should("be.visible")
-          .then(el => {
-            assert.include(el.text(), text);
+          .get(landingPage.socialMediaRadioBtn)
+          .should("be.visible")
+          .get(landingPage.myOwnResearchRadioBtn)
+          .should("be.visible")
+          .get(landingPage.anotherPatientRadioBtn)
+          .should("be.visible") 
+          .get(landingPage.otherRadioBtn)
+          .should("be.visible")
+          .get(landingPage.nextBtn)
+          .should("be.visible")
+          .get(landingPage.nextBtn)
+          .click()
+          .get(landingPage.validationErrorMsg)
+          .first()
+          .should('have.text', 'Required')
+          .get(landingPage.myOwnResearchRadioBtn)
+          .check()
+          .get(landingPage.nextBtn)
+
+          // .get(landingPage.headerBar)
+          // .should("be.visible")
+           .then(el => {
+            assert.include(el.text(), textNextBtn);
+            //  assert.include(el.text(), text);
           });
         });
     });
