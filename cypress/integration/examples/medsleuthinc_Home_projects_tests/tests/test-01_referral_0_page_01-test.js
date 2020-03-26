@@ -4,7 +4,7 @@ describe("transplan kidney donor referral.0 page test", () => {
     before(() => {
       Cypress.config(
         "baseUrl",
-        "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs/referral.0"
+        "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
       );
       cy.viewport(1280, 800);
     });
@@ -15,8 +15,12 @@ describe("transplan kidney donor referral.0 page test", () => {
         cy.visit("/referral.0")
           .get(landingPage.introStartSurBtn)
           .click()
-          
-          .get(landingPage.transplantCandidateRadioBtn)
+          .get(landingPage.nextBtn)
+          .then(el => {
+            assert.include(el.text(), textNextBtn);
+            
+
+        cy.get(landingPage.transplantCandidateRadioBtn)
           .should("be.visible")
           .get(landingPage.candidatesSomeoneRadioBtn)
           .should("be.visible")
@@ -38,12 +42,13 @@ describe("transplan kidney donor referral.0 page test", () => {
           .get(landingPage.myOwnResearchRadioBtn)
           .check()
           .get(landingPage.nextBtn)
+          .click()
 
           // .get(landingPage.headerBar)
-          // .should("be.visible")
-           .then(el => {
-            assert.include(el.text(), textNextBtn);
-            //  assert.include(el.text(), text);
+          // .should("be.visible") 
+          //  assert.include(el.text(), text);
+        cy.contains("Demographics")
+          .should("be.visible")
           });
         });
     });
