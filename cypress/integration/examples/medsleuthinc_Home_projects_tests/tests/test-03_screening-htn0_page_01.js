@@ -10,11 +10,13 @@ describe("transplan kidney donor page test", () => {
     });
 
     it("Should check the screening.htn.0 page elements", () => {
-        var selectorText = "How many medications do you take to control your blood pressure?";
+        var introPageText = "Do you take any medications to control your Blood Pressure?";
         var medicationQtyTxt = "How many medications do you take to control your blood pressure?";
       cy.visit("/screening.htn.0")
         .get(screeningHtn0.introText)
         .should("be.visible")
+        .get(screeningHtn0.introText)
+        .should("have.text", introPageText)
         .get(screeningHtn0.introStartSurBtn)
         .should("be.visible")
         .click()
@@ -44,3 +46,4 @@ describe("transplan kidney donor page test", () => {
         // .then(el => {
         //   assert.include(el.text(), );
     });
+
