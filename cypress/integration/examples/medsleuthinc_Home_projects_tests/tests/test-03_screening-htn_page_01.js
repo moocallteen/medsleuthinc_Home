@@ -62,7 +62,17 @@ describe("transplan kidney donor page test", () => {
         .should("be.visible")
         });
 
-        
+    it("Should check the screening.htn.0 page elements - No scenario", () => {
+      cy.visit("/screening.htn.0")
+        .get(screeningHtn0.introStartSurBtn)
+        .click()
+      cy.get(screeningHtn0.noRadioBtn)
+        .click()
+      cy.get(screeningHtn0.nextBtn)
+        .click()  
+      cy.contains("Do you currently take pills or insulin for Diabetes?")
+        .should("be.visible")
+        }); 
 
         
     });
