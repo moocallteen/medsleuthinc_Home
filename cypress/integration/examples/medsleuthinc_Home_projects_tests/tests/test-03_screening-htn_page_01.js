@@ -1,4 +1,4 @@
-import screeningHtn0 from "../page objects/03_screening-htn0_page_01";
+import screeningHtn0 from "../page objects/03_screening-htn_page_01";
 
 describe("transplan kidney donor page test", () => {
     before(() => {
@@ -10,14 +10,11 @@ describe("transplan kidney donor page test", () => {
     });
 
     it("Should check the screening.htn.0 page elements", () => {
-        var introPageText = "Do you take any medications to control your Blood Pressure?";
         var medicationQtyTxt = "How many medications do you take to control your blood pressure?";
       cy.visit("/screening.htn.0")
-        .get(screeningHtn0.introText)
-        .should("be.visible")
-        .get(screeningHtn0.introText)
-        .should("have.text", introPageText)
-        .get(screeningHtn0.introStartSurBtn)
+        .contains("Do you take any medications to control your Blood Pressure?")
+        .should("be.visible");
+      cy.get(screeningHtn0.introStartSurBtn)
         .should("be.visible")
         .click()
         .get(screeningHtn0.nextBtn)
@@ -29,11 +26,16 @@ describe("transplan kidney donor page test", () => {
         .and("contain", "Required")
         .get(screeningHtn0.noRadioBtn)
         .should("be.visible")
+        .and("contain", "No")
         .get(screeningHtn0.yesRadioBtn)
         .should("be.visible")
-        .check()
-        .get(screeningHtn0.nextBtn).click()
-        .get(screeningHtn0.medicationQtyTxt).should("be.visible")
+        .and("contain", "Yes")
+        .click()
+        .get(screeningHtn0.nextBtn)
+        .click()
+      cy.get(screeningHtn0.re)
+        .get(screeningHtn0.medicationQtyTxt)
+        .should("be.visible")
         .get('select[id="selectID"]')
         .select('Select One')
         // .get(screeningHtn0.medicationQtySelect)//.should("be.visible")
