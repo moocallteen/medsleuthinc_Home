@@ -52,7 +52,7 @@ describe("transplan kidney donor page test", () => {
 
     });
 
-    it.only("Should check the screening.diabetesrx page elements - No scenario", () => {
+    it("Should check the screening.diabetesrx page elements - No scenario", () => {
       var validationText = "Have you had more than one kidney stone in the past 10 years?";
       cy.visit("/screening.diabetesrx")
         .get(screeningDiabetesrx.introStartSurBtn)
