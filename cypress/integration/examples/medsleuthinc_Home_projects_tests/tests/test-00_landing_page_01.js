@@ -90,8 +90,7 @@ describe("transplan kidney donor page test", () => {
       .get(landingPage.yourEmailAddressFiled)
       .type('test@test.com')
       .get(landingPage.nextBtn)
-      .click()
-      //need to add verification 
+      .click() 
     cy.contains("Donor Type")
       .should("be.visible")
       .get(landingPage.iKnowRecipientRadioBtn)
