@@ -1,7 +1,5 @@
 module.exports ={
     introStartSurBtn : 'button[aria-describedby="dialog_prolog"]',
-    introText : 'p[class="dialog_prolog__node"]',
-    // text = Do you take any medications to control your Blood Pressure?
     yesRadioBtn : 'label[for="screening.htn.0.item.yes"]',
     noRadioBtn : 'label[for="screening.htn.0.item.no"]',
     nextBtn : 'button[aria-describedby="dialog_prolog entry_prolog"]',
