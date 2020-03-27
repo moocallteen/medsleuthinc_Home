@@ -34,11 +34,30 @@ describe("transplan kidney donor page test", () => {
           .click()
           .get(screeningTobacco.nextBtn)
           .click()
-          .get(screeningTobacco.headerBar)
+        cy.get(screeningTobacco.headerBar)
           .should("be.visible")
           .and("have.text", quitHeaderTitle)
+          .get(screeningTobacco.nextBtn)
+          .should("be.visible")
+          .and("contain", "Next")
+          .click()
+          .get(screeningTobacco.validationErrorMsg)
+          .should("be.visible")
+          .and("contain", "Required")
+          .get(screeningTobacco.noTobaccoQuitRadioBtn)
+          .should("be.visible")
+          .and("contain", "No")
+          .get(screeningTobacco.yesTobaccoQuitRadioBtn)
+          .should("be.visible")
+          .and("contain", "Yes")
+          .click()
+          .get(screeningTobacco.nextBtn)
+          .click()
+          .get(screeningTobacco.headerBar)
+          .should("have.text", pageToCheckTitle)
         //   .then(el => {
-            // assert.include(el.text(), pageToCheckTitle) 
+            //  assert.include(el.text(), pageToCheckTitle) 
+            // });
 
     });
 

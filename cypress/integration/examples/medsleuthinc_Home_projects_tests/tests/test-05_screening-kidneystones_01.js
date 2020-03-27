@@ -40,7 +40,7 @@ describe("transplan kidney donor page test", () => {
 
     });
 
-    it.only("Should check the screening.kidneystones page elements - No scenario", () => {
+    it("Should check the screening.kidneystones page elements - No scenario", () => {
         var pageToCheckTitle = "Do you smoke cigarettes or marijuana?";
         cy.visit("/screening.kidneystones")
           .get(screeningKidneystones.introStartSurBtn)
