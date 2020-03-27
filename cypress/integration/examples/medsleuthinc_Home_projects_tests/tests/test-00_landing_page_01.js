@@ -1,4 +1,4 @@
-import landingPage from "../library/00_landing_page_01";
+import landingPage from "../page objects/00_landing_page_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {
