@@ -10,6 +10,9 @@ describe("transplan kidney donor page test", () => {
     });
 
     it("Should check the screening.tobacco page elements - Yes scenario", () => {
+        var headerToCheck = "Please review the important information below prior to proceeding to the online evaluation";
+        var notInterestedText = "I am no longer interested in living donation";
+        var continueText = "Continue with the evaluation";
         cy.visit("/screening.ildrs")
           .contains("Do you use recreational or illicit drugs not including marijuana?")
           .get(screeningIlDrugs.introStartSurBtn)
@@ -31,6 +34,43 @@ describe("transplan kidney donor page test", () => {
           .click()
           .get(screeningIlDrugs.nextBtn)
           .click()
+          .get(screeningIlDrugs.headerBar)
+          .should("be.visible")
+          .and("have.text", headerToCheck)
+        cy.get(screeningIlDrugs.nextBtn)
+          .scrollIntoView()
+          .get(screeningIlDrugs.notInterestedToCheck)
+          .should("be.visible")
+          .and("have.text", notInterestedText)
+          .get(screeningIlDrugs.continueToCheck)
+          .should("be.visible")
+          .and("have.text", continueText)
+
+    });
+
+    it("Should check the screening.tobacco page elements - No scenario", () => {
+        var headerToCheck = "Please review the important information below prior to proceeding to the online evaluation";
+        var notInterestedText = "I am no longer interested in living donation";
+        var continueText = "Continue with the evaluation";
+        cy.visit("/screening.ildrs")
+          .contains("Do you use recreational or illicit drugs not including marijuana?")
+          .get(screeningIlDrugs.introStartSurBtn)
+          .click()
+          .get(screeningIlDrugs.noIlDrugsRadioBtn)
+          .click()
+          .get(screeningIlDrugs.nextBtn)
+          .click()
+          .get(screeningIlDrugs.headerBar)
+          .should("be.visible")
+          .and("have.text", headerToCheck)
+        cy.get(screeningIlDrugs.continueToCheck)
+          .scrollIntoView()
+        cy.get(screeningIlDrugs.notInterestedToCheck)
+          .should("be.visible")
+          .and("have.text", notInterestedText)
+          .get(screeningIlDrugs.continueToCheck)
+          .should("be.visible")
+          .and("have.text", continueText)
 
     });
 

@@ -4,5 +4,10 @@ module.exports ={
     noIlDrugsRadioBtn : 'label[for="screening.ildrs.item.no"]',
     nextBtn : 'button[id="next-button"]',
     validationErrorMsg : 'span[class="grommetux-form-field__error"]',
-    headerBar : 'div[class="dialog_title"]'
+    headerBar : 'div[class="dialog_title"]',
+    notInterestedToCheck : 'label[for="item.instructions.04.3"]',
+    continueToCheck : 'label[for="item.instructions.04.4"]'
+    // notInterestedToCheck : 'input[id="item.instructions.04.3"]',
+    // continueToCheck : 'input[id="item.instructions.04.4"]'
+
 }
