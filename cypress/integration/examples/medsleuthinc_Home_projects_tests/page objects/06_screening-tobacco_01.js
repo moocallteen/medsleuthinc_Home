@@ -6,5 +6,8 @@ module.exports ={
     noTobaccoQuitRadioBtn : 'label[for="screening.tobacco.quit.item.no"]',
     nextBtn : 'button[id="next-button"]',
     validationErrorMsg : 'span[class="grommetux-form-field__error"]',
-    headerBar : 'div[class="dialog_title"]'
+    headerBar : 'div[class="dialog_title"]',
+    contentHeader : 'label[id="header"]',
+    contentReason : 'ul[class="bulletedList"]',
+    contentFooter : 'p[id="footer"]'
 }

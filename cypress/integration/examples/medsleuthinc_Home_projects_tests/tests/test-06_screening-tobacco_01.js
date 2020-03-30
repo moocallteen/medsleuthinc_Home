@@ -9,7 +9,7 @@ describe("transplan kidney donor page test", () => {
         cy.viewport(1280, 800);
     });
 
-    it("Should check the screening.tobacco page elements - Yes scenario", () => {
+    it("Should check the screening.tobacco page elements - Yes-Yes scenario", () => {
         var quitHeaderTitle = "Would you be willing to quit smoking 6 weeks prior to surgery?"; 
         var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
         cy.visit("/screening.tobacco")
@@ -58,7 +58,7 @@ describe("transplan kidney donor page test", () => {
 
     });
 
-    it.only("Should check the screening.tobacco page elements - No scenario", () => {
+    it("Should check the screening.tobacco page elements - No scenario", () => {
       var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
       cy.visit("/screening.tobacco")
         .get(screeningTobacco.introStartSurBtn)
@@ -71,5 +71,35 @@ describe("transplan kidney donor page test", () => {
         .should("have.text", pageToCheckTitle)
 
     });
+
+    it("Should check the screening.tobacco page elements - Yes-No scenario", () => {
+      var pageToCheckTitle = "Thank you for your generous offer to be a kidney donor";
+      var contentHeaderText = "Unfortunately, you are not eligible to be a donor at this time";
+      var contentReasonText = "You must be willing to quit using marijuana or tobacco products for at least 6 weeks prior to surgery";
+      var contentFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
+      cy.visit("/screening.tobacco")
+        .get(screeningTobacco.introStartSurBtn)
+        .click()
+        .get(screeningTobacco.yesTobaccoRadioBtn)
+        .click()
+        .get(screeningTobacco.nextBtn)
+        .click()
+        .get(screeningTobacco.noTobaccoQuitRadioBtn)
+        .click()
+        .get(screeningTobacco.nextBtn)
+        .click()
+        .get(screeningTobacco.headerBar)
+        .should("have.text", pageToCheckTitle)
+        .get(screeningTobacco.contentHeader)
+        .should("have.text", contentHeaderText)
+        .get(screeningTobacco.contentReason)
+        .should("have.text", contentReasonText)
+        .get(screeningTobacco.contentFooter)
+        .should("have.text", contentFooterText)
+
+
+    });
+
+
 
 });
