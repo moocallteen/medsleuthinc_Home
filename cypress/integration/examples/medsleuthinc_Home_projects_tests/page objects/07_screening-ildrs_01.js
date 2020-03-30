@@ -7,7 +7,5 @@ module.exports ={
     headerBar : 'div[class="dialog_title"]',
     notInterestedToCheck : 'label[for="item.instructions.04.3"]',
     continueToCheck : 'label[for="item.instructions.04.4"]'
-    // notInterestedToCheck : 'input[id="item.instructions.04.3"]',
-    // continueToCheck : 'input[id="item.instructions.04.4"]'
 
 }
