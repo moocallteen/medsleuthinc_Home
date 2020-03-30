@@ -9,7 +9,7 @@ describe("transplan kidney donor page test", () => {
         cy.viewport(1280, 800);
     });
 
-    it("Should check the screening.tobacco page elements - Yes scenario", () => {
+    it("Should check the screening.ildrs page elements - Yes scenario", () => {
         var headerToCheck = "Please review the important information below prior to proceeding to the online evaluation";
         var notInterestedText = "I am no longer interested in living donation";
         var continueText = "Continue with the evaluation";
@@ -48,7 +48,7 @@ describe("transplan kidney donor page test", () => {
 
     });
 
-    it("Should check the screening.tobacco page elements - No scenario", () => {
+    it("Should check the screening.ildrs page elements - No scenario", () => {
         var headerToCheck = "Please review the important information below prior to proceeding to the online evaluation";
         var notInterestedText = "I am no longer interested in living donation";
         var continueText = "Continue with the evaluation";
@@ -71,6 +71,7 @@ describe("transplan kidney donor page test", () => {
           .get(screeningIlDrugs.continueToCheck)
           .should("be.visible")
           .and("have.text", continueText)
+
 
     });
 
