@@ -54,10 +54,21 @@ describe("transplan kidney donor page test", () => {
           .get(screeningTobacco.nextBtn)
           .click()
           .get(screeningTobacco.headerBar)
-          .should("have.text", pageToCheckTitle)
-        //   .then(el => {
-            //  assert.include(el.text(), pageToCheckTitle) 
-            // });
+          .should("have.text", pageToCheckTitle);
+
+    });
+
+    it.only("Should check the screening.tobacco page elements - No scenario", () => {
+      var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
+      cy.visit("/screening.tobacco")
+        .get(screeningTobacco.introStartSurBtn)
+        .click()
+        .get(screeningTobacco.noTobaccoRadioBtn)
+        .click()
+        .get(screeningTobacco.nextBtn)
+        .click()
+        .get(screeningTobacco.headerBar)
+        .should("have.text", pageToCheckTitle)
 
     });
 
