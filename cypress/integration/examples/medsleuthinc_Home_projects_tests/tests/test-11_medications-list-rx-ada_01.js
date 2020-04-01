@@ -153,4 +153,92 @@ describe("transplan kidney donor page test", () => {
       
     });
 
+    it.only("Should check the medications-list-rx-ada-1 page elements - Make Changes scenario ", () => {
+
+      var doses = [
+        "2000 mg",
+        "1500 mg",
+        "250 mg",
+        "1000 mg",
+        "Other"
+      ];
+      var frequences = [
+        "Once a Day",
+        "In the Morning",
+        "Once a Day (at night only)",
+        "At Noon",
+        "In the Afternoon",
+        "In the Evening",
+        "At Bedtime",
+        "Twice a Day",
+        "Three Times a Day",
+        "Four Times a Day",
+        "As Needed",
+        "Every Other Day",
+        "Weekly",
+        "Monthly",
+        "I don't know",
+        "Other"
+      ];
+      var medConditionsListHeader = "Do you have or have you had any of the following medical conditions?";
+      var listConfirmHeaderTxt = "If below is a complete list of medications, vitamins and supplements taken on a regular/occasional basis, click NEXT:";
+
+
+      cy.visit("/instructions.04")
+        .get(medicationList.introStartSurBtn)
+        .click()
+        .get(medicationList.enterMedicationsRadioBtn)
+        .click()
+        .get(medicationList.nextBtn)
+        .click()
+        .get(medicationList.medsInputField)
+        .type("Aspirin")
+        .wait(100)
+        .get(medicationList.medsListWrapper)
+        .get(medicationList.suggestedItem)
+        .click()
+        .get(medicationList.nextBtn)
+        .click()
+        .get(medicationList.makeChangeBtn)
+        .click()
+        .get(medicationList.medsDropdownCloseBtn)
+        .click()
+        .get(medicationList.medsInputField)
+        .type("Vitamin C")
+        .wait(100)
+        .get(medicationList.medsListWrapper)
+        .get(medicationList.suggestedItem)
+        .click()
+        .get(medicationList.medsDropdownExpandBtn)
+        .click()
+        .get(medicationList.dosageSelector)
+        for(var i = 0; i < doses.length; i++) {
+          cy.get(medicationList.dosageSelector)
+            .select(doses[i])
+            .should("be.visible");
+        }
+      cy.get(medicationList.dosageSelector)
+        .select("1000 mg")
+        for(var i = 0; i < frequences.length; i++){
+          cy.get(medicationList.frequencySelector)
+            .select(frequences[i])
+            .should("be.visible");
+        }
+      cy.get(medicationList.frequencySelector)
+        .select("In the Evening")
+        .get(medicationList.nextBtn)
+        .click()
+        .wait(200)
+        .get(medicationList.headerBar)
+        .should("be.visible")
+        .and("have.text", listConfirmHeaderTxt)
+      cy.get(medicationList.nextBtn)
+        .click()
+      cy.get(medicationList.headerBar)
+        .should("be.visible")
+        .and("have.text", medConditionsListHeader)
+
+    });
+
+
 })
