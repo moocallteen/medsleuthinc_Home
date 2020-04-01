@@ -6,5 +6,19 @@ module.exports ={
     doNotTakeMedsRadioBtn : 'label[for="item.instructions.04.2"]',
     headerBar : 'div[class="dialog_title"]',
     medsInputField : 'input[class="react-autosuggest__input"]',
-    placeHolder : 'input[placeholder="Enter name of medication"]'
+    placeHolder : 'input[placeholder="Enter name of medication"]',
+    medsListWrapper : 'ul[class="react-autosuggest__suggestions-list"]',
+    suggestedItem : 'li[id="react-autowhatever-autocomplete_input--item-1"]',
+    medsDropdownExpandBtn : 'svg[aria-label="caret-next"]',
+    medsDropdownCloseBtn : 'svg[aria-label="close"]',
+    medsInfoBar : 'div[class="accordionDrawer"]',
+    dosageSelector : 'select[name="medications[0].dose"]',
+    frequencySelector : 'select[name="medications[0].frequency"]',
+    makeChangeBtn : 'a[class="btn-secondary btn-block makeChangesBtn mt-4 priCol-border btnFontSize"]',
+    anxietyDisCheckBox : 'label[for="condition.240.temp.3802"]',
+    panickAttCheckBox : 'label[for="condition.558.temp.3802"]',
+    otherCheckBox : 'label[for="other.condition.3802"]',
+    otherInputField : 'input[id="other.input.cdss.followup.3802"]',
+    idkCheckBox : 'label[for="idontknow.condition.3802"]',
+
 }
