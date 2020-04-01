@@ -153,7 +153,7 @@ describe("transplan kidney donor page test", () => {
       
     });
 
-    it.only("Should check the medications-list-rx-ada-1 page elements - Make Changes scenario ", () => {
+    it("Should check the medications-list-rx-ada-1 page elements - Make Changes scenario ", () => {
 
       var doses = [
         "2000 mg",
@@ -239,6 +239,5 @@ describe("transplan kidney donor page test", () => {
         .and("have.text", medConditionsListHeader)
 
     });
-
 
 })
