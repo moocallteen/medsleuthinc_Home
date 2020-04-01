@@ -54,17 +54,12 @@ describe("transplan kidney donor referral.0 page test", () => {
           .get(referralPage.nextBtn)
           .click()
           .get(referralPage.validationErrorMsg)
-          // .first()
           .should("have.text", "Required")
           .get(referralPage.myOwnResearchRadioBtn)
           .check()
           .get(referralPage.nextBtn)
           .should("have.text", textNextBtn)
           .click();
-
-          // .get(referralPage.headerBar)
-          // .should("be.visible") 
-          //  assert.include(el.text(), text);
         cy.contains("Demographics")
           .should("be.visible")
           });
