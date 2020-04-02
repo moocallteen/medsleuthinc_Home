@@ -30,6 +30,7 @@ describe("transplan kidney donor page test", () => {
     var middleName = "Middle name";
     var lastName = "Last name";
     cy.visit("/landing-page")
+      .wait(200)
       .get(landingPage.logo)
       .should("be.visible")
       .get(landingPage.headerBar)
@@ -45,7 +46,8 @@ describe("transplan kidney donor page test", () => {
     cy.get(landingPage.termsLink)
       .should("be.visible")
       .get(landingPage.startSurveyBtn)
-      .click();
+      .click()
+      .wait(200);
     cy.get(landingPage.yourFirstNameField)
       .should("be.visible")
       .get(landingPage.nextBtn)
@@ -106,6 +108,7 @@ describe("transplan kidney donor page test", () => {
       .type('test@test.com')
       .get(landingPage.nextBtn)
       .click() 
+      .wait(200);
     cy.contains("Donor Type")
       .should("be.visible")
       .get(landingPage.iKnowRecipientRadioBtn)
@@ -126,13 +129,13 @@ describe("transplan kidney donor page test", () => {
     var anotherPatientText = "From another donor, recipient or patient.";
     var otherText = "Other";  
       cy.visit("/referral.0")
+        .wait(200)
         .get(referralPage.introStartSurBtn)
         .click()
         .get(referralPage.nextBtn)
         .then(el => {
           assert.include(el.text(), textNextBtn);
           
-
       cy.get(referralPage.transplantCandidateRadioBtn)
         .should("be.visible")
         .get(referralPage.transplantCandidateTextBlock)
@@ -169,7 +172,8 @@ describe("transplan kidney donor page test", () => {
         .should("have.text", textNextBtn)
         .click();
       cy.contains("Demographics")
-        .should("be.visible")
+        .should("be.visible");
+
         });
 
   });
@@ -199,6 +203,7 @@ describe("transplan kidney donor page test", () => {
     var otherLanguageHeading = "If Other:";
     var doYouNeedTranslatorHeading = "Do you need a translator?YesNo";
     cy.visit("/race.0")
+      .wait(200)
       .get(landingPage.startSurveyBtn)
       .click()
       .get(demographicsPage.headingText)
@@ -229,7 +234,7 @@ describe("transplan kidney donor page test", () => {
       cy.get(demographicsPage.languageSelector)
         .select(languages[i])
         .should("be.visible");
-    }
+    };
     cy.get(demographicsPage.otherLanguageBar)
       .should("have.text", otherLanguageHeading)
       .get(demographicsPage.otherLanguageField)
@@ -241,6 +246,7 @@ describe("transplan kidney donor page test", () => {
       .get(landingPage.validationErrorMsg)
       .first()
       .should("have.text", "Required");
+
   });
 
   it("Should check the screening.htn.0 page elements - Yes scenario", () => {
@@ -252,6 +258,7 @@ describe("transplan kidney donor page test", () => {
       ">2"
     ];
   cy.visit("/screening.htn.0")
+    .wait(200)
     .contains("Do you take any medications to control your Blood Pressure?")
     .should("be.visible");
   cy.get(screeningHtn0.introStartSurBtn)
@@ -273,6 +280,7 @@ describe("transplan kidney donor page test", () => {
     .click()
     .get(screeningHtn0.nextBtn)
     .click()
+    .wait(200);
   cy.get(screeningHtn0.headerBar)
     .should("be.visible")
     .and("contain", medicationQtyTxt)
@@ -286,26 +294,33 @@ describe("transplan kidney donor page test", () => {
   }
   cy.get(screeningHtn0.nextBtn)
     .click()
+    .wait(200);
   cy.contains("Thank you for your generous offer to be a kidney donor")
-    .should("be.visible")
+    .should("be.visible");
   cy.contains("Unfortunately, you are not eligible to be a donor at this time")
-    .should("be.visible")
+    .should("be.visible");
   cy.contains("Your high blood pressure places you at increased risk of kidney disease and dangerous complications if you donate your kidney.")
-    .should("be.visible")
+    .should("be.visible");
   cy.get(screeningHtn0.footerText)
-    .should("be.visible")
+    .should("be.visible");
+
     });
 
 it("Should check the screening.htn.0 page elements - No scenario", () => {
   cy.visit("/screening.htn.0")
+    .wait(200)
     .get(screeningHtn0.introStartSurBtn)
     .click()
+    .wait(200);
   cy.get(screeningHtn0.noRadioBtn)
     .click()
+    .wait(200);
   cy.get(screeningHtn0.nextBtn)
     .click()  
+    .wait(200);
   cy.contains("Do you currently take pills or insulin for Diabetes?")
-    .should("be.visible")
+    .should("be.visible");
+
     });
 
     it("Should check the screening.diabetesrx page elements - Yes scenario", () => {
@@ -315,11 +330,13 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var contentFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
   
         cy.visit("/screening.diabetesrx")
+          .wait(200)
           .contains("Do you currently take pills or insulin for Diabetes?")
-          .should("be.visible")
+          .should("be.visible");
         cy.get(screeningDiabetesrx.introStartSurBtn)
           .should("be.visible")
           .click()
+          .wait(200);
         cy.get(screeningDiabetesrx.nextBtn)
           .should("be.visible")
           .and("contain", "Next")
@@ -336,6 +353,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(screeningDiabetesrx.nextBtn)
           .click()
+          .wait(200);
         cy.get(screeningDiabetesrx.headerBar)
           .should("be.visible")
           .and("have.text", headerBarText)
@@ -347,13 +365,14 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .and("have.text", contentReasonText)
           .get(screeningDiabetesrx.contentFooter)
           .should("be.visible")
-          .and("have.text", contentFooterText)
+          .and("have.text", contentFooterText);
   
       });
   
       it("Should check the screening.diabetesrx page elements - No scenario", () => {
         var validationText = "Have you had more than one kidney stone in the past 10 years?";
         cy.visit("/screening.diabetesrx")
+          .wait(200)
           .get(screeningDiabetesrx.introStartSurBtn)
           .click()
           .get(screeningDiabetesrx.noRadioBtn)
@@ -370,11 +389,13 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
       it("Should check the screening.kidneystones page elements - Yes scenario", () => {
         var pageToCheckTitle = "Do you smoke cigarettes or marijuana?";
         cy.visit("/screening.kidneystones")
+          .wait(200)
           .contains("Have you had more than one kidney stone in the past 10 years?")
-          .should("be.visible")
+          .should("be.visible");
         cy.get(screeningKidneystones.introStartSurBtn)
           .should("be.visible")
           .click()
+          .wait(200);
         cy.get(screeningKidneystones.nextBtn)
           .should("be.visible")
           .and("contain", "Next")
@@ -391,6 +412,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(screeningKidneystones.nextBtn)
           .click()
+          .wait(200)
           .get(screeningKidneystones.headerBar)
           .then(el => {
             assert.include(el.text(), pageToCheckTitle) 
@@ -401,6 +423,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
     it("Should check the screening.kidneystones page elements - No scenario", () => {
         var pageToCheckTitle = "Do you smoke cigarettes or marijuana?";
         cy.visit("/screening.kidneystones")
+          .wait(200)
           .get(screeningKidneystones.introStartSurBtn)
           .click()
           .get(screeningKidneystones.noRadioBtn)
@@ -418,11 +441,13 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var quitHeaderTitle = "Would you be willing to quit smoking 6 weeks prior to surgery?"; 
         var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
         cy.visit("/screening.tobacco")
+          .wait(200)
           .contains("Do you smoke cigarettes or marijuana?")
-          .should("be.visible")
+          .should("be.visible");
         cy.get(screeningTobacco.introStartSurBtn)
           .should("be.visible")
           .click()
+          .wait(200);
         cy.get(screeningTobacco.nextBtn)
           .should("be.visible")
           .and("contain", "Next")
@@ -439,6 +464,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(screeningTobacco.nextBtn)
           .click()
+          .wait(200);
         cy.get(screeningTobacco.headerBar)
           .should("be.visible")
           .and("have.text", quitHeaderTitle)
@@ -466,6 +492,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
     it("Should check the screening.tobacco page elements - No scenario", () => {
       var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
       cy.visit("/screening.tobacco")
+        .wait(200)
         .get(screeningTobacco.introStartSurBtn)
         .click()
         .get(screeningTobacco.noTobaccoRadioBtn)
@@ -473,7 +500,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         .get(screeningTobacco.nextBtn)
         .click()
         .get(screeningTobacco.headerBar)
-        .should("have.text", pageToCheckTitle)
+        .should("have.text", pageToCheckTitle);
 
     });
 
@@ -483,6 +510,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
       var contentReasonText = "You must be willing to quit using marijuana or tobacco products for at least 6 weeks prior to surgery";
       var contentFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
       cy.visit("/screening.tobacco")
+        .wait(200)
         .get(screeningTobacco.introStartSurBtn)
         .click()
         .get(screeningTobacco.yesTobaccoRadioBtn)
@@ -500,7 +528,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         .get(screeningTobacco.contentReason)
         .should("have.text", contentReasonText)
         .get(screeningTobacco.contentFooter)
-        .should("have.text", contentFooterText)
+        .should("have.text", contentFooterText);
 
     });
 
@@ -509,10 +537,12 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var notInterestedText = "I am no longer interested in living donation";
         var continueText = "Continue with the evaluation";
         cy.visit("/screening.ildrs")
+          .wait(200)
           .contains("Do you use recreational or illicit drugs not including marijuana?")
           .get(screeningIlDrugs.introStartSurBtn)
           .should("be.visible")
           .click()
+          .wait(200);
         cy.get(screeningIlDrugs.nextBtn)
           .should("be.visible")
           .and("contain", "Next")
@@ -529,17 +559,19 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(screeningIlDrugs.nextBtn)
           .click()
+          .wait(200)
           .get(screeningIlDrugs.headerBar)
           .should("be.visible")
-          .and("have.text", headerToCheck)
-        cy.get(screeningIlDrugs.nextBtn)
+          .and("have.text", headerToCheck);
+        cy.get(screeningIlDrugs.notInterestedToCheck)
           .scrollIntoView()
+          .wait(300)
           .get(screeningIlDrugs.notInterestedToCheck)
           .should("be.visible")
           .and("have.text", notInterestedText)
           .get(screeningIlDrugs.continueToCheck)
           .should("be.visible")
-          .and("have.text", continueText)
+          .and("have.text", continueText);
 
     });
 
@@ -548,6 +580,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var notInterestedText = "I am no longer interested in living donation";
         var continueText = "Continue with the evaluation";
         cy.visit("/screening.ildrs")
+          .wait(200)
           .contains("Do you use recreational or illicit drugs not including marijuana?")
           .get(screeningIlDrugs.introStartSurBtn)
           .click()
@@ -557,15 +590,15 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(screeningIlDrugs.headerBar)
           .should("be.visible")
-          .and("have.text", headerToCheck)
+          .and("have.text", headerToCheck);
         cy.get(screeningIlDrugs.continueToCheck)
-          .scrollIntoView()
+          .scrollIntoView();
         cy.get(screeningIlDrugs.notInterestedToCheck)
           .should("be.visible")
           .and("have.text", notInterestedText)
           .get(screeningIlDrugs.continueToCheck)
           .should("be.visible")
-          .and("have.text", continueText)
+          .and("have.text", continueText);
 
     });
 
@@ -576,10 +609,12 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var contentToCheck = "Thank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.org";
         
         cy.visit("/what_to_expect.0")
+          .wait(200)
           .contains("Please review the important information below prior to proceeding to the online evaluation")
           .get(whatToExpectPage.introStartSurBtn)
           .should("be.visible")
           .click()
+          .wait(200);
         cy.contains("Donor Evaluation")
           .should("be.visible")
           .get(whatToExpectPage.evaluationInfoText)
@@ -607,7 +642,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .and("have.text", textToCheck)
           .get(whatToExpectPage.verifiedPageCheck)
           .should("be.visible")
-          .and("have.text", contentToCheck)
+          .and("have.text", contentToCheck);
 
     });
 
@@ -616,8 +651,9 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var contentToCheck = "Kidney donation surgery will take place at UCSF and will require hospitalization for 2-3 daysThank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.orgNext";
         
         cy.visit("/what_to_expect.0")
+          .wait(200)
           .get(whatToExpectPage.introStartSurBtn)
-          .click()
+          .click();
         cy.get(whatToExpectPage.continueToCheck)
           .scrollIntoView()
           .get(whatToExpectPage.continueToCheck)
@@ -629,7 +665,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .and("have.text", textToCheck)
           .get(whatToExpectPage.participationConfirmContent)
           .should("be.visible")
-          .and("have.text", contentToCheck)
+          .and("have.text", contentToCheck);
 
     });
 
@@ -640,6 +676,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var contentToCheck = "In order to complete this questionnaire, you will need to provide the names of all medications, vitamins, and herbal supplements that you currently take. Please include those medications that you take on a regular basis, and also those medications that you take occasionally ('as needed')";
 
         cy.visit("/thankyou_opt_out.0")
+          .wait(200)
           .contains("Thank you for your participation")
           .get(thankYouOptOut.introStartSurBtn)
           .should("be.visible")
@@ -651,12 +688,13 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .should("be.visible")
           .and("have.text", "Next")
           .click()
+          .wait(200);
         cy.get(thankYouOptOut.headerBar)
           .should("be.visible")
           .and("have.text", headerText)
           .get(thankYouOptOut.contentContainer)
           .should("be.visible")
-          .and("have.text", contentToCheck)
+          .and("have.text", contentToCheck);
 
     });
 
@@ -668,10 +706,12 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var medsListHeaderTxt = "Please enter your medications, one by one. You may enter either the brand or generic name.";
 
         cy.visit("instructions.04")
+          .wait(200)
           .contains("This health questionnaire will take approximately 15 to 20 minutes to complete.")
           .get(instructionsPage.introStartSurBtn)
           .should("be.visible")
           .click()
+          .wait(200);
         cy.contains(pageContentText)
           .get(instructionsPage.nextBtn)
           .should("be.visible")
@@ -685,9 +725,10 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(instructionsPage.nextBtn)
           .click()
+          .wait(200)
           .get(instructionsPage.headerBar)
           .should("be.visible")
-          .and("have.text", medsListHeaderTxt)
+          .and("have.text", medsListHeaderTxt);
 
     });
 
@@ -696,6 +737,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var medConditionsListHeader = "Do you have or have you had any of the following medical conditions?";
 
         cy.visit("instructions.04")
+          .wait(300)
           .contains("This health questionnaire will take approximately 15 to 20 minutes to complete.")
           .get(instructionsPage.introStartSurBtn)
           .click()
@@ -705,7 +747,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(instructionsPage.headerBar)
           .should("be.visible")
-          .and("have.text", medConditionsListHeader)
+          .and("have.text", medConditionsListHeader);
 
     });
 
@@ -745,15 +787,18 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         var medConditionsListHeader = "Do you have or have you had any of the following medical conditions?";
 
         cy.visit("/instructions.04")
+          .wait(200)
           .get(medicationList.introStartSurBtn)
           .click()
+          .wait(200)
           .get(medicationList.enterMedicationsRadioBtn)
           .click()
           .get(medicationList.nextBtn)
           .click()
+          .wait(200)
           .get(medicationList.headerBar)
           .should("be.visible")
-          .and("have.text", enterMedsHeaderTitle)
+          .and("have.text", enterMedsHeaderTitle);
         cy.contains("Search for medications")
           .get(medicationList.nextBtn)
           .should("be.visible")
@@ -767,7 +812,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .get(medicationList.medsInputField)
           .should("be.visible")
           .type("Vitamin C")
-          .wait(100)
+          .wait(200)
           .get(medicationList.medsListWrapper)
           .should("be.visible")
           .and("contain", "Vitamin C")
@@ -780,7 +825,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .click()
           .get(medicationList.medsInputField)
           .type("Xanax")
-          .wait(100)
+          .wait(200);
         cy.get(medicationList.medsListWrapper)
           .should("be.visible")
           .and("contain", "Xanax")
@@ -799,18 +844,19 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           cy.get(medicationList.dosageSelector)
             .select(doses[i])
             .should("be.visible");
-        }
+        };
         cy.get(medicationList.dosageSelector)
           .select("0.5 mg")
         for(var i = 0; i < frequences.length; i++){
           cy.get(medicationList.frequencySelector)
             .select(frequences[i])
             .should("be.visible");
-        }
+        };
         cy.get(medicationList.frequencySelector)
           .select("Twice a Day")
           .get(medicationList.nextBtn)
           .click()
+          .wait(200)
           .get(medicationList.headerBar)
           .should("be.visible")
           .and("have.text", listConfirmHeaderTxt)
@@ -820,9 +866,9 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .get(medicationList.nextBtn)
           .should("be.visible")
           .and("have.text", "Next")
-          .click()
+          .click();
         cy.contains(otherInputFieldHeading)
-          .should("be.visible")
+          .should("be.visible");
         cy.get(medicationList.headerBar)
           .should("be.visible")
           .and("have.text", reasonHeaderTitle)
@@ -846,10 +892,10 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           .get(medicationList.nextBtn)
           .should("be.visible")
           .and("have.text", "Next")
-          .click()
+          .click();
         cy.get(medicationList.headerBar)
           .should("be.visible")
-          .and("have.text", medConditionsListHeader)
+          .and("have.text", medConditionsListHeader);
       
     });
 
@@ -885,6 +931,7 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
 
 
       cy.visit("/instructions.04")
+        .wait(200)
         .get(medicationList.introStartSurBtn)
         .click()
         .get(medicationList.enterMedicationsRadioBtn)
@@ -916,14 +963,14 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
           cy.get(medicationList.dosageSelector)
             .select(doses[i])
             .should("be.visible");
-        }
+        };
       cy.get(medicationList.dosageSelector)
         .select("1000 mg")
         for(var i = 0; i < frequences.length; i++){
           cy.get(medicationList.frequencySelector)
             .select(frequences[i])
             .should("be.visible");
-        }
+        };
       cy.get(medicationList.frequencySelector)
         .select("In the Evening")
         .get(medicationList.nextBtn)
@@ -931,12 +978,13 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
         .wait(200)
         .get(medicationList.headerBar)
         .should("be.visible")
-        .and("have.text", listConfirmHeaderTxt)
+        .and("have.text", listConfirmHeaderTxt);
       cy.get(medicationList.nextBtn)
         .click()
+        .wait(200);
       cy.get(medicationList.headerBar)
         .should("be.visible")
-        .and("have.text", medConditionsListHeader)
+        .and("have.text", medConditionsListHeader);
 
     });
 
