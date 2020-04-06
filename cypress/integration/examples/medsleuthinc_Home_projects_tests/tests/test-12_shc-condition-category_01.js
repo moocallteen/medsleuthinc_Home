@@ -288,7 +288,24 @@ describe("transplan kidney donor page test", () => {
 
     });
 
-    it.only("Should check the shc-condition-category page elements - Follow-up scenario ", () => {
+    it("Should check the shc-condition-category page elements -  Airway and/or Lungs conditions - Asthma follow-up scenario ", () => {
+        var asthmaCondText = "Asthma";
+        var bronchiectasisCondText = "Bronchiectasis";
+        var chronicBronchitisCondText = "COPD (Chronic Bronchitis and/or Emphysema)";
+        var fluidAroundLungsCondText = "Fluid around my Lungs (Pleural Effusion)";
+        var fluidInLungsCondText = "Fluid in my Lungs (Pulmonary Edema)";
+        var ildCondText = "Interstitial Lung Disease (ILD)";
+        var pneumoniaCondText = "Pneumonia";
+        var pneumothoraxCondText = "Pneumothorax (Collapsed Lung)";
+        var pulmonaryFibrosisCondText = "Pulmonary Fibrosis";
+        var sleepApneaCondText = "Sleep Apnea";
+        var influenzaCondText = "The Flu (Influenza)";
+        var tuberculosisCondText = "Tuberculosis (TB)";
+        var urtInfectionCondText = "Upper Respiratory Tract Infection (Cold/Flu/Acute Bronchitis)";
+        
+        var steroidsQueryHeading = "Have you ever taken steroids to manage your Asthma?";
+        var hospitalizedQueryHeading = "Have you been hospitalized because of your Asthma?";
+        var intubatedQueryHeading = "Have you ever been intubated (that is, had a breathing tube) because of your Asthma?";
         cy.visit("/shc-condition-category")
           .contains("Do you have or have you had any of the following medical conditions?")
           .get(medConditionsSurvey.introStartSurBtn)
@@ -344,6 +361,107 @@ describe("transplan kidney donor page test", () => {
 
         cy.get(medConditionsSurvey.nextBtn)
           .click();
+
+        cy.get(medConditionsSurvey.headerBar)
+          .should("be.visible")
+          .and("have.text", "Specifically, which of the following conditions apply?");
+        cy.contains("A condition related to Airway and/or Lungs. Please check all that apply:");
+        cy.get(medConditionsSurvey.asthmaCheckBox)
+          .should("be.visible")
+          .and("have.text", asthmaCondText);
+        cy.get(medConditionsSurvey.bronchiectasisCheckBox)
+          .should("be.visible")
+          .and("have.text", bronchiectasisCondText);
+        cy.get(medConditionsSurvey.chronicBronchitisCheckBox)
+          .should("be.visible")
+          .and("have.text", chronicBronchitisCondText);
+        cy.get(medConditionsSurvey.fluidAroundLungsCheckBox)
+          .should("be.visible")
+          .and("have.text", fluidAroundLungsCondText);
+        cy.get(medConditionsSurvey.fluidInLungsCheckBox)
+          .should("be.visible")
+          .and("have.text", fluidInLungsCondText);
+        cy.get(medConditionsSurvey.ildCheckBox)
+          .should("be.visible")
+          .and("have.text", ildCondText);
+        cy.get(medConditionsSurvey.pneumoniaCheckBox)
+          .scrollIntoView()
+          .should("be.visible")
+          .and("have.text", pneumoniaCondText);
+        cy.get(medConditionsSurvey.pneumothoraxCheckBox)
+          .scrollIntoView()
+          .should("be.visible")
+          .and("have.text", pneumothoraxCondText);
+        cy.get(medConditionsSurvey.pulmonaryFibrosisCheckBox)
+          .scrollIntoView()
+          .should("be.visible")
+          .and("have.text", pulmonaryFibrosisCondText);
+        cy.get(medConditionsSurvey.sleepApneaCheckBox)
+          .scrollIntoView()  
+          .should("be.visible")
+          .and("have.text", sleepApneaCondText);
+        cy.get(medConditionsSurvey.influenzaCheckBox)
+          .scrollIntoView()
+          .should("be.visible")
+          .and("have.text", influenzaCondText);
+        cy.get(medConditionsSurvey.tuberculosisCheckBox)
+          .scrollIntoView()  
+          .should("be.visible")
+          .and("have.text", tuberculosisCondText);
+        cy.get(medConditionsSurvey.urtInfectionCheckBox)
+          .scrollIntoView()  
+          .should("be.visible")
+          .and("have.text", urtInfectionCondText);
+        cy.get(medConditionsSurvey.nextBtn)
+          .should("be.visible")
+          .and("have.text", "Next")
+          .click()
+          .get(medConditionsSurvey.validationErrorMsg)
+          .should("be.visible")
+          .and("have.text", "Required");
+        cy.get(medConditionsSurvey.asthmaCheckBox)
+          .scrollIntoView()
+          .click()
+          .get(medConditionsSurvey.nextBtn)
+          .click()
+          .get(medConditionsSurvey.headerBar)
+          .should("be.visible")
+          .and("have.text", "With regard to your Asthma?")
+        cy.get(medConditionsSurvey.steroidsQuery)
+          .should("be.visible")
+          .and("contain", steroidsQueryHeading)
+        cy.get(medConditionsSurvey.yesSteroidsQuery)
+          .should("be.visible")
+          .and("have.text", "Yes")
+          .get(medConditionsSurvey.noSteroidsQuery)
+          .should("be.visible")
+          .and("have.text", "No")
+          .click();
+        cy.get(medConditionsSurvey.hospitalizedQuery)
+          .should("be.visible")
+          .and("contain", hospitalizedQueryHeading)
+          .get(medConditionsSurvey.yesHospitalizedQuery)
+          .should("be.visible")
+          .and("have.text", "Yes")
+          .get(medConditionsSurvey.noHospitalizedQuery)
+          .should("be.visible")
+          .and("have.text", "No")
+          .click();
+        cy.get(medConditionsSurvey.intubatedQuery)
+          .should("be.visible")
+          .and("contain", intubatedQueryHeading)
+          .get(medConditionsSurvey.yesIntubatedQuery)
+          .should("be.visible")
+          .and("have.text", "Yes")
+          .get(medConditionsSurvey.noIntubatedQuery)
+          .should("be.visible")
+          .and("have.text", "No")
+          .click()
+          .get(medConditionsSurvey.nextBtn)
+          .click()
+          .get(medConditionsSurvey.headerBar)
+          .should("be.visible")
+          .and("have.text", "Do you have any ALLERGIES to medications?")
 
     });
 

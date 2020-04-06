@@ -63,5 +63,30 @@ module.exports = {
     yesNeuroDefRadioBtn : 'label[for="cdss.category.kidney.waitlist.default.76.temp"]',
     noNeuroDefRadioBtn : 'label[for="cdss.category.kidney.waitlist.default.76.temp:No"]',
     dataTargetNeuroDef : 'a[data-target="#followup_default_cdss_category_temp_kidney_waitlist_default_76"]',
-    neuroDefModalDialog : 'div[id="followup_default_cdss_category_temp_kidney_waitlist_default_76"]'
+    neuroDefModalDialog : 'div[id="followup_default_cdss_category_temp_kidney_waitlist_default_76"]',
+
+    asthmaCheckBox : 'label[for="condition.467.temp.kidney.waitlist.default.70"]',
+    bronchiectasisCheckBox : 'label[for="condition.1691.temp.kidney.waitlist.default.70"]',
+    chronicBronchitisCheckBox : 'label[for="condition.483.temp.kidney.waitlist.default.70"]',
+    fluidAroundLungsCheckBox : 'label[for="condition.cheh.temp.kidney.waitlist.default.70"]',
+    fluidInLungsCheckBox : 'label[for="condition.1312.temp.kidney.waitlist.default.70"]',
+    ildCheckBox : 'label[for="condition.1749.temp.kidney.waitlist.default.70"]',
+    pneumoniaCheckBox : 'label[for="condition.409.temp.kidney.waitlist.default.70"]',
+    pneumothoraxCheckBox : 'label[for="condition.1810.temp.kidney.waitlist.default.70"]',
+    pulmonaryFibrosisCheckBox : 'label[for="condition.1388.temp.kidney.waitlist.default.70"]',
+    sleepApneaCheckBox : 'label[for="condition.1480.temp.kidney.waitlist.default.70"]',
+    influenzaCheckBox : 'label[for="condition.571.temp.kidney.waitlist.default.70"]',
+    tuberculosisCheckBox : 'label[for="condition.290.temp.kidney.waitlist.default.70"]',
+    urtInfectionCheckBox : 'label[for="condition.868.temp.kidney.waitlist.default.70"]',
+
+    steroidsQuery : 'div[name="asthma_query_0"]',
+    yesSteroidsQuery : 'label[for="item.asthma.query.0.0.yes"]',
+    noSteroidsQuery : 'label[for="item.asthma.query.0.0.no"]',
+    hospitalizedQuery : 'div[name="asthma_query_0_1"]',
+    yesHospitalizedQuery : 'label[for="item.asthma.query.0.1.yes"]',
+    noHospitalizedQuery : 'label[for="item.asthma.query.0.1.no"]',
+    intubatedQuery : 'div[name="asthma_query_0_2"]',
+    yesIntubatedQuery : 'label[for="item.asthma.query.0.2.yes"]',
+    noIntubatedQuery : 'label[for="item.asthma.query.0.2.no"]',
+
 }
