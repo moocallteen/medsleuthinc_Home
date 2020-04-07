@@ -9,7 +9,7 @@ describe("transplan kidney donor page test", () => {
         cy.viewport(1280, 800);
     });
 
-    it("Should check the med-allergies page elements - Yes scenario ", () => {
+    it("Should check the med-allergies page elements - Yes Vitamin C scenario ", () => {
         var anaphylaxisReactionCheckBoxTitle = "ANAPHYLAXIS";
         var anxietyReactionCheckBoxTitle = "Anxiety";
         var breathIssuesReactionCheckBoxTitle = "Difficulty breathing, speaking and/or swallowing";
@@ -140,6 +140,22 @@ describe("transplan kidney donor page test", () => {
         .and("have.text", "Are you allergic to any of the following?");
       cy.contains("Please check all that apply:");
         
+    });
+
+    it("Should check the med-allergies page elements - No scenario ", () => {
+      cy.visit("/med-allergies")
+        .contains("Do you have any ALLERGIES to medications?")
+        .get(medAllergies.introStartSurBtn)
+        .click();
+      cy.get(medAllergies.noMedAllergies)
+        .click()
+        .get(medAllergies.nextBtn)
+        .click()
+        .get(medAllergies.headerBar)
+        .should("be.visible")
+        .and("have.text", "Are you allergic to any of the following?");
+      cy.contains("Please check all that apply:");
+
     });
 
 })
