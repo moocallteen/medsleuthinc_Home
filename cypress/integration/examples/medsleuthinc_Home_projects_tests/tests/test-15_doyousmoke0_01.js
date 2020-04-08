@@ -428,6 +428,6 @@ describe("transplan kidney donor page test", () => {
           .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
         cy.contains("Do you have a history of Alcohol Abuse?");                 
        
-        });  
+        });
 
 })

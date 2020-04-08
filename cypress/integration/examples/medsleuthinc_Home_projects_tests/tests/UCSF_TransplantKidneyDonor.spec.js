@@ -13,6 +13,8 @@ import medicationList from "../page objects/11_medications-list-rx-ada_01";
 import medConditionsSurvey from "../page objects/12_shc-condition-category_01";
 import medAllergies from "../page objects/13_med-allergies_01";
 import materialAllergies from "../page objects/14_material-allergies_01";
+import doYouSmokeCigarettes from "../page objects/15_doyousmoke0_01";
+
 
 
 
@@ -1271,417 +1273,414 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
   });
 
   it("Should check the shc-condition-category page elements -  Airway and/or Lungs conditions - Asthma follow-up scenario ", () => {
-      var asthmaCondText = "Asthma";
-      var bronchiectasisCondText = "Bronchiectasis";
-      var chronicBronchitisCondText = "COPD (Chronic Bronchitis and/or Emphysema)";
-      var fluidAroundLungsCondText = "Fluid around my Lungs (Pleural Effusion)";
-      var fluidInLungsCondText = "Fluid in my Lungs (Pulmonary Edema)";
-      var ildCondText = "Interstitial Lung Disease (ILD)";
-      var pneumoniaCondText = "Pneumonia";
-      var pneumothoraxCondText = "Pneumothorax (Collapsed Lung)";
-      var pulmonaryFibrosisCondText = "Pulmonary Fibrosis";
-      var sleepApneaCondText = "Sleep Apnea";
-      var influenzaCondText = "The Flu (Influenza)";
-      var tuberculosisCondText = "Tuberculosis (TB)";
-      var urtInfectionCondText = "Upper Respiratory Tract Infection (Cold/Flu/Acute Bronchitis)";
-      
-      var steroidsQueryHeading = "Have you ever taken steroids to manage your Asthma?";
-      var hospitalizedQueryHeading = "Have you been hospitalized because of your Asthma?";
-      var intubatedQueryHeading = "Have you ever been intubated (that is, had a breathing tube) because of your Asthma?";
-      cy.visit("/shc-condition-category")
-        .contains("Do you have or have you had any of the following medical conditions?")
-        .get(medConditionsSurvey.introStartSurBtn)
-        .click();
-  
-      cy.get(medConditionsSurvey.yesAirwaysRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noBloodDisRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noCancerRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noDiabetesRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noDigestiveTractRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noHeartRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noImmuneMedRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noInfectionRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noKidneysRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noMentalWellRadioBtn)
-        .scrollIntoView()
-        .click();
-  
-      cy.get(medConditionsSurvey.noMusclesRadioBtn)
-        .scrollIntoView()
-        .click();
+    var asthmaCondText = "Asthma";
+    var bronchiectasisCondText = "Bronchiectasis";
+    var chronicBronchitisCondText = "COPD (Chronic Bronchitis and/or Emphysema)";
+    var fluidAroundLungsCondText = "Fluid around my Lungs (Pleural Effusion)";
+    var fluidInLungsCondText = "Fluid in my Lungs (Pulmonary Edema)";
+    var ildCondText = "Interstitial Lung Disease (ILD)";
+    var pneumoniaCondText = "Pneumonia";
+    var pneumothoraxCondText = "Pneumothorax (Collapsed Lung)";
+    var pulmonaryFibrosisCondText = "Pulmonary Fibrosis";
+    var sleepApneaCondText = "Sleep Apnea";
+    var influenzaCondText = "The Flu (Influenza)";
+    var tuberculosisCondText = "Tuberculosis (TB)";
+    var urtInfectionCondText = "Upper Respiratory Tract Infection (Cold/Flu/Acute Bronchitis)";
+    
+    var steroidsQueryHeading = "Have you ever taken steroids to manage your Asthma?";
+    var hospitalizedQueryHeading = "Have you been hospitalized because of your Asthma?";
+    var intubatedQueryHeading = "Have you ever been intubated (that is, had a breathing tube) because of your Asthma?";
+    cy.visit("/shc-condition-category")
+      .contains("Do you have or have you had any of the following medical conditions?")
+      .get(medConditionsSurvey.introStartSurBtn)
+      .click();
 
-      cy.get(medConditionsSurvey.noNeuroDefRadioBtn)
-        .scrollIntoView()
-        .click();
+    cy.get(medConditionsSurvey.yesAirwaysRadioBtn)
+      .scrollIntoView()
+      .click();
 
-      cy.get(medConditionsSurvey.nextBtn)
-        .click();
+    cy.get(medConditionsSurvey.noBloodDisRadioBtn)
+      .scrollIntoView()
+      .click();
 
-      cy.get(medConditionsSurvey.headerBar)
-        .should("be.visible")
-        .and("have.text", "Specifically, which of the following conditions apply?");
-      cy.contains("A condition related to Airway and/or Lungs. Please check all that apply:");
-      cy.get(medConditionsSurvey.asthmaCheckBox)
-        .should("be.visible")
-        .and("have.text", asthmaCondText);
-      cy.get(medConditionsSurvey.bronchiectasisCheckBox)
-        .should("be.visible")
-        .and("have.text", bronchiectasisCondText);
-      cy.get(medConditionsSurvey.chronicBronchitisCheckBox)
-        .should("be.visible")
-        .and("have.text", chronicBronchitisCondText);
-      cy.get(medConditionsSurvey.fluidAroundLungsCheckBox)
-        .should("be.visible")
-        .and("have.text", fluidAroundLungsCondText);
-      cy.get(medConditionsSurvey.fluidInLungsCheckBox)
-        .should("be.visible")
-        .and("have.text", fluidInLungsCondText);
-      cy.get(medConditionsSurvey.ildCheckBox)
-        .should("be.visible")
-        .and("have.text", ildCondText);
-      cy.get(medConditionsSurvey.pneumoniaCheckBox)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text", pneumoniaCondText);
-      cy.get(medConditionsSurvey.pneumothoraxCheckBox)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text", pneumothoraxCondText);
-      cy.get(medConditionsSurvey.pulmonaryFibrosisCheckBox)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text", pulmonaryFibrosisCondText);
-      cy.get(medConditionsSurvey.sleepApneaCheckBox)
-        .scrollIntoView()  
-        .should("be.visible")
-        .and("have.text", sleepApneaCondText);
-      cy.get(medConditionsSurvey.influenzaCheckBox)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text", influenzaCondText);
-      cy.get(medConditionsSurvey.tuberculosisCheckBox)
-        .scrollIntoView()  
-        .should("be.visible")
-        .and("have.text", tuberculosisCondText);
-      cy.get(medConditionsSurvey.urtInfectionCheckBox)
-        .scrollIntoView()  
-        .should("be.visible")
-        .and("have.text", urtInfectionCondText);
-      cy.get(medConditionsSurvey.nextBtn)
-        .should("be.visible")
-        .and("have.text", "Next")
-        .click()
-        .get(medConditionsSurvey.validationErrorMsg)
-        .should("be.visible")
-        .and("have.text", "Required");
-      cy.get(medConditionsSurvey.asthmaCheckBox)
-        .scrollIntoView()
-        .click()
-        .get(medConditionsSurvey.nextBtn)
-        .click()
-        .get(medConditionsSurvey.headerBar)
-        .should("be.visible")
-        .and("have.text", "With regard to your Asthma?")
-      cy.get(medConditionsSurvey.steroidsQuery)
-        .should("be.visible")
-        .and("contain", steroidsQueryHeading)
-      cy.get(medConditionsSurvey.yesSteroidsQuery)
-        .should("be.visible")
-        .and("have.text", "Yes")
-        .get(medConditionsSurvey.noSteroidsQuery)
-        .should("be.visible")
-        .and("have.text", "No")
-        .click();
-      cy.get(medConditionsSurvey.hospitalizedQuery)
-        .should("be.visible")
-        .and("contain", hospitalizedQueryHeading)
-        .get(medConditionsSurvey.yesHospitalizedQuery)
-        .should("be.visible")
-        .and("have.text", "Yes")
-        .get(medConditionsSurvey.noHospitalizedQuery)
-        .should("be.visible")
-        .and("have.text", "No")
-        .click();
-      cy.get(medConditionsSurvey.intubatedQuery)
-        .should("be.visible")
-        .and("contain", intubatedQueryHeading)
-        .get(medConditionsSurvey.yesIntubatedQuery)
-        .should("be.visible")
-        .and("have.text", "Yes")
-        .get(medConditionsSurvey.noIntubatedQuery)
-        .should("be.visible")
-        .and("have.text", "No")
-        .click()
-        .get(medConditionsSurvey.nextBtn)
-        .click()
-        .get(medConditionsSurvey.headerBar)
-        .should("be.visible")
-        .and("have.text", "Do you have any ALLERGIES to medications?")
+    cy.get(medConditionsSurvey.noCancerRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noDiabetesRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noDigestiveTractRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noHeartRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noImmuneMedRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noInfectionRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noKidneysRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noMentalWellRadioBtn)
+      .scrollIntoView()
+      .click();
+
+    cy.get(medConditionsSurvey.noMusclesRadioBtn)
+      .scrollIntoView()
+      .click();
+    cy.get(medConditionsSurvey.noNeuroDefRadioBtn)
+      .scrollIntoView()
+      .click();
+    cy.get(medConditionsSurvey.nextBtn)
+      .click();
+    cy.get(medConditionsSurvey.headerBar)
+      .should("be.visible")
+      .and("have.text", "Specifically, which of the following conditions apply?");
+    cy.contains("A condition related to Airway and/or Lungs. Please check all that apply:");
+    cy.get(medConditionsSurvey.asthmaCheckBox)
+      .should("be.visible")
+      .and("have.text", asthmaCondText);
+    cy.get(medConditionsSurvey.bronchiectasisCheckBox)
+      .should("be.visible")
+      .and("have.text", bronchiectasisCondText);
+    cy.get(medConditionsSurvey.chronicBronchitisCheckBox)
+      .should("be.visible")
+      .and("have.text", chronicBronchitisCondText);
+    cy.get(medConditionsSurvey.fluidAroundLungsCheckBox)
+      .should("be.visible")
+      .and("have.text", fluidAroundLungsCondText);
+    cy.get(medConditionsSurvey.fluidInLungsCheckBox)
+      .should("be.visible")
+      .and("have.text", fluidInLungsCondText);
+    cy.get(medConditionsSurvey.ildCheckBox)
+      .should("be.visible")
+      .and("have.text", ildCondText);
+    cy.get(medConditionsSurvey.pneumoniaCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", pneumoniaCondText);
+    cy.get(medConditionsSurvey.pneumothoraxCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", pneumothoraxCondText);
+    cy.get(medConditionsSurvey.pulmonaryFibrosisCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", pulmonaryFibrosisCondText);
+    cy.get(medConditionsSurvey.sleepApneaCheckBox)
+      .scrollIntoView()  
+      .should("be.visible")
+      .and("have.text", sleepApneaCondText);
+    cy.get(medConditionsSurvey.influenzaCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", influenzaCondText);
+    cy.get(medConditionsSurvey.tuberculosisCheckBox)
+      .scrollIntoView()  
+      .should("be.visible")
+      .and("have.text", tuberculosisCondText);
+    cy.get(medConditionsSurvey.urtInfectionCheckBox)
+      .scrollIntoView()  
+      .should("be.visible")
+      .and("have.text", urtInfectionCondText);
+    cy.get(medConditionsSurvey.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(medConditionsSurvey.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");
+    cy.get(medConditionsSurvey.asthmaCheckBox)
+      .scrollIntoView()
+      .click()
+      .get(medConditionsSurvey.nextBtn)
+      .click()
+      .get(medConditionsSurvey.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Asthma?")
+    cy.get(medConditionsSurvey.steroidsQuery)
+      .should("be.visible")
+      .and("contain", steroidsQueryHeading)
+    cy.get(medConditionsSurvey.yesSteroidsQuery)
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .get(medConditionsSurvey.noSteroidsQuery)
+      .should("be.visible")
+      .and("have.text", "No")
+      .click();
+    cy.get(medConditionsSurvey.hospitalizedQuery)
+      .should("be.visible")
+      .and("contain", hospitalizedQueryHeading)
+      .get(medConditionsSurvey.yesHospitalizedQuery)
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .get(medConditionsSurvey.noHospitalizedQuery)
+      .should("be.visible")
+      .and("have.text", "No")
+      .click();
+    cy.get(medConditionsSurvey.intubatedQuery)
+      .should("be.visible")
+      .and("contain", intubatedQueryHeading)
+      .get(medConditionsSurvey.yesIntubatedQuery)
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .get(medConditionsSurvey.noIntubatedQuery)
+      .should("be.visible")
+      .and("have.text", "No")
+      .click()
+      .get(medConditionsSurvey.nextBtn)
+      .click()
+      .get(medConditionsSurvey.headerBar)
+      .should("be.visible")
+      .and("have.text", "Do you have any ALLERGIES to medications?")
 
   });
 
-      it("Should check the med-allergies page elements - Yes Vitamin C scenario ", () => {
-        var anaphylaxisReactionCheckBoxTitle = "ANAPHYLAXIS";
-        var anxietyReactionCheckBoxTitle = "Anxiety";
-        var breathIssuesReactionCheckBoxTitle = "Difficulty breathing, speaking and/or swallowing";
-        var nauseaReactionCheckBoxTitle = "Nausea and/or Vomiting";
-        var rashHivesReactionCheckBoxTitle = "Rash or Hives";
-        var swellingReactionCheckBoxTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
-        var otherReactionCheckBoxTitle = "Other";
-      cy.visit("/med-allergies")
-        .contains("Do you have any ALLERGIES to medications?")
-        .get(medAllergies.introStartSurBtn)
-        .should("be.visible")
-        .and("contain", "Start Survey")
-        .click();
-      cy.get(medAllergies.noMedAllergies)
-        .should("be.visible")
-        .and("have.text", "No")
-        .get(medAllergies.yesMedAllergies)
-        .should("be.visible")
-        .and("have.text", "Yes")
-        .click()
-        .get(medAllergies.nextBtn)
-        .should("be.visible")
-        .and("have.text", "Next")
-        .click()
-        .get(medAllergies.headerBar)
-        .should("be.visible")
-        .and("have.text", "Please enter the medications which you take:");
-      cy.contains("Search for medications")
-        .get(medAllergies.nextBtn)
-        .should("be.visible")
-        .and("have.text", "Next")
-        .click()
-        .get(medAllergies.validationErrorMsg)
-        .should("be.visible")
-        .and("have.text", "Please add medications");
-      cy.get(medAllergies.placeHolder)
-        .should("be.visible")
-        .get(medAllergies.medsInputField)
-        .should("be.visible")
-        .type("Aspirin")
-        .get(medAllergies.medsListWrapper)
-        .should("be.visible")
-        .and("contain", "Aspirin")
-        .get(medAllergies.firstSuggestedItem)
-        .should("be.visible")
-        .and("contain", "Aspirin")
-        .click()
-        .get(medAllergies.nextBtn)
-        .click();
-      cy.contains("Aspirin")
-        .get(medAllergies.headerBar)
-        .should("be.visible")
-        .and("contain", "Confirm your medications")
-        .get(medAllergies.nextBtn)
-        .should("be.visible")
-        .and("have.text", "Next")
-        .get(medAllergies.makeChangesBtn)
-        .should("be.visible")
-        .and("contain", "Make Changes")
-        .click();
-      cy.get(medAllergies.headerBar)
-        .should("be.visible")
-        .and("have.text", "Please enter the medications which you take:")
-        .get(medAllergies.deleteMedBtn)
-        .should("be.visible")
-        .click();
-      cy.get(medAllergies.medsInputField)
-        .type("Vitamin C")
-        .get(medAllergies.medsListWrapper)
-        .should("be.visible")
-        .and("contain", "Vitamin C")
-        .get(medAllergies.firstSuggestedItem)
-        .should("be.visible")
-        .and("contain", "Vitamin C")
-        .click()
-        .get(medAllergies.nextBtn)
-        .click();
-      cy.contains("Vitamin C")
-        .get(medAllergies.makeChangesBtn)
-        .should("be.visible")
-        .and("contain", "Make Changes")
-        .get(medAllergies.nextBtn)
-        .should("be.visible")
-        .and("have.text", "Next")
-        .click();
-      cy.contains("If Other, please explain:")
-        .get(medAllergies.headerBar)
-        .should("be.visible")
-        .and("contain", "What allergic reactions do you have to Vitamin C?")
-        .get(medAllergies.nextBtn)
-        .should("be.visible")
-        .and("have.text", "Next")
-        .click()
-        .get(medAllergies.validationErrorMsg)
-        .should("be.visible")
-        .and("have.text", "Required")
-        .wait(300);
-      cy.get(medAllergies.anaphylaxisReactionCheckBox)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text", anaphylaxisReactionCheckBoxTitle)
-        .get(medAllergies.anxietyReactionCheckBox)
-        .should("be.visible")
-        .and("have.text", anxietyReactionCheckBoxTitle)
-        .click()
-        .get(medAllergies.breathIssuesReactionCheckBox)
-        .should("be.visible")
-        .and("have.text", breathIssuesReactionCheckBoxTitle)
-        .get(medAllergies.nauseaReactionCheckBox)
-        .should("be.visible")
-        .and("have.text", nauseaReactionCheckBoxTitle)
-        .get(medAllergies.rashHivesReactionCheckBox)
-        .should("be.visible")
-        .and("have.text", rashHivesReactionCheckBoxTitle)
-        .get(medAllergies.swellingReactionCheckBox)
-        .should("be.visible")
-        .and("have.text", swellingReactionCheckBoxTitle)
-        .get(medAllergies.otherReactionCheckBox)
-        .should("be.visible")
-        .and("have.text", otherReactionCheckBoxTitle)
-        .click()
-        .get(medAllergies.otherInputField)
-        .type("Other Reaction")
-        .get(medAllergies.nextBtn)
-        .click();
-      cy.get(medAllergies.headerBar)
-        .should("be.visible")
-        .and("have.text", "Are you allergic to any of the following?");
-      cy.contains("Please check all that apply:");
-        
-    });
+  it("Should check the med-allergies page elements - Yes Vitamin C scenario ", () => {
+    var anaphylaxisReactionCheckBoxTitle = "ANAPHYLAXIS";
+    var anxietyReactionCheckBoxTitle = "Anxiety";
+    var breathIssuesReactionCheckBoxTitle = "Difficulty breathing, speaking and/or swallowing";
+    var nauseaReactionCheckBoxTitle = "Nausea and/or Vomiting";
+    var rashHivesReactionCheckBoxTitle = "Rash or Hives";
+    var swellingReactionCheckBoxTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
+    var otherReactionCheckBoxTitle = "Other";
+  cy.visit("/med-allergies")
+    .contains("Do you have any ALLERGIES to medications?")
+    .get(medAllergies.introStartSurBtn)
+    .should("be.visible")
+    .and("contain", "Start Survey")
+    .click();
+  cy.get(medAllergies.noMedAllergies)
+    .should("be.visible")
+    .and("have.text", "No")
+    .get(medAllergies.yesMedAllergies)
+    .should("be.visible")
+    .and("have.text", "Yes")
+    .click()
+    .get(medAllergies.nextBtn)
+    .should("be.visible")
+    .and("have.text", "Next")
+    .click()
+    .get(medAllergies.headerBar)
+    .should("be.visible")
+    .and("have.text", "Please enter the medications which you take:");
+  cy.contains("Search for medications")
+    .get(medAllergies.nextBtn)
+    .should("be.visible")
+    .and("have.text", "Next")
+    .click()
+    .get(medAllergies.validationErrorMsg)
+    .should("be.visible")
+    .and("have.text", "Please add medications");
+  cy.get(medAllergies.placeHolder)
+    .should("be.visible")
+    .get(medAllergies.medsInputField)
+    .should("be.visible")
+    .type("Aspirin")
+    .get(medAllergies.medsListWrapper)
+    .should("be.visible")
+    .and("contain", "Aspirin")
+    .get(medAllergies.firstSuggestedItem)
+    .should("be.visible")
+    .and("contain", "Aspirin")
+    .click()
+    .get(medAllergies.nextBtn)
+    .click();
+  cy.contains("Aspirin")
+    .get(medAllergies.headerBar)
+    .should("be.visible")
+    .and("contain", "Confirm your medications")
+    .get(medAllergies.nextBtn)
+    .should("be.visible")
+    .and("have.text", "Next")
+    .get(medAllergies.makeChangesBtn)
+    .should("be.visible")
+    .and("contain", "Make Changes")
+    .click();
+  cy.get(medAllergies.headerBar)
+    .should("be.visible")
+    .and("have.text", "Please enter the medications which you take:")
+    .get(medAllergies.deleteMedBtn)
+    .should("be.visible")
+    .click();
+  cy.get(medAllergies.medsInputField)
+    .type("Vitamin C")
+    .get(medAllergies.medsListWrapper)
+    .should("be.visible")
+    .and("contain", "Vitamin C")
+    .get(medAllergies.firstSuggestedItem)
+    .should("be.visible")
+    .and("contain", "Vitamin C")
+    .click()
+    .get(medAllergies.nextBtn)
+    .click();
+  cy.contains("Vitamin C")
+    .get(medAllergies.makeChangesBtn)
+    .should("be.visible")
+    .and("contain", "Make Changes")
+    .get(medAllergies.nextBtn)
+    .should("be.visible")
+    .and("have.text", "Next")
+    .click();
+  cy.contains("If Other, please explain:")
+    .get(medAllergies.headerBar)
+    .should("be.visible")
+    .and("contain", "What allergic reactions do you have to Vitamin C?")
+    .get(medAllergies.nextBtn)
+    .should("be.visible")
+    .and("have.text", "Next")
+    .click()
+    .get(medAllergies.validationErrorMsg)
+    .should("be.visible")
+    .and("have.text", "Required")
+    .wait(300);
+  cy.get(medAllergies.anaphylaxisReactionCheckBox)
+    .scrollIntoView()
+    .should("be.visible")
+    .and("have.text", anaphylaxisReactionCheckBoxTitle)
+    .get(medAllergies.anxietyReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", anxietyReactionCheckBoxTitle)
+    .click()
+    .get(medAllergies.breathIssuesReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", breathIssuesReactionCheckBoxTitle)
+    .get(medAllergies.nauseaReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", nauseaReactionCheckBoxTitle)
+    .get(medAllergies.rashHivesReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", rashHivesReactionCheckBoxTitle)
+    .get(medAllergies.swellingReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", swellingReactionCheckBoxTitle)
+    .get(medAllergies.otherReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", otherReactionCheckBoxTitle)
+    .click()
+    .get(medAllergies.otherInputField)
+    .type("Other Reaction")
+    .get(medAllergies.nextBtn)
+    .click();
+  cy.get(medAllergies.headerBar)
+    .should("be.visible")
+    .and("have.text", "Are you allergic to any of the following?");
+  cy.contains("Please check all that apply:");
     
-    it("Should check the med-allergies page elements - No scenario ", () => {
-      cy.visit("/med-allergies")
-        .contains("Do you have any ALLERGIES to medications?")
-        .get(medAllergies.introStartSurBtn)
-        .click();
-      cy.get(medAllergies.noMedAllergies)
-        .click()
-        .get(medAllergies.nextBtn)
-        .click()
-        .get(medAllergies.headerBar)
-        .should("be.visible")
-        .and("have.text", "Are you allergic to any of the following?");
-      cy.contains("Please check all that apply:");
-    
-    });
-
-    it("Should check the material-allergies page elements - Betadine scenario ", () => {
-      var betadineMaterialAllergyTitle = "Betadine";
-      var chlorhexidineMaterialAllergyTitle = "Chlorhexidine";
-      var contrastMaterialAllergyTitle = "Contrast (X-Ray Dye)";
-      var iodineMaterialAllergyTitle = "Iodine";
-      var latexMaterialAllergyTitle = "LATEX";
-      var tapeMaterialAllergyTitle = "Tape";
-      var noMaterialAllergyTitle = "NO, I am NOT Allergic to ANY of the items on this list";
-
-      var anaphylaxisReactionTitle = "ANAPHYLAXIS";
-      var anxietyReactionTitle = "Anxiety";
-      var breathIssuesReactionTitle = "Difficulty breathing, speaking and/or swallowing";
-      var nauseaReactionTitle = "Nausea and/or Vomiting";
-      var rashHivesReactionTitle = "Rash or Hives";
-      var swellingReactionTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
-      var otherReactionTitle = "Other";
-
-    cy.visit("/material-allergies")
-      .contains("Are you allergic to any of the following?")
-      .get(materialAllergies.introStartSurBtn)
-      .should("be.visible")
-      .and("contain", "Start Survey")
+  });
+  
+  it("Should check the med-allergies page elements - No scenario ", () => {
+    cy.visit("/med-allergies")
+      .contains("Do you have any ALLERGIES to medications?")
+      .get(medAllergies.introStartSurBtn)
       .click();
+    cy.get(medAllergies.noMedAllergies)
+      .click()
+      .get(medAllergies.nextBtn)
+      .click()
+      .get(medAllergies.headerBar)
+      .should("be.visible")
+      .and("have.text", "Are you allergic to any of the following?");
     cy.contains("Please check all that apply:");
-    cy.get(materialAllergies.betadineMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", betadineMaterialAllergyTitle)
-      .click()
-      .get(materialAllergies.chlorhexidineMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", chlorhexidineMaterialAllergyTitle)
-      .get(materialAllergies.contrastMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", contrastMaterialAllergyTitle)
-      .get(materialAllergies.iodineMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", iodineMaterialAllergyTitle)
-      .get(materialAllergies.latexMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", latexMaterialAllergyTitle)
-      .get(materialAllergies.tapeMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", tapeMaterialAllergyTitle)
-      .get(materialAllergies.noMaterialAllergyCheckBox)
-      .should("be.visible")
-      .and("have.text", noMaterialAllergyTitle)
-      .get(materialAllergies.nextBtn)
-      .should("be.visible")
-      .and("have.text", "Next")
-      .click();
-    cy.get(materialAllergies.headerBar)
-      .should("be.visible")
-      .and("have.text", "What is the nature of your allergy to Betadine?");
-    cy.contains("Please check all that apply:");
-    cy.get(materialAllergies.anaphylaxisReactionCheckBox)
-      .scrollIntoView()
-      .should("be.visible")
-      .and("have.text", anaphylaxisReactionTitle)
-      .get(materialAllergies.anxietyReactionCheckBox)
-      .should("be.visible")
-      .and("have.text", anxietyReactionTitle)
-      .click()
-      .get(materialAllergies.breathIssuesReactionCheckBox)
-      .should("be.visible")
-      .and("have.text", breathIssuesReactionTitle)
-      .get(materialAllergies.nauseaReactionCheckBox)
-      .should("be.visible")
-      .and("have.text", nauseaReactionTitle)
-      .get(materialAllergies.rashHivesReactionCheckBox)
-      .should("be.visible")
-      .and("have.text", rashHivesReactionTitle)
-      .get(materialAllergies.swellingReactionCheckBox)
-      .should("be.visible")
-      .and("have.text", swellingReactionTitle)
-      .get(materialAllergies.otherReactionCheckBox)
-      .should("be.visible")
-      .and("have.text", otherReactionTitle)
-      .click()
-      .get(materialAllergies.otherInputField)
-      .type("Other Reaction");
-    cy.contains("If Other, please explain:");
-    cy.get(materialAllergies.nextBtn)
-      .click();
-    cy.get(materialAllergies.headerBar)
-      .should("be.visible")
-      .and("have.text", "Do you smoke cigarettes?")
+  
+  });
+
+  it("Should check the material-allergies page elements - Betadine scenario ", () => {
+    var betadineMaterialAllergyTitle = "Betadine";
+    var chlorhexidineMaterialAllergyTitle = "Chlorhexidine";
+    var contrastMaterialAllergyTitle = "Contrast (X-Ray Dye)";
+    var iodineMaterialAllergyTitle = "Iodine";
+    var latexMaterialAllergyTitle = "LATEX";
+    var tapeMaterialAllergyTitle = "Tape";
+    var noMaterialAllergyTitle = "NO, I am NOT Allergic to ANY of the items on this list";
+
+    var anaphylaxisReactionTitle = "ANAPHYLAXIS";
+    var anxietyReactionTitle = "Anxiety";
+    var breathIssuesReactionTitle = "Difficulty breathing, speaking and/or swallowing";
+    var nauseaReactionTitle = "Nausea and/or Vomiting";
+    var rashHivesReactionTitle = "Rash or Hives";
+    var swellingReactionTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
+    var otherReactionTitle = "Other";
+
+  cy.visit("/material-allergies")
+    .contains("Are you allergic to any of the following?")
+    .get(materialAllergies.introStartSurBtn)
+    .should("be.visible")
+    .and("contain", "Start Survey")
+    .click();
+  cy.contains("Please check all that apply:");
+  cy.get(materialAllergies.betadineMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", betadineMaterialAllergyTitle)
+    .click()
+    .get(materialAllergies.chlorhexidineMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", chlorhexidineMaterialAllergyTitle)
+    .get(materialAllergies.contrastMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", contrastMaterialAllergyTitle)
+    .get(materialAllergies.iodineMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", iodineMaterialAllergyTitle)
+    .get(materialAllergies.latexMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", latexMaterialAllergyTitle)
+    .get(materialAllergies.tapeMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", tapeMaterialAllergyTitle)
+    .get(materialAllergies.noMaterialAllergyCheckBox)
+    .should("be.visible")
+    .and("have.text", noMaterialAllergyTitle)
+    .get(materialAllergies.nextBtn)
+    .should("be.visible")
+    .and("have.text", "Next")
+    .click();
+  cy.get(materialAllergies.headerBar)
+    .should("be.visible")
+    .and("have.text", "What is the nature of your allergy to Betadine?");
+  cy.contains("Please check all that apply:");
+  cy.get(materialAllergies.anaphylaxisReactionCheckBox)
+    .scrollIntoView()
+    .should("be.visible")
+    .and("have.text", anaphylaxisReactionTitle)
+    .get(materialAllergies.anxietyReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", anxietyReactionTitle)
+    .click()
+    .get(materialAllergies.breathIssuesReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", breathIssuesReactionTitle)
+    .get(materialAllergies.nauseaReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", nauseaReactionTitle)
+    .get(materialAllergies.rashHivesReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", rashHivesReactionTitle)
+    .get(materialAllergies.swellingReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", swellingReactionTitle)
+    .get(materialAllergies.otherReactionCheckBox)
+    .should("be.visible")
+    .and("have.text", otherReactionTitle)
+    .click()
+    .get(materialAllergies.otherInputField)
+    .type("Other Reaction");
+  cy.contains("If Other, please explain:");
+  cy.get(materialAllergies.nextBtn)
+    .click();
+  cy.get(materialAllergies.headerBar)
+    .should("be.visible")
+    .and("have.text", "Do you smoke cigarettes?")
     
   }); 
 
@@ -1730,5 +1729,426 @@ it("Should check the screening.htn.0 page elements - No scenario", () => {
       .and("have.text", "Do you smoke cigarettes?")
 
   });
+
+  it("Should check the doyousmoke.0 page elements - Yes scenario ", () => {
+    var selectorText = "Select One";
+    var yearsValues = [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50"
+    ];
+    var packsValues = [
+        "1/4 pack",
+        "1/2 pack",
+        "1 pack",
+        "2 packs",
+        "3 packs",
+        ">3 packs"
+    ];
+
+    cy.visit("/doyousmoke.0")
+      .contains("Do you smoke cigarettes?")
+      .get(doYouSmokeCigarettes.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();
+    cy.get(doYouSmokeCigarettes.nextBtn)
+      .should("be.visible")
+      .and("have.text","Next")
+      .click()
+      .get(doYouSmokeCigarettes.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required")
+      .get(doYouSmokeCigarettes.yesDoYouSmokeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .click()
+      .get(doYouSmokeCigarettes.noDoYouSmokeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No")
+      .get(doYouSmokeCigarettes.usedToDoYouSmokeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "I Used To")
+      .get(doYouSmokeCigarettes.nextBtn)
+      .click()
+      .get(doYouSmokeCigarettes.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your current tobacco use:");
+    cy.contains("Approximately, how many years have you smoked?"); 
+    cy.contains("Approximately, how many packs per day?");
+    cy.get(doYouSmokeCigarettes.nextBtn)
+      .click()
+      .get(doYouSmokeCigarettes.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");
+    cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+      .should("be.visible")
+      .and("contain", selectorText)
+      for(var i = 0; i<yearsValues.length; i++) {
+          cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+            .select(yearsValues[i])
+            .should("be.visible")
+          };
+    cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+      .select("5");
+    cy.get(doYouSmokeCigarettes.nextBtn)
+      .click()
+      .get(doYouSmokeCigarettes.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");
+    cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+      .should("be.visible")
+      .and("contain", selectorText)
+      for(var i = 0; i<packsValues.length; i++) {
+          cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+            .select(packsValues[i])
+            .should("be.visible")
+          };
+    cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+      .select("1/4 pack");
+    cy.get(doYouSmokeCigarettes.nextBtn)
+      .click();
+    cy.get(doYouSmokeCigarettes.headerBar)
+      .should("be.visible")
+      .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
+    cy.contains("Do you have a history of Alcohol Abuse?");                 
+
+  });
+
+  it("Should check the doyousmoke.0 page elements - No scenario ", () => {
+    cy.visit("/doyousmoke.0")
+      .contains("Do you smoke cigarettes?")
+      .get(doYouSmokeCigarettes.introStartSurBtn)
+      .click();
+    cy.get(doYouSmokeCigarettes.yesDoYouSmokeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .get(doYouSmokeCigarettes.noDoYouSmokeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No")
+      .click()
+      .get(doYouSmokeCigarettes.usedToDoYouSmokeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "I Used To")
+      .get(doYouSmokeCigarettes.nextBtn)
+      .click();
+    cy.get(doYouSmokeCigarettes.headerBar)
+      .should("be.visible")
+      .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
+    cy.contains("Do you have a history of Alcohol Abuse?");                 
+
+  });
+
+  it("Should check the doyousmoke.0 page elements - I Used To scenario ", () => {
+      var selectorText = "Select One";
+      var quitYearValues = [
+          "2020",
+          "2019",
+          "2018",
+          "2017",
+          "2016",
+          "2015",
+          "2014",
+          "2013",
+          "2012",
+          "2011",
+          "2010",
+          "2009",
+          "2008",
+          "2007",
+          "2006",
+          "2005",
+          "2004",
+          "2003",
+          "2002",
+          "2001",
+          "2000",
+          "1999",
+          "1998",
+          "1997",
+          "1996",
+          "1995",
+          "1994",
+          "1993",
+          "1992",
+          "1991",
+          "1990",
+          "1989",
+          "1988",
+          "1987",
+          "1986",
+          "1985",
+          "1984",
+          "1983",
+          "1982",
+          "1981",
+          "1980",
+          "1979",
+          "1978",
+          "1977",
+          "1976",
+          "1975",
+          "1974",
+          "1973",
+          "1972",
+          "1971",
+          "1970",
+          "1969",
+          "1968",
+          "1967",
+          "1966",
+          "1965",
+          "1964",
+          "1963",
+          "1962",
+          "1961",
+          "1960",
+          "1959",
+          "1958",
+          "1957",
+          "1956",
+          "1955",
+          "1954",
+          "1953",
+          "1952",
+          "1951",
+          "1950",
+          "1949",
+          "1948",
+          "1947",
+          "1946",
+          "1945",
+          "1944",
+          "1943",
+          "1942",
+          "1941",
+          "1940",
+          "1939",
+          "1938",
+          "1937",
+          "1936",
+          "1935",
+          "1934",
+          "1933",
+          "1932",
+          "1931",
+          "1930",
+          "1929",
+          "1928",
+          "1927",
+          "1926",
+          "1925",
+          "1924",
+          "1923",
+          "1922",
+          "1921",
+          "1920",
+          "1919",
+          "1918",
+          "1917",
+          "1916",
+          "1915",
+          "1914",
+          "1913",
+          "1912",
+          "1911",
+          "1910",
+          "1909",
+          "1908",
+          "1907",
+          "1906",
+          "1905",
+          "1904",
+          "1903",
+          "1902",
+          "1901",
+          "1900"
+      ];
+      var yearsValues = [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32",
+          "33",
+          "34",
+          "35",
+          "36",
+          "37",
+          "38",
+          "39",
+          "40",
+          "41",
+          "42",
+          "43",
+          "44",
+          "45",
+          "46",
+          "47",
+          "48",
+          "49",
+          "50"
+      ];
+      var packsValues = [
+          "1/4 pack",
+          "1/2 pack",
+          "1 pack",
+          "2 packs",
+          "3 packs",
+          ">3 packs"
+      ];
+
+      cy.visit("/doyousmoke.0")
+        .contains("Do you smoke cigarettes?")
+        .get(doYouSmokeCigarettes.introStartSurBtn)
+        .click();
+      cy.get(doYouSmokeCigarettes.yesDoYouSmokeRadioBtn)
+        .should("be.visible")
+        .and("have.text", "Yes")
+        .get(doYouSmokeCigarettes.noDoYouSmokeRadioBtn)
+        .should("be.visible")
+        .and("have.text", "No")
+        .get(doYouSmokeCigarettes.usedToDoYouSmokeRadioBtn)
+        .should("be.visible")
+        .and("have.text", "I Used To")
+        .click()
+        .get(doYouSmokeCigarettes.nextBtn)
+        .click();
+      cy.contains("With regard to your past tobacco use:");
+      cy.contains("What year did you quit?");
+      cy.get(doYouSmokeCigarettes.nextBtn)
+        .click()
+        .get(doYouSmokeCigarettes.validationErrorMsg)
+        .should("be.visible")
+        .and("have.text", "Required")
+      cy.get(doYouSmokeCigarettes.quitYearSelector)
+        .should("be.visible")
+        .and("contain", selectorText)
+        for(var i = 0; i<quitYearValues.length; i++) {
+          cy.get(doYouSmokeCigarettes.quitYearSelector)
+            .select(quitYearValues[i])
+            .should("be.visible")
+          };
+      cy.get(doYouSmokeCigarettes.quitYearSelector)
+        .select("2010")
+        .get(doYouSmokeCigarettes.nextBtn)
+        .click();
+      cy.get(doYouSmokeCigarettes.headerBar)
+        .should("be.visible")
+        .and("have.text", "With regard to your past tobacco use:");
+      cy.contains("Approximately, how many years have you smoked?"); 
+      cy.contains("Approximately, how many packs per day?");
+      cy.get(doYouSmokeCigarettes.nextBtn)
+        .click()
+        .get(doYouSmokeCigarettes.validationErrorMsg)
+        .should("be.visible")
+        .and("contain", "Required");
+        cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+        .should("be.visible")
+        .and("contain", selectorText)
+        for(var i = 0; i<yearsValues.length; i++) {
+            cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+              .select(yearsValues[i])
+              .should("be.visible")
+            };
+      cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+        .select("5");
+      cy.get(doYouSmokeCigarettes.nextBtn)
+        .click()
+        .get(doYouSmokeCigarettes.validationErrorMsg)
+        .should("be.visible")
+        .and("contain", "Required");
+      cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+        .should("be.visible")
+        .and("contain", selectorText)
+        for(var i = 0; i<packsValues.length; i++) {
+            cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+              .select(packsValues[i])
+              .should("be.visible")
+            };
+      cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+        .select("1/4 pack");
+      cy.get(doYouSmokeCigarettes.nextBtn)
+        .click();
+      cy.get(doYouSmokeCigarettes.headerBar)
+        .should("be.visible")
+        .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
+      cy.contains("Do you have a history of Alcohol Abuse?");                 
+     
+      });
         
 })
