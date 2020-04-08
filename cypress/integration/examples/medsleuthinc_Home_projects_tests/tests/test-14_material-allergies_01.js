@@ -109,7 +109,7 @@ describe("transplan kidney donor page test", () => {
 
       cy.visit("/material-allergies")
         .contains("Are you allergic to any of the following?")
-        .get(medAllergies.introStartSurBtn)
+        .get(materialAllergies.introStartSurBtn)
         .click();
       cy.contains("Please check all that apply:");
       cy.get(materialAllergies.betadineMaterialAllergyCheckBox)
