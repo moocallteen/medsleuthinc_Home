@@ -97,4 +97,51 @@ describe("transplan kidney donor page test", () => {
         .and("have.text", "Do you smoke cigarettes?")
       
     }); 
+
+    it("Should check the material-allergies page elements - NO, I am NOT Allergic scenario ", () => {
+      var betadineMaterialAllergyTitle = "Betadine";
+      var chlorhexidineMaterialAllergyTitle = "Chlorhexidine";
+      var contrastMaterialAllergyTitle = "Contrast (X-Ray Dye)";
+      var iodineMaterialAllergyTitle = "Iodine";
+      var latexMaterialAllergyTitle = "LATEX";
+      var tapeMaterialAllergyTitle = "Tape";
+      var noMaterialAllergyTitle = "NO, I am NOT Allergic to ANY of the items on this list";
+
+      cy.visit("/material-allergies")
+        .contains("Are you allergic to any of the following?")
+        .get(medAllergies.introStartSurBtn)
+        .click();
+      cy.contains("Please check all that apply:");
+      cy.get(materialAllergies.betadineMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", betadineMaterialAllergyTitle)
+        .get(materialAllergies.chlorhexidineMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", chlorhexidineMaterialAllergyTitle)
+        .get(materialAllergies.contrastMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", contrastMaterialAllergyTitle)
+        .get(materialAllergies.iodineMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", iodineMaterialAllergyTitle)
+        .get(materialAllergies.latexMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", latexMaterialAllergyTitle)
+        .get(materialAllergies.tapeMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", tapeMaterialAllergyTitle)
+        .get(materialAllergies.noMaterialAllergyCheckBox)
+        .should("be.visible")
+        .and("have.text", noMaterialAllergyTitle)
+        .click()
+        .get(materialAllergies.nextBtn)
+        .should("be.visible")
+        .and("have.text", "Next")
+        .click();
+      cy.get(materialAllergies.headerBar)
+        .should("be.visible")
+        .and("have.text", "Do you smoke cigarettes?")
+  
+    });
+
 }) 
