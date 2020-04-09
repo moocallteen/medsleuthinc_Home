@@ -114,7 +114,7 @@ describe("transplan kidney donor page test", () => {
 
     });
 
-    it.only("Should check the illicitdrugs.0 page elements - I Used To scenario ", () => {
+    it("Should check the illicitdrugs.0 page elements - I Used To scenario ", () => {
       var  marijuanaIllicitDrugsTitle = "Marijuana";
       var  cocaineIllicitDrugsTitle = "Cocaine";
       var  heroinIllicitDrugsTitle = "Heroin";
