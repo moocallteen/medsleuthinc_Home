@@ -11,7 +11,5 @@ module.exports = {
     yearsQuantitySelector : 'select[name="doyousmoke_query_1_entry_2"]',
     packsQuantitySelector : 'select[name="doyousmoke_query_0_entry_0_item_yes_entry_1"]',
 
-    quitYearSelector : 'select[name="doyousmoke_query_1_entry_0"]',
-    
-    
+    quitYearSelector : 'select[name="doyousmoke_query_1_entry_0"]'    
 }
