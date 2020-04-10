@@ -37,5 +37,14 @@ module.exports = {
     yesNormalTest : 'label[for="RcntSTNormal"]',
     noNormalTest : 'label[for="RcntSTAbnormal"]',
 
+    catheterizationQtySelect : 'select[name="Cardiac_Cath_0"]',
+    catheterizationDateInput : 'input[id="CardiCathdate"]',
+
+    angioplastyStentCathCheckBox : 'label[for="BA_withstent"]',
+    angioplastyNoStentCathCheckBox : 'label[for="BA_sansstent"]',
+    bypassCathCheckBox : 'label[for="Bypass"]',
+    pacemakerCathCheckBox : 'label[for="Pacemaker"]',
+    ablationCathCheckBox : 'label[for="Ablation"]',
+
 
 }
