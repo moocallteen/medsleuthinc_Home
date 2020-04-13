@@ -10,10 +10,12 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("should check the Landing page elements", () => {
+
     var text = "Welcome to the BREEZE TRANSPLANT online health";
     var firstName = "First name";
     var middleName = "Middle name";
     var lastName = "Last name";
+
     cy.visit("/landing-page")
       .get(landingPage.logo)
       .should("be.visible")
@@ -90,7 +92,7 @@ describe("transplan kidney donor page test", () => {
       .get(landingPage.yourEmailAddressFiled)
       .type('test@test.com')
       .get(landingPage.nextBtn)
-      .click() 
+      .click();
     cy.contains("Donor Type")
       .should("be.visible")
       .get(landingPage.iKnowRecipientRadioBtn)
@@ -99,6 +101,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .get(landingPage.nextBtn)
       .should("be.visible");
-  
+
   });
+
 });
