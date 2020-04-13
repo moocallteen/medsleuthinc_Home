@@ -17,6 +17,7 @@ import doYouSmokeCigarettes from "../page objects/15_doyousmoke0_01";
 import alcoholPage from "../page objects/16_alcohol0_01";
 import illicitDrugsPage from "../page objects/17_illicitdrugs0_01";
 import activityPage from "../page objects/18_activity0_01";
+import waitlistInquiry from "../page objects/19_waitlist-inquiry41_01";
 
 
 
@@ -112,7 +113,7 @@ describe("transplan kidney donor page test", () => {
       .get(landingPage.yourEmailAddressFiled)
       .type('test@test.com')
       .get(landingPage.nextBtn)
-      .click() 
+      .click()
       .wait(200);
     cy.contains("Donor Type")
       .should("be.visible")
@@ -122,7 +123,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .get(landingPage.nextBtn)
       .should("be.visible");
-  
+
   });
 
   it("should check the referral.0 page elements", () => {
@@ -132,7 +133,7 @@ describe("transplan kidney donor page test", () => {
     var socialMediaText = "From social media (such as Facebook)";
     var myOwnResearchText = "From my own research";
     var anotherPatientText = "From another donor, recipient or patient.";
-    var otherText = "Other";  
+    var otherText = "Other";
     cy.visit("/referral.0")
       .wait(200)
       .get(referralPage.introStartSurBtn)
@@ -140,44 +141,44 @@ describe("transplan kidney donor page test", () => {
       .get(referralPage.nextBtn)
       .then(el => {
         assert.include(el.text(), textNextBtn);
-          
-    cy.get(referralPage.transplantCandidateRadioBtn)
-      .should("be.visible")
-      .get(referralPage.transplantCandidateTextBlock)
-      .should("have.text", transplantCandidateText)
-      .get(referralPage.candidatesSomeoneRadioBtn)
-      .should("be.visible")
-      .get(referralPage.candidatesSomeoneTextBlock)
-      .should("have.text", candidatesSomeoneText)
-      .get(referralPage.socialMediaRadioBtn)
-      .should("be.visible")
-      .get(referralPage.socialMediaTextBlock)
-      .should("have.text", socialMediaText)
-      .get(referralPage.myOwnResearchRadioBtn)
-      .should("be.visible")
-      .get(referralPage.myOwnResearchTextBlock)
-      .should("have.text", myOwnResearchText)
-      .get(referralPage.anotherPatientRadioBtn)
-      .should("be.visible")
-      .get(referralPage.anotherPatientTextBlock)
-      .should("have.text", anotherPatientText)
-      .get(referralPage.otherRadioBtn)
-      .should("be.visible")
-      .get(referralPage.otherTextBlock)
-      .should("have.text", otherText)
-      .get(referralPage.nextBtn)
-      .should("be.visible")
-      .get(referralPage.nextBtn)
-      .click()
-      .get(referralPage.validationErrorMsg)
-      .should("have.text", "Required")
-      .get(referralPage.myOwnResearchRadioBtn)
-      .check()
-      .get(referralPage.nextBtn)
-      .should("have.text", textNextBtn)
-      .click();
-    cy.contains("Demographics")
-      .should("be.visible")
+
+        cy.get(referralPage.transplantCandidateRadioBtn)
+          .should("be.visible")
+          .get(referralPage.transplantCandidateTextBlock)
+          .should("have.text", transplantCandidateText)
+          .get(referralPage.candidatesSomeoneRadioBtn)
+          .should("be.visible")
+          .get(referralPage.candidatesSomeoneTextBlock)
+          .should("have.text", candidatesSomeoneText)
+          .get(referralPage.socialMediaRadioBtn)
+          .should("be.visible")
+          .get(referralPage.socialMediaTextBlock)
+          .should("have.text", socialMediaText)
+          .get(referralPage.myOwnResearchRadioBtn)
+          .should("be.visible")
+          .get(referralPage.myOwnResearchTextBlock)
+          .should("have.text", myOwnResearchText)
+          .get(referralPage.anotherPatientRadioBtn)
+          .should("be.visible")
+          .get(referralPage.anotherPatientTextBlock)
+          .should("have.text", anotherPatientText)
+          .get(referralPage.otherRadioBtn)
+          .should("be.visible")
+          .get(referralPage.otherTextBlock)
+          .should("have.text", otherText)
+          .get(referralPage.nextBtn)
+          .should("be.visible")
+          .get(referralPage.nextBtn)
+          .click()
+          .get(referralPage.validationErrorMsg)
+          .should("have.text", "Required")
+          .get(referralPage.myOwnResearchRadioBtn)
+          .check()
+          .get(referralPage.nextBtn)
+          .should("have.text", textNextBtn)
+          .click();
+        cy.contains("Demographics")
+          .should("be.visible")
       });
 
   });
@@ -291,10 +292,10 @@ describe("transplan kidney donor page test", () => {
       .get(screeningHtn0.medicationQtyBar)
       .should("be.visible")
       .and("contain", selectorText)
-    for(var i = 0; i<selectorValues.length; i++) {
-    cy.get(screeningHtn0.medicationQtySelector)
-      .select(selectorValues[i])
-      .should("be.visible")
+    for (var i = 0; i < selectorValues.length; i++) {
+      cy.get(screeningHtn0.medicationQtySelector)
+        .select(selectorValues[i])
+        .should("be.visible")
     }
     cy.get(screeningHtn0.nextBtn)
       .click()
@@ -307,8 +308,8 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible");
     cy.get(screeningHtn0.footerText)
       .should("be.visible");
-  
-      });
+
+  });
 
   it("Should check the screening.htn.0 page elements - No scenario", () => {
     cy.visit("/screening.htn.0")
@@ -320,19 +321,19 @@ describe("transplan kidney donor page test", () => {
       .click()
       .wait(200);
     cy.get(screeningHtn0.nextBtn)
-      .click()  
+      .click()
       .wait(200);
     cy.contains("Do you currently take pills or insulin for Diabetes?")
       .should("be.visible");
-  
-      });
+
+  });
 
   it("Should check the screening.diabetesrx page elements - Yes scenario", () => {
     var headerBarText = "Thank you for your generous offer to be a kidney donor";
     var contentHeaderText = "Unfortunately, you are not eligible to be a donor at this time";
     var contentReasonText = "Your diabetes places you at increased risk of kidney disease and dangerous complications if you donate your kidney.";
     var contentFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
-  
+
     cy.visit("/screening.diabetesrx")
       .wait(200)
       .contains("Do you currently take pills or insulin for Diabetes?")
@@ -372,7 +373,7 @@ describe("transplan kidney donor page test", () => {
       .and("have.text", contentFooterText);
 
   });
-  
+
   it("Should check the screening.diabetesrx page elements - No scenario", () => {
     var validationText = "Have you had more than one kidney stone in the past 10 years?";
     cy.visit("/screening.diabetesrx")
@@ -419,8 +420,8 @@ describe("transplan kidney donor page test", () => {
       .wait(200)
       .get(screeningKidneystones.headerBar)
       .then(el => {
-        assert.include(el.text(), pageToCheckTitle) 
-    });
+        assert.include(el.text(), pageToCheckTitle)
+      });
 
   });
 
@@ -436,13 +437,13 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(screeningKidneystones.headerBar)
       .then(el => {
-        assert.include(el.text(), pageToCheckTitle) 
-    });
+        assert.include(el.text(), pageToCheckTitle)
+      });
 
   });
 
   it("Should check the screening.tobacco page elements - Yes-Yes scenario", () => {
-    var quitHeaderTitle = "Would you be willing to quit smoking 6 weeks prior to surgery?"; 
+    var quitHeaderTitle = "Would you be willing to quit smoking 6 weeks prior to surgery?";
     var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
     cy.visit("/screening.tobacco")
       .wait(200)
@@ -611,7 +612,7 @@ describe("transplan kidney donor page test", () => {
     var continueText = "Continue with the evaluation";
     var textToCheck = "Thank you for your participation";
     var contentToCheck = "Thank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.org";
-    
+
     cy.visit("/what_to_expect.0")
       .wait(200)
       .contains("Please review the important information below prior to proceeding to the online evaluation")
@@ -653,7 +654,7 @@ describe("transplan kidney donor page test", () => {
   it("Should check the screening.what_to_expect.0 page elements - Continue With the Ealuation scenario", () => {
     var textToCheck = "Thank you for your participation";
     var contentToCheck = "Kidney donation surgery will take place at UCSF and will require hospitalization for 2-3 daysThank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.orgNext";
-    
+
     cy.visit("/what_to_expect.0")
       .wait(200)
       .get(whatToExpectPage.introStartSurBtn)
@@ -837,14 +838,14 @@ describe("transplan kidney donor page test", () => {
       .should("contain", dosageHeading)
       .and("contain", frequencyHeading)
       .get(medicationList.dosageSelector)
-    for(var i = 0; i < doses.length; i++) {
+    for (var i = 0; i < doses.length; i++) {
       cy.get(medicationList.dosageSelector)
         .select(doses[i])
         .should("be.visible");
     };
     cy.get(medicationList.dosageSelector)
       .select("0.5 mg")
-    for(var i = 0; i < frequences.length; i++){
+    for (var i = 0; i < frequences.length; i++) {
       cy.get(medicationList.frequencySelector)
         .select(frequences[i])
         .should("be.visible");
@@ -893,7 +894,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", medConditionsListHeader);
-      
+
   });
 
   it("Should check the medications-list-rx-ada-1 page elements - Make Changes scenario ", () => {
@@ -953,18 +954,18 @@ describe("transplan kidney donor page test", () => {
       .get(medicationList.medsDropdownExpandBtn)
       .click()
       .get(medicationList.dosageSelector)
-      for(var i = 0; i < doses.length; i++) {
-        cy.get(medicationList.dosageSelector)
-          .select(doses[i])
-          .should("be.visible");
-      };
+    for (var i = 0; i < doses.length; i++) {
+      cy.get(medicationList.dosageSelector)
+        .select(doses[i])
+        .should("be.visible");
+    };
     cy.get(medicationList.dosageSelector)
       .select("1000 mg")
-      for(var i = 0; i < frequences.length; i++){
-        cy.get(medicationList.frequencySelector)
-          .select(frequences[i])
-          .should("be.visible");
-      };
+    for (var i = 0; i < frequences.length; i++) {
+      cy.get(medicationList.frequencySelector)
+        .select(frequences[i])
+        .should("be.visible");
+    };
     cy.get(medicationList.frequencySelector)
       .select("In the Evening")
       .get(medicationList.nextBtn)
@@ -1259,7 +1260,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "Do you have any ALLERGIES to medications?")
 
-});
+  });
 
   it("Should check the shc-condition-category page elements -  Airway and/or Lungs conditions - Asthma follow-up scenario ", () => {
     var asthmaCondText = "Asthma";
@@ -1275,7 +1276,7 @@ describe("transplan kidney donor page test", () => {
     var influenzaCondText = "The Flu (Influenza)";
     var tuberculosisCondText = "Tuberculosis (TB)";
     var urtInfectionCondText = "Upper Respiratory Tract Infection (Cold/Flu/Acute Bronchitis)";
-    
+
     var steroidsQueryHeading = "Have you ever taken steroids to manage your Asthma?";
     var hospitalizedQueryHeading = "Have you been hospitalized because of your Asthma?";
     var intubatedQueryHeading = "Have you ever been intubated (that is, had a breathing tube) because of your Asthma?";
@@ -1367,7 +1368,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", pulmonaryFibrosisCondText);
     cy.get(medConditionsSurvey.sleepApneaCheckBox)
-      .scrollIntoView()  
+      .scrollIntoView()
       .should("be.visible")
       .and("have.text", sleepApneaCondText);
     cy.get(medConditionsSurvey.influenzaCheckBox)
@@ -1375,11 +1376,11 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", influenzaCondText);
     cy.get(medConditionsSurvey.tuberculosisCheckBox)
-      .scrollIntoView()  
+      .scrollIntoView()
       .should("be.visible")
       .and("have.text", tuberculosisCondText);
     cy.get(medConditionsSurvey.urtInfectionCheckBox)
-      .scrollIntoView()  
+      .scrollIntoView()
       .should("be.visible")
       .and("have.text", urtInfectionCondText);
     cy.get(medConditionsSurvey.nextBtn)
@@ -1436,13 +1437,13 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the med-allergies page elements - Yes Vitamin C scenario ", () => {
-      var anaphylaxisReactionCheckBoxTitle = "ANAPHYLAXIS";
-      var anxietyReactionCheckBoxTitle = "Anxiety";
-      var breathIssuesReactionCheckBoxTitle = "Difficulty breathing, speaking and/or swallowing";
-      var nauseaReactionCheckBoxTitle = "Nausea and/or Vomiting";
-      var rashHivesReactionCheckBoxTitle = "Rash or Hives";
-      var swellingReactionCheckBoxTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
-      var otherReactionCheckBoxTitle = "Other";
+    var anaphylaxisReactionCheckBoxTitle = "ANAPHYLAXIS";
+    var anxietyReactionCheckBoxTitle = "Anxiety";
+    var breathIssuesReactionCheckBoxTitle = "Difficulty breathing, speaking and/or swallowing";
+    var nauseaReactionCheckBoxTitle = "Nausea and/or Vomiting";
+    var rashHivesReactionCheckBoxTitle = "Rash or Hives";
+    var swellingReactionCheckBoxTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
+    var otherReactionCheckBoxTitle = "Other";
     cy.visit("/med-allergies")
       .contains("Do you have any ALLERGIES to medications?")
       .get(medAllergies.introStartSurBtn)
@@ -1565,9 +1566,9 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Are you allergic to any of the following?");
     cy.contains("Please check all that apply:");
-    
+
   });
-  
+
   it("Should check the med-allergies page elements - No scenario ", () => {
     cy.visit("/med-allergies")
       .contains("Do you have any ALLERGIES to medications?")
@@ -1581,7 +1582,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Are you allergic to any of the following?");
     cy.contains("Please check all that apply:");
-  
+
   });
 
   it("Should check the material-allergies page elements - Betadine scenario ", () => {
@@ -1670,8 +1671,8 @@ describe("transplan kidney donor page test", () => {
     cy.get(materialAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "Do you smoke cigarettes?")
-    
-  }); 
+
+  });
 
   it("Should check the material-allergies page elements - NO, I am NOT Allergic scenario ", () => {
     var betadineMaterialAllergyTitle = "Betadine";
@@ -1722,64 +1723,64 @@ describe("transplan kidney donor page test", () => {
   it("Should check the doyousmoke.0 page elements - Yes scenario ", () => {
     var selectorText = "Select One";
     var yearsValues = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22",
-        "23",
-        "24",
-        "25",
-        "26",
-        "27",
-        "28",
-        "29",
-        "30",
-        "31",
-        "32",
-        "33",
-        "34",
-        "35",
-        "36",
-        "37",
-        "38",
-        "39",
-        "40",
-        "41",
-        "42",
-        "43",
-        "44",
-        "45",
-        "46",
-        "47",
-        "48",
-        "49",
-        "50"
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50"
     ];
     var packsValues = [
-        "1/4 pack",
-        "1/2 pack",
-        "1 pack",
-        "2 packs",
-        "3 packs",
-        ">3 packs"
+      "1/4 pack",
+      "1/2 pack",
+      "1 pack",
+      "2 packs",
+      "3 packs",
+      ">3 packs"
     ];
 
     cy.visit("/doyousmoke.0")
@@ -1790,7 +1791,7 @@ describe("transplan kidney donor page test", () => {
       .click();
     cy.get(doYouSmokeCigarettes.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
@@ -1810,7 +1811,7 @@ describe("transplan kidney donor page test", () => {
       .get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your current tobacco use:");
-    cy.contains("Approximately, how many years have you smoked?"); 
+    cy.contains("Approximately, how many years have you smoked?");
     cy.contains("Approximately, how many packs per day?");
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
@@ -1820,11 +1821,11 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
-      for(var i = 0; i<yearsValues.length; i++) {
-          cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
-            .select(yearsValues[i])
-            .should("be.visible")
-          };
+    for (var i = 0; i < yearsValues.length; i++) {
+      cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+        .select(yearsValues[i])
+        .should("be.visible")
+    };
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .select("5");
     cy.get(doYouSmokeCigarettes.nextBtn)
@@ -1835,11 +1836,11 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
-      for(var i = 0; i<packsValues.length; i++) {
-          cy.get(doYouSmokeCigarettes.packsQuantitySelector)
-            .select(packsValues[i])
-            .should("be.visible")
-          };
+    for (var i = 0; i < packsValues.length; i++) {
+      cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+        .select(packsValues[i])
+        .should("be.visible")
+    };
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .select("1/4 pack");
     cy.get(doYouSmokeCigarettes.nextBtn)
@@ -1847,7 +1848,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
-    cy.contains("Do you have a history of Alcohol Abuse?");                 
+    cy.contains("Do you have a history of Alcohol Abuse?");
 
   });
 
@@ -1871,194 +1872,194 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
-    cy.contains("Do you have a history of Alcohol Abuse?");                 
+    cy.contains("Do you have a history of Alcohol Abuse?");
 
   });
 
   it("Should check the doyousmoke.0 page elements - I Used To scenario ", () => {
     var selectorText = "Select One";
     var quitYearValues = [
-        "2020",
-        "2019",
-        "2018",
-        "2017",
-        "2016",
-        "2015",
-        "2014",
-        "2013",
-        "2012",
-        "2011",
-        "2010",
-        "2009",
-        "2008",
-        "2007",
-        "2006",
-        "2005",
-        "2004",
-        "2003",
-        "2002",
-        "2001",
-        "2000",
-        "1999",
-        "1998",
-        "1997",
-        "1996",
-        "1995",
-        "1994",
-        "1993",
-        "1992",
-        "1991",
-        "1990",
-        "1989",
-        "1988",
-        "1987",
-        "1986",
-        "1985",
-        "1984",
-        "1983",
-        "1982",
-        "1981",
-        "1980",
-        "1979",
-        "1978",
-        "1977",
-        "1976",
-        "1975",
-        "1974",
-        "1973",
-        "1972",
-        "1971",
-        "1970",
-        "1969",
-        "1968",
-        "1967",
-        "1966",
-        "1965",
-        "1964",
-        "1963",
-        "1962",
-        "1961",
-        "1960",
-        "1959",
-        "1958",
-        "1957",
-        "1956",
-        "1955",
-        "1954",
-        "1953",
-        "1952",
-        "1951",
-        "1950",
-        "1949",
-        "1948",
-        "1947",
-        "1946",
-        "1945",
-        "1944",
-        "1943",
-        "1942",
-        "1941",
-        "1940",
-        "1939",
-        "1938",
-        "1937",
-        "1936",
-        "1935",
-        "1934",
-        "1933",
-        "1932",
-        "1931",
-        "1930",
-        "1929",
-        "1928",
-        "1927",
-        "1926",
-        "1925",
-        "1924",
-        "1923",
-        "1922",
-        "1921",
-        "1920",
-        "1919",
-        "1918",
-        "1917",
-        "1916",
-        "1915",
-        "1914",
-        "1913",
-        "1912",
-        "1911",
-        "1910",
-        "1909",
-        "1908",
-        "1907",
-        "1906",
-        "1905",
-        "1904",
-        "1903",
-        "1902",
-        "1901",
-        "1900"
+      "2020",
+      "2019",
+      "2018",
+      "2017",
+      "2016",
+      "2015",
+      "2014",
+      "2013",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005",
+      "2004",
+      "2003",
+      "2002",
+      "2001",
+      "2000",
+      "1999",
+      "1998",
+      "1997",
+      "1996",
+      "1995",
+      "1994",
+      "1993",
+      "1992",
+      "1991",
+      "1990",
+      "1989",
+      "1988",
+      "1987",
+      "1986",
+      "1985",
+      "1984",
+      "1983",
+      "1982",
+      "1981",
+      "1980",
+      "1979",
+      "1978",
+      "1977",
+      "1976",
+      "1975",
+      "1974",
+      "1973",
+      "1972",
+      "1971",
+      "1970",
+      "1969",
+      "1968",
+      "1967",
+      "1966",
+      "1965",
+      "1964",
+      "1963",
+      "1962",
+      "1961",
+      "1960",
+      "1959",
+      "1958",
+      "1957",
+      "1956",
+      "1955",
+      "1954",
+      "1953",
+      "1952",
+      "1951",
+      "1950",
+      "1949",
+      "1948",
+      "1947",
+      "1946",
+      "1945",
+      "1944",
+      "1943",
+      "1942",
+      "1941",
+      "1940",
+      "1939",
+      "1938",
+      "1937",
+      "1936",
+      "1935",
+      "1934",
+      "1933",
+      "1932",
+      "1931",
+      "1930",
+      "1929",
+      "1928",
+      "1927",
+      "1926",
+      "1925",
+      "1924",
+      "1923",
+      "1922",
+      "1921",
+      "1920",
+      "1919",
+      "1918",
+      "1917",
+      "1916",
+      "1915",
+      "1914",
+      "1913",
+      "1912",
+      "1911",
+      "1910",
+      "1909",
+      "1908",
+      "1907",
+      "1906",
+      "1905",
+      "1904",
+      "1903",
+      "1902",
+      "1901",
+      "1900"
     ];
     var yearsValues = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22",
-        "23",
-        "24",
-        "25",
-        "26",
-        "27",
-        "28",
-        "29",
-        "30",
-        "31",
-        "32",
-        "33",
-        "34",
-        "35",
-        "36",
-        "37",
-        "38",
-        "39",
-        "40",
-        "41",
-        "42",
-        "43",
-        "44",
-        "45",
-        "46",
-        "47",
-        "48",
-        "49",
-        "50"
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50"
     ];
     var packsValues = [
-        "1/4 pack",
-        "1/2 pack",
-        "1 pack",
-        "2 packs",
-        "3 packs",
-        ">3 packs"
+      "1/4 pack",
+      "1/2 pack",
+      "1 pack",
+      "2 packs",
+      "3 packs",
+      ">3 packs"
     ];
 
     cy.visit("/doyousmoke.0")
@@ -2087,11 +2088,11 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.quitYearSelector)
       .should("be.visible")
       .and("contain", selectorText)
-      for(var i = 0; i<quitYearValues.length; i++) {
-        cy.get(doYouSmokeCigarettes.quitYearSelector)
-          .select(quitYearValues[i])
-          .should("be.visible")
-        };
+    for (var i = 0; i < quitYearValues.length; i++) {
+      cy.get(doYouSmokeCigarettes.quitYearSelector)
+        .select(quitYearValues[i])
+        .should("be.visible")
+    };
     cy.get(doYouSmokeCigarettes.quitYearSelector)
       .select("2010")
       .get(doYouSmokeCigarettes.nextBtn)
@@ -2099,21 +2100,21 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your past tobacco use:");
-    cy.contains("Approximately, how many years have you smoked?"); 
+    cy.contains("Approximately, how many years have you smoked?");
     cy.contains("Approximately, how many packs per day?");
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
-      cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+    cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
-      for(var i = 0; i<yearsValues.length; i++) {
-          cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
-            .select(yearsValues[i])
-            .should("be.visible")
-          };
+    for (var i = 0; i < yearsValues.length; i++) {
+      cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
+        .select(yearsValues[i])
+        .should("be.visible")
+    };
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .select("5");
     cy.get(doYouSmokeCigarettes.nextBtn)
@@ -2124,11 +2125,11 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
-      for(var i = 0; i<packsValues.length; i++) {
-          cy.get(doYouSmokeCigarettes.packsQuantitySelector)
-            .select(packsValues[i])
-            .should("be.visible")
-          };
+    for (var i = 0; i < packsValues.length; i++) {
+      cy.get(doYouSmokeCigarettes.packsQuantitySelector)
+        .select(packsValues[i])
+        .should("be.visible")
+    };
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .select("1/4 pack");
     cy.get(doYouSmokeCigarettes.nextBtn)
@@ -2136,8 +2137,8 @@ describe("transplan kidney donor page test", () => {
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
-    cy.contains("Do you have a history of Alcohol Abuse?");                 
-    
+    cy.contains("Do you have a history of Alcohol Abuse?");
+
   });
 
   it("Should check the alcohol.0 page elements - Positive answer scenario ", () => {
@@ -2156,7 +2157,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Do you have a history of Alcohol Abuse?");
     cy.get(alcoholPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(alcoholPage.validationErrorMsg)
       .should("be.visible")
@@ -2197,9 +2198,9 @@ describe("transplan kidney donor page test", () => {
     cy.get(alcoholPage.headerBar)
       .should("be.visible")
       .and("have.text", "Do you use recreational or illicit drugs?");
-  
+
   });
-  
+
   it("Should check the alcohol.0 page elements - Negative answer scenario ", () => {
     var neverTitle = "Never";
     var yearOnceTitle = "Once or twice per year";
@@ -2253,15 +2254,15 @@ describe("transplan kidney donor page test", () => {
     cy.get(alcoholPage.headerBar)
       .should("be.visible")
       .and("have.text", "Do you use recreational or illicit drugs?");
-  
+
   });
 
   it("Should check the illicitdrugs.0 page elements - Yes scenario ", () => {
-    var  marijuanaIllicitDrugsTitle = "Marijuana";
-    var  cocaineIllicitDrugsTitle = "Cocaine";
-    var  heroinIllicitDrugsTitle = "Heroin";
-    var  methamphetaminesIllicitDrugsTitle = "Methamphetamines ('Ecstasy', 'Crystal Meth')";
-    var  otherIllicitDrugsTitle = "Other";        
+    var marijuanaIllicitDrugsTitle = "Marijuana";
+    var cocaineIllicitDrugsTitle = "Cocaine";
+    var heroinIllicitDrugsTitle = "Heroin";
+    var methamphetaminesIllicitDrugsTitle = "Methamphetamines ('Ecstasy', 'Crystal Meth')";
+    var otherIllicitDrugsTitle = "Other";
     cy.visit("/illicitdrugs.0")
       .contains("Do you use recreational or illicit drugs?")
       .get(illicitDrugsPage.introStartSurBtn)
@@ -2270,7 +2271,7 @@ describe("transplan kidney donor page test", () => {
       .click();
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
@@ -2294,7 +2295,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("If other:");
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
@@ -2337,7 +2338,7 @@ describe("transplan kidney donor page test", () => {
       .click();
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
@@ -2362,135 +2363,135 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the illicitdrugs.0 page elements - I Used To scenario ", () => {
-    var  marijuanaIllicitDrugsTitle = "Marijuana";
-    var  cocaineIllicitDrugsTitle = "Cocaine";
-    var  heroinIllicitDrugsTitle = "Heroin";
-    var  methamphetaminesIllicitDrugsTitle = "Methamphetamines ('Ecstasy', 'Crystal Meth')";
-    var  otherIllicitDrugsTitle = "Other";
+    var marijuanaIllicitDrugsTitle = "Marijuana";
+    var cocaineIllicitDrugsTitle = "Cocaine";
+    var heroinIllicitDrugsTitle = "Heroin";
+    var methamphetaminesIllicitDrugsTitle = "Methamphetamines ('Ecstasy', 'Crystal Meth')";
+    var otherIllicitDrugsTitle = "Other";
     var selectorText = "Select One";
     var quitYearValues = [
-        "2020",
-        "2019",
-        "2018",
-        "2017",
-        "2016",
-        "2015",
-        "2014",
-        "2013",
-        "2012",
-        "2011",
-        "2010",
-        "2009",
-        "2008",
-        "2007",
-        "2006",
-        "2005",
-        "2004",
-        "2003",
-        "2002",
-        "2001",
-        "2000",
-        "1999",
-        "1998",
-        "1997",
-        "1996",
-        "1995",
-        "1994",
-        "1993",
-        "1992",
-        "1991",
-        "1990",
-        "1989",
-        "1988",
-        "1987",
-        "1986",
-        "1985",
-        "1984",
-        "1983",
-        "1982",
-        "1981",
-        "1980",
-        "1979",
-        "1978",
-        "1977",
-        "1976",
-        "1975",
-        "1974",
-        "1973",
-        "1972",
-        "1971",
-        "1970",
-        "1969",
-        "1968",
-        "1967",
-        "1966",
-        "1965",
-        "1964",
-        "1963",
-        "1962",
-        "1961",
-        "1960",
-        "1959",
-        "1958",
-        "1957",
-        "1956",
-        "1955",
-        "1954",
-        "1953",
-        "1952",
-        "1951",
-        "1950",
-        "1949",
-        "1948",
-        "1947",
-        "1946",
-        "1945",
-        "1944",
-        "1943",
-        "1942",
-        "1941",
-        "1940",
-        "1939",
-        "1938",
-        "1937",
-        "1936",
-        "1935",
-        "1934",
-        "1933",
-        "1932",
-        "1931",
-        "1930",
-        "1929",
-        "1928",
-        "1927",
-        "1926",
-        "1925",
-        "1924",
-        "1923",
-        "1922",
-        "1921",
-        "1920",
-        "1919",
-        "1918",
-        "1917",
-        "1916",
-        "1915",
-        "1914",
-        "1913",
-        "1912",
-        "1911",
-        "1910",
-        "1909",
-        "1908",
-        "1907",
-        "1906",
-        "1905",
-        "1904",
-        "1903",
-        "1902",
-        "1901",
-        "1900"
-    ];        
+      "2020",
+      "2019",
+      "2018",
+      "2017",
+      "2016",
+      "2015",
+      "2014",
+      "2013",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005",
+      "2004",
+      "2003",
+      "2002",
+      "2001",
+      "2000",
+      "1999",
+      "1998",
+      "1997",
+      "1996",
+      "1995",
+      "1994",
+      "1993",
+      "1992",
+      "1991",
+      "1990",
+      "1989",
+      "1988",
+      "1987",
+      "1986",
+      "1985",
+      "1984",
+      "1983",
+      "1982",
+      "1981",
+      "1980",
+      "1979",
+      "1978",
+      "1977",
+      "1976",
+      "1975",
+      "1974",
+      "1973",
+      "1972",
+      "1971",
+      "1970",
+      "1969",
+      "1968",
+      "1967",
+      "1966",
+      "1965",
+      "1964",
+      "1963",
+      "1962",
+      "1961",
+      "1960",
+      "1959",
+      "1958",
+      "1957",
+      "1956",
+      "1955",
+      "1954",
+      "1953",
+      "1952",
+      "1951",
+      "1950",
+      "1949",
+      "1948",
+      "1947",
+      "1946",
+      "1945",
+      "1944",
+      "1943",
+      "1942",
+      "1941",
+      "1940",
+      "1939",
+      "1938",
+      "1937",
+      "1936",
+      "1935",
+      "1934",
+      "1933",
+      "1932",
+      "1931",
+      "1930",
+      "1929",
+      "1928",
+      "1927",
+      "1926",
+      "1925",
+      "1924",
+      "1923",
+      "1922",
+      "1921",
+      "1920",
+      "1919",
+      "1918",
+      "1917",
+      "1916",
+      "1915",
+      "1914",
+      "1913",
+      "1912",
+      "1911",
+      "1910",
+      "1909",
+      "1908",
+      "1907",
+      "1906",
+      "1905",
+      "1904",
+      "1903",
+      "1902",
+      "1901",
+      "1900"
+    ];
     cy.visit("/illicitdrugs.0")
       .contains("Do you use recreational or illicit drugs?")
       .get(illicitDrugsPage.introStartSurBtn)
@@ -2499,7 +2500,7 @@ describe("transplan kidney donor page test", () => {
       .click();
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
@@ -2525,7 +2526,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(illicitDrugsPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
@@ -2533,17 +2534,17 @@ describe("transplan kidney donor page test", () => {
     cy.get(illicitDrugsPage.quitYearSelector)
       .should("be.visible")
       .and("contain", selectorText)
-      for(var i = 0; i<quitYearValues.length; i++) {
-        cy.get(illicitDrugsPage.quitYearSelector)
-          .select(quitYearValues[i])
-          .should("be.visible")
-        };
+    for (var i = 0; i < quitYearValues.length; i++) {
+      cy.get(illicitDrugsPage.quitYearSelector)
+        .select(quitYearValues[i])
+        .should("be.visible")
+    };
     cy.get(illicitDrugsPage.quitYearSelector)
       .select("2010");
     cy.get(illicitDrugsPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
@@ -2573,7 +2574,7 @@ describe("transplan kidney donor page test", () => {
       .get(illicitDrugsPage.headerBar)
       .should("be.visible")
       .and("have.text", "Which of the following most closely represents your level of physical activity?");
-    cy.contains("Please select ONE of the following:");        
+    cy.contains("Please select ONE of the following:");
 
   });
 
@@ -2604,8 +2605,8 @@ describe("transplan kidney donor page test", () => {
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
     var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
-    var doNotFrequencyTitle = "I do not exercise on a regular basis";      
-    var onceFrequencyTitle = "Once per week";      
+    var doNotFrequencyTitle = "I do not exercise on a regular basis";
+    var onceFrequencyTitle = "Once per week";
     var twiceFrequencyTitle = "Twice per week";
     var threeFrequencyTitle = "Three times per week";
     var moreThreeFrequencyTitle = "More than three times per week";
@@ -2620,7 +2621,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -2660,7 +2661,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select one of the following choices:");   //10. check the title of a header of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -2716,9 +2717,9 @@ describe("transplan kidney donor page test", () => {
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
     var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
-    
-    var doNotFrequencyTitle = "I do not exercise on a regular basis";      
-    var onceFrequencyTitle = "Once per week";      
+
+    var doNotFrequencyTitle = "I do not exercise on a regular basis";
+    var onceFrequencyTitle = "Once per week";
     var twiceFrequencyTitle = "Twice per week";
     var threeFrequencyTitle = "Three times per week";
     var moreThreeFrequencyTitle = "More than three times per week";
@@ -2733,7 +2734,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -2773,7 +2774,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select one of the following choices:");   //10. check the title of a header of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -2829,9 +2830,9 @@ describe("transplan kidney donor page test", () => {
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
     var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
-    
-    var doNotFrequencyTitle = "I do not exercise on a regular basis";      
-    var onceFrequencyTitle = "Once per week";      
+
+    var doNotFrequencyTitle = "I do not exercise on a regular basis";
+    var onceFrequencyTitle = "Once per week";
     var twiceFrequencyTitle = "Twice per week";
     var threeFrequencyTitle = "Three times per week";
     var moreThreeFrequencyTitle = "More than three times per week";
@@ -2846,7 +2847,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -2886,7 +2887,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select one of the following choices:");   //10. check the title of a header of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -2965,7 +2966,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3005,7 +3006,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3023,7 +3024,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3041,7 +3042,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3058,7 +3059,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3134,256 +3135,256 @@ describe("transplan kidney donor page test", () => {
     49. navigate to the next page
     50. check the title of a header of the page
     */
-      var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-      var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-      var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-      var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-      var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
-      var shortOfBreathActivityTitle = "I am short of breath at rest";
-      var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-      var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
-      
-      var selectorText = "Select One";
-      var stressTestsQtyValues = [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-      ];
-      var catheterizationQtyValues = [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-      ];
-      var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
-      var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
-      var bypassCathTitle = "I had Bypass Surgery";
-      var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
-      var ablationCathTitle = "I had an Ablation for Arrhythmia";        
-                           
-      cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
-        .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
-        .get(activityPage.introStartSurBtn)
-        .should("be.visible")
-        .and("have.text", "Start Survey")
-        .click();  //3. click to start survey
+    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var shortOfBreathActivityTitle = "I am short of breath at rest";
+    var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
+    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
-      cy.contains("Please select ONE of the following:");  //4. check the title of the section
-      cy.get(activityPage.nextBtn)
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()  
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("have.text", "Required");   //5. validation error message checking
+    var selectorText = "Select One";
+    var stressTestsQtyValues = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+    ];
+    var catheterizationQtyValues = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+    ];
+    var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
+    var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
+    var bypassCathTitle = "I had Bypass Surgery";
+    var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
+    var ablationCathTitle = "I had an Ablation for Arrhythmia";
 
-      cy.get(activityPage.strenuousActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.recreationalActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.twoFlightsActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.oneFlightActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
-        .click()   //7. choose the necessary value
-        .get(activityPage.oneBlockActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.shortOfBreathActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.wheelchairActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.unableActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
-        .get(activityPage.nextBtn)
-        .click()  //8. navigate to the next page
-        .get(activityPage.headerBar)
-        .should("be.visible")
-        .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
-      
-      cy.get(activityPage.nextBtn)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");   //10. validation error message checking
+    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+      .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
+      .get(activityPage.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
 
-      cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
-        .scrollIntoView();
-      cy.get(activityPage.yesPainRestCheckBox)
-        .should("be.visible")
-        .and("have.text", "Yes")        //12. check the visibility of the checkboxes
-        .click()    //13. choose the necessary value 
-        .get(activityPage.noPainRestCheckBox)
-        .should("be.visible")
-        .and("have.text", "No")   //12. check the visibility of the checkboxes
-        .get(activityPage.nextBtn)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");     //14. validation error message checking
+    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.get(activityPage.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");   //5. validation error message checking
 
-      cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")//15. check the title of a header of the section
-        .scrollIntoView();
-      cy.get(activityPage.yesPainActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", "Yes")    //16. check the visibility of the checkboxes
-        .click()                    //17. choose the necessary value 
-        .get(activityPage.noPainActivityCheckBox)
-        .should("be.visible")
-        .and("have.text", "No")    //16. check the visibility of the checkboxes
-        .get(activityPage.nextBtn)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");   //18. validation error message checking
+    cy.get(activityPage.strenuousActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.recreationalActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.twoFlightsActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.oneFlightActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .click()   //7. choose the necessary value
+      .get(activityPage.oneBlockActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.shortOfBreathActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.wheelchairActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.unableActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .get(activityPage.nextBtn)
+      .click()  //8. navigate to the next page
+      .get(activityPage.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
 
-      cy.contains("Have you had a stress test?");       //19. check the title of a header of the section
-      cy.get(activityPage.yesStressTestCheckBox)
-        .should("be.visible")
-        .and("have.text", "Yes")    //20. check the visibility of the checkboxes
-        .click()                    //21. choose the necessary value
-        .get(activityPage.noStressTestCheckBox)
-        .should("be.visible")
-        .and("have.text", "No")    //20. check the visibility of the checkboxes
-        .get(activityPage.nextBtn)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");   //22. validation error message checking
+    cy.get(activityPage.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //10. validation error message checking
 
-      cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");       //23. check the title of a header of the section
-      cy.get(activityPage.yesCatheterizationCheckBox)
-        .should("be.visible")
-        .and("have.text", "Yes")    //24. check the visibility of the checkboxes
-        .click()                    //25. choose the necessary value
-        .get(activityPage.noCatheterizationCheckBox)
-        .should("be.visible")
-        .and("have.text", "No");    //24. check the visibility of the checkboxes
-      cy.get(activityPage.nextBtn)
-        .click()                    //26. navigate to the next page            
-        .get(activityPage.headerBar)
-        .should("be.visible")
-        .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
+    cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
+      .scrollIntoView();
+    cy.get(activityPage.yesPainRestCheckBox)
+      .should("be.visible")
+      .and("have.text", "Yes")        //12. check the visibility of the checkboxes
+      .click()    //13. choose the necessary value 
+      .get(activityPage.noPainRestCheckBox)
+      .should("be.visible")
+      .and("have.text", "No")   //12. check the visibility of the checkboxes
+      .get(activityPage.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");     //14. validation error message checking
 
-      cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
+    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")//15. check the title of a header of the section
+      .scrollIntoView();
+    cy.get(activityPage.yesPainActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", "Yes")    //16. check the visibility of the checkboxes
+      .click()                    //17. choose the necessary value 
+      .get(activityPage.noPainActivityCheckBox)
+      .should("be.visible")
+      .and("have.text", "No")    //16. check the visibility of the checkboxes
+      .get(activityPage.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //18. validation error message checking
+
+    cy.contains("Have you had a stress test?");       //19. check the title of a header of the section
+    cy.get(activityPage.yesStressTestCheckBox)
+      .should("be.visible")
+      .and("have.text", "Yes")    //20. check the visibility of the checkboxes
+      .click()                    //21. choose the necessary value
+      .get(activityPage.noStressTestCheckBox)
+      .should("be.visible")
+      .and("have.text", "No")    //20. check the visibility of the checkboxes
+      .get(activityPage.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //22. validation error message checking
+
+    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");       //23. check the title of a header of the section
+    cy.get(activityPage.yesCatheterizationCheckBox)
+      .should("be.visible")
+      .and("have.text", "Yes")    //24. check the visibility of the checkboxes
+      .click()                    //25. choose the necessary value
+      .get(activityPage.noCatheterizationCheckBox)
+      .should("be.visible")
+      .and("have.text", "No");    //24. check the visibility of the checkboxes
+    cy.get(activityPage.nextBtn)
+      .click()                    //26. navigate to the next page            
+      .get(activityPage.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
+
+    cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
+    cy.get(activityPage.stressTestsQtySelect)
+      .should("be.visible")
+      .and("contain", selectorText)    //29. check the visibility of the selector's content
+    for (var i = 0; i < stressTestsQtyValues.length; i++) {
       cy.get(activityPage.stressTestsQtySelect)
+        .select(stressTestsQtyValues[i])
         .should("be.visible")
-        .and("contain", selectorText)    //29. check the visibility of the selector's content
-        for(var i = 0; i<stressTestsQtyValues.length; i++) {
-          cy.get(activityPage.stressTestsQtySelect)
-            .select(stressTestsQtyValues[i])
-            .should("be.visible")
-          };    //29. check the visibility of the selector's content
-      cy.get(activityPage.stressTestsQtySelect)
-        .select("2");                    //30. choose the necessary value
+    };    //29. check the visibility of the selector's content
+    cy.get(activityPage.stressTestsQtySelect)
+      .select("2");                    //30. choose the necessary value
 
-      cy.get(activityPage.nextBtn)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");   //31. validation error message checking
+    cy.get(activityPage.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //31. validation error message checking
 
-      cy.contains("Approximately when was your most recent stress test?");       //32. check the title of a header of the section
-      cy.get(activityPage.stressTestsDateInput)
-        .should("be.visible")
-        .type("02281984")   //33. input the necessary date
-        .get(activityPage.nextBtn)
-        .scrollIntoView()
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");   //34. validation error message checking
-      
-      cy.contains("Was your most recent stress test normal?");       //35. check the title of a header of the section
-      cy.get(activityPage.yesNormalTest)
-        .should("be.visible")
-        .and("have.text", "Yes")    //36. check the visibility of the checkboxes
-        .click()                    //37. choose the necessary value 
-        .get(activityPage.noNormalTest)
-        .should("be.visible")
-        .and("have.text", "No")    //36. check the visibility of the checkboxes
-        .get(activityPage.nextBtn)
-        .scrollIntoView()
-        .click()            //38. navigate to the next page
-        .get(activityPage.headerBar)
-        .should("be.visible")
-        .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
+    cy.contains("Approximately when was your most recent stress test?");       //32. check the title of a header of the section
+    cy.get(activityPage.stressTestsDateInput)
+      .should("be.visible")
+      .type("02281984")   //33. input the necessary date
+      .get(activityPage.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //34. validation error message checking
 
-      cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
+    cy.contains("Was your most recent stress test normal?");       //35. check the title of a header of the section
+    cy.get(activityPage.yesNormalTest)
+      .should("be.visible")
+      .and("have.text", "Yes")    //36. check the visibility of the checkboxes
+      .click()                    //37. choose the necessary value 
+      .get(activityPage.noNormalTest)
+      .should("be.visible")
+      .and("have.text", "No")    //36. check the visibility of the checkboxes
+      .get(activityPage.nextBtn)
+      .scrollIntoView()
+      .click()            //38. navigate to the next page
+      .get(activityPage.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
+
+    cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
+    cy.get(activityPage.catheterizationQtySelect)
+      .should("be.visible")
+      .and("contain", selectorText)    //41. check the visibility of the selector's content
+    for (var i = 0; i < catheterizationQtyValues.length; i++) {
       cy.get(activityPage.catheterizationQtySelect)
+        .select(catheterizationQtyValues[i])
         .should("be.visible")
-        .and("contain", selectorText)    //41. check the visibility of the selector's content
-        for(var i = 0; i<catheterizationQtyValues.length; i++) {
-          cy.get(activityPage.catheterizationQtySelect)
-            .select(catheterizationQtyValues[i])
-            .should("be.visible")
-          };    //41. check the visibility of the selector's content
-      cy.get(activityPage.catheterizationQtySelect)
-        .select("1");                    //42. choose the necessary value
+    };    //41. check the visibility of the selector's content
+    cy.get(activityPage.catheterizationQtySelect)
+      .select("1");                    //42. choose the necessary value
 
-      cy.get(activityPage.nextBtn)
-        .scrollIntoView()
-        .should("be.visible")
-        .and("have.text","Next")
-        .click()
-        .get(activityPage.validationErrorMsg)
-        .should("be.visible")
-        .and("contain", "Required");   //43. validation error message checking
+    cy.get(activityPage.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(activityPage.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //43. validation error message checking
 
-      cy.contains("Approximately when was your most recent Cardiac Catheterization?");     //44. check the title of a header of the section
-      cy.get(activityPage.catheterizationDateInput)
-        .should("be.visible")
-        .type("02281984")   //45. input the necessary date
+    cy.contains("Approximately when was your most recent Cardiac Catheterization?");     //44. check the title of a header of the section
+    cy.get(activityPage.catheterizationDateInput)
+      .should("be.visible")
+      .type("02281984")   //45. input the necessary date
 
-      cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?");     //46. check the title of a header of the section
-      cy.get(activityPage.angioplastyStentCathCheckBox)
-        .should("be.visible")
-        .and("have.text", angioplastyStentCathTitle)    //47. check the visibility of the checkboxes
-        .click()                    //48. choose the necessary value
-        .get(activityPage.angioplastyNoStentCathCheckBox)
-        .should("be.visible")
-        .and("have.text", angioplastyNoStentCathTitle)    //47. check the visibility of the checkboxes
-        .get(activityPage.bypassCathCheckBox)
-        .should("be.visible")
-        .and("have.text", bypassCathTitle)    //47. check the visibility of the checkboxes
-        .get(activityPage.pacemakerCathCheckBox)
-        .should("be.visible")
-        .and("have.text", pacemakerCathTitle)    //47. check the visibility of the checkboxes
-        .get(activityPage.ablationCathCheckBox)
-        .should("be.visible")
-        .and("have.text", ablationCathTitle)    //47. check the visibility of the checkboxes
-        .get(activityPage.nextBtn)
-        .click()                                 //49. navigate to the next page
-        .get(activityPage.headerBar)
-        .should("be.visible")
-        .and("have.text", "Have you had Surgery in the past?");  //50. check the title of a header of the page
-    
-    });
+    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?");     //46. check the title of a header of the section
+    cy.get(activityPage.angioplastyStentCathCheckBox)
+      .should("be.visible")
+      .and("have.text", angioplastyStentCathTitle)    //47. check the visibility of the checkboxes
+      .click()                    //48. choose the necessary value
+      .get(activityPage.angioplastyNoStentCathCheckBox)
+      .should("be.visible")
+      .and("have.text", angioplastyNoStentCathTitle)    //47. check the visibility of the checkboxes
+      .get(activityPage.bypassCathCheckBox)
+      .should("be.visible")
+      .and("have.text", bypassCathTitle)    //47. check the visibility of the checkboxes
+      .get(activityPage.pacemakerCathCheckBox)
+      .should("be.visible")
+      .and("have.text", pacemakerCathTitle)    //47. check the visibility of the checkboxes
+      .get(activityPage.ablationCathCheckBox)
+      .should("be.visible")
+      .and("have.text", ablationCathTitle)    //47. check the visibility of the checkboxes
+      .get(activityPage.nextBtn)
+      .click()                                 //49. navigate to the next page
+      .get(activityPage.headerBar)
+      .should("be.visible")
+      .and("have.text", "Have you had Surgery in the past?");  //50. check the title of a header of the page
+
+  });
 
   it("Should check the activity.0 page elements - 1 Block Or Less Negative Answers scenario ", () => {
     /*
@@ -3434,7 +3435,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3474,7 +3475,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3492,7 +3493,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3510,7 +3511,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3527,7 +3528,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3610,28 +3611,28 @@ describe("transplan kidney donor page test", () => {
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
     var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
-   
+
     var selectorText = "Select One";
     var stressTestsQtyValues = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
     ];
     var catheterizationQtyValues = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
     ];
     var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
     var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
     var bypassCathTitle = "I had Bypass Surgery";
     var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
-    var ablationCathTitle = "I had an Ablation for Arrhythmia";        
-                         
+    var ablationCathTitle = "I had an Ablation for Arrhythmia";
+
     cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
@@ -3642,7 +3643,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3682,7 +3683,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3700,7 +3701,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3718,7 +3719,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3735,7 +3736,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3754,23 +3755,23 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
-    
+
     cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
     cy.get(activityPage.stressTestsQtySelect)
       .should("be.visible")
       .and("contain", selectorText)    //29. check the visibility of the selector's content
-      for(var i = 0; i<stressTestsQtyValues.length; i++) {
-        cy.get(activityPage.stressTestsQtySelect)
-          .select(stressTestsQtyValues[i])
-          .should("be.visible")
-        };    //29. check the visibility of the selector's content
+    for (var i = 0; i < stressTestsQtyValues.length; i++) {
+      cy.get(activityPage.stressTestsQtySelect)
+        .select(stressTestsQtyValues[i])
+        .should("be.visible")
+    };    //29. check the visibility of the selector's content
     cy.get(activityPage.stressTestsQtySelect)
       .select("2");                    //30. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3780,7 +3781,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(activityPage.stressTestsDateInput)
       .should("be.visible")
       .type("02281984")   //33. input the necessary date
-      
+
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .click()
@@ -3802,23 +3803,23 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
-     
+
     cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
     cy.get(activityPage.catheterizationQtySelect)
       .should("be.visible")
       .and("contain", selectorText)    //41. check the visibility of the selector's content
-      for(var i = 0; i<catheterizationQtyValues.length; i++) {
-        cy.get(activityPage.catheterizationQtySelect)
-          .select(catheterizationQtyValues[i])
-          .should("be.visible")
-        };    //41. check the visibility of the selector's content
+    for (var i = 0; i < catheterizationQtyValues.length; i++) {
+      cy.get(activityPage.catheterizationQtySelect)
+        .select(catheterizationQtyValues[i])
+        .should("be.visible")
+    };    //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect)
       .select("1");                    //42. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3915,27 +3916,27 @@ describe("transplan kidney donor page test", () => {
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
     var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
-   
+
     var selectorText = "Select One";
     var stressTestsQtyValues = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
     ];
     var catheterizationQtyValues = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
     ];
     var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
     var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
     var bypassCathTitle = "I had Bypass Surgery";
     var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
-    var ablationCathTitle = "I had an Ablation for Arrhythmia";        
+    var ablationCathTitle = "I had an Ablation for Arrhythmia";
 
     cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
@@ -3947,7 +3948,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -3987,7 +3988,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4005,7 +4006,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4023,7 +4024,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4040,7 +4041,7 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4059,23 +4060,23 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
-    
+
     cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
     cy.get(activityPage.stressTestsQtySelect)
       .should("be.visible")
       .and("contain", selectorText)    //29. check the visibility of the selector's content
-      for(var i = 0; i<stressTestsQtyValues.length; i++) {
-        cy.get(activityPage.stressTestsQtySelect)
-          .select(stressTestsQtyValues[i])
-          .should("be.visible")
-        };    //29. check the visibility of the selector's content
+    for (var i = 0; i < stressTestsQtyValues.length; i++) {
+      cy.get(activityPage.stressTestsQtySelect)
+        .select(stressTestsQtyValues[i])
+        .should("be.visible")
+    };    //29. check the visibility of the selector's content
     cy.get(activityPage.stressTestsQtySelect)
       .select("2");                    //30. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4085,7 +4086,7 @@ describe("transplan kidney donor page test", () => {
     cy.get(activityPage.stressTestsDateInput)
       .should("be.visible")
       .type("02281984")   //33. input the necessary date
-      
+
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .click()
@@ -4107,23 +4108,23 @@ describe("transplan kidney donor page test", () => {
       .get(activityPage.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
-     
+
     cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
     cy.get(activityPage.catheterizationQtySelect)
       .should("be.visible")
       .and("contain", selectorText)    //41. check the visibility of the selector's content
-      for(var i = 0; i<catheterizationQtyValues.length; i++) {
-        cy.get(activityPage.catheterizationQtySelect)
-          .select(catheterizationQtyValues[i])
-          .should("be.visible")
-        };    //41. check the visibility of the selector's content
+    for (var i = 0; i < catheterizationQtyValues.length; i++) {
+      cy.get(activityPage.catheterizationQtySelect)
+        .select(catheterizationQtyValues[i])
+        .should("be.visible")
+    };    //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect)
       .select("1");                    //42. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4190,7 +4191,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
@@ -4260,12 +4261,12 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please select ONE of the following:");  //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
-      .and("have.text","Next")
+      .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");   //5. validation error message checking
-      
+
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
       .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
@@ -4298,5 +4299,485 @@ describe("transplan kidney donor page test", () => {
       .and("have.text", "Have you had Surgery in the past?");  //9. check the title of a header of the page
 
   });
-        
+
+  it("Should check the waitlist-inquiry.4.1 page elements - Chest Surgery scenario ", () => {
+
+    /*
+    1. navigate to the "waitlist-inquiry.4.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. check the visibility of the checkboxes
+    8. navigate to the next page
+    9. check the title of a header of the page
+    10. choose the body region
+    11. check the visibility of the body region's name
+    12. reject the body region
+    13. rotate the mannequin
+    14. choose the body region
+    15. navigate to the next page
+    16. check the title of a header of the page
+    17. check the visibility of the checkboxes
+    18. choose the operated body part
+    19. navigate to the next page
+    20. check the title of a header of the page
+    21. check the visibility of the checkboxes
+    22. choose the surgery type
+    23. choose the surgery type
+    24. navigate to the next page
+    25. check the title of a header of the page
+    */
+
+    var breastChestSurgery = "Breast";
+    var wallChestSurgery = "Chest Wall";
+    var clavicleChestSurgery = "Clavicle (Collarbone)";
+    var heartChestSurgery = "Heart";
+    var lungsChestSurgery = "Lungs";
+    var ribsChestSurgery = "Ribs";
+
+    var augumentationBrestSurgeryTitle = "Augmentation";
+    var leftBiopsyBrestSurgeryTitle = "Biopsy, Left Breast";
+    var rightBiopsyBrestSurgeryTitle = "Biopsy, Right Breast";
+    var reconstructionBrestSurgeryTitle = "Breast Reconstruction";
+    var reductionBrestSurgeryTitle = "Breast Reduction";
+    var pectusBrestSurgeryTitle = "Corrective Surgery for Pectus Excavatum";
+    var leftLumpectomyBrestSurgeryTitle = "Lumpectomy, Left";
+    var rightLumpectomyBrestSurgeryTitle = "Lumpectomy, Right";
+    var leftMastectomyBrestSurgeryTitle = "Mastectomy, Left";
+    var rightMastectomyBrestSurgeryTitle = "Mastectomy, Right";
+    var otherBrestSurgeryTitle = "Other";
+
+    cy.visit("/waitlist-inquiry.4.1")   //1. navigate to the "waitlist-inquiry.4.1" dialog
+      .contains("Have you had Surgery in the past?") //2. check the title of the dialog
+      .get(waitlistInquiry.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(waitlistInquiry.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(waitlistInquiry.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");   //4. validation error message checking
+
+    cy.get(waitlistInquiry.yesSurgeryRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+      .click()   //6. choose the necessary value      
+      .get(waitlistInquiry.noSurgeryRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No")   //7. check the visibility of the checkboxes
+    cy.get(waitlistInquiry.nextBtn)
+      .click();  //8. navigate to the next page 
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please select all regions of the body where you have had Surgery:"); //9. check the title of a header of the page
+
+    cy.get(waitlistInquiry.headBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Head"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.headBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.neckFrontRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Neck"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.neckFrontRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.chesFrontRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Chest"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.chesFrontRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.upperLeftBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Upper Left Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.upperLeftBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.upperRightBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Upper Right Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.upperRightBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.abdomenFrontRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Abdomen"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.abdomenFrontRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.pelvisFrontRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Pelvis"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.pelvisFrontRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.lowerLeftBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Lower Left Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.lowerLeftBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.lowerRightBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Lower Right Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.lowerRightBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.rotateButton)
+      .should("be.visible")
+      .click(); //13. rotate the mannequin
+
+    cy.get(waitlistInquiry.headBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Head"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.headBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.cervicalBackRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Cervical Spine"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.cervicalBackRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.backBackRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Back"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.backBackRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.upperLeftBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Upper Left Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.upperLeftBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.upperRightBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Upper Right Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.upperRightBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.buttockBackRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Buttock"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.buttockBackRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.lowerLeftBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Lower Left Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.lowerLeftBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.lowerRightBodyRegion)
+      .should("be.visible")
+      .click(); //10. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Lower Right Extremity"); //11. check the visibility of the body region's name
+    cy.get(waitlistInquiry.lowerRightBodyRegion)
+      .should("be.visible")
+      .click(); //12. reject the body region
+
+    cy.get(waitlistInquiry.rotateButton)
+      .should("be.visible")
+      .click(); //13. rotate the mannequin 
+
+    cy.get(waitlistInquiry.chesFrontRegion)
+      .click() //14. choose the body region
+      .get(waitlistInquiry.nextBtn)
+      .should("be.visible")
+      .and("contain", "Next")
+      .click(); //15. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please check all parts of your Chest listed below where you have had surgery:"); //16. check the title of a header of the page
+
+    cy.get(waitlistInquiry.breastChestCheckBox)
+      .should("be.visible")
+      .and("have.text", breastChestSurgery) //17. check the visibility of the checkboxes
+      .click() //18. choose the operated body part
+      .get(waitlistInquiry.wallChestCheckBox)
+      .should("be.visible")
+      .and("have.text", wallChestSurgery) //17. check the visibility of the checkboxes
+      .get(waitlistInquiry.clavicleChestCheckBox)
+      .should("be.visible")
+      .and("have.text", clavicleChestSurgery) //17. check the visibility of the checkboxes
+      .get(waitlistInquiry.heartChestCheckBox)
+      .should("be.visible")
+      .and("have.text", heartChestSurgery) //17. check the visibility of the checkboxes
+      .get(waitlistInquiry.lungsChestCheckBox)
+      .should("be.visible")
+      .and("have.text", lungsChestSurgery) //17. check the visibility of the checkboxes
+      .get(waitlistInquiry.ribsChestCheckBox)
+      .should("be.visible")
+      .and("have.text", ribsChestSurgery); //17. check the visibility of the checkboxes
+
+    cy.get(waitlistInquiry.nextBtn)
+      .click(); //19. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please select all surgical procedures performed on your Breast"); //20. check the title of a header of the page
+
+    cy.get(waitlistInquiry.augumentationBrestSurgery)
+      .should("be.visible")
+      .and("have.text", augumentationBrestSurgeryTitle) //21. check the visibility of the checkboxes
+      .click() //22. choose the surgery type
+
+      .get(waitlistInquiry.leftBiopsyBrestSurgery)
+      .should("be.visible")
+      .and("have.text", leftBiopsyBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.rightBiopsyBrestSurgery)
+      .should("be.visible")
+      .and("have.text", rightBiopsyBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.reconstructionBrestSurgery)
+      .should("be.visible")
+      .and("have.text", reconstructionBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.reductionBrestSurgery)
+      .should("be.visible")
+      .and("have.text", reductionBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.pectusBrestSurgery)
+      .should("be.visible")
+      .and("have.text", pectusBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.leftLumpectomyBrestSurgery)
+      .should("be.visible")
+      .and("have.text", leftLumpectomyBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.rightLumpectomyBrestSurgery)
+      .should("be.visible")
+      .and("have.text", rightLumpectomyBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.leftMastectomyBrestSurgery)
+      .should("be.visible")
+      .and("have.text", leftMastectomyBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.rightMastectomyBrestSurgery)
+      .should("be.visible")
+      .and("have.text", rightMastectomyBrestSurgeryTitle) //21. check the visibility of the checkboxes
+
+      .get(waitlistInquiry.otherBrestSurgery)
+      .should("be.visible")
+      .and("have.text", otherBrestSurgeryTitle) //21. check the visibility of the checkboxes
+      .click(); //23. choose the surgery type
+
+    cy.get(waitlistInquiry.nextBtn)
+      .click() //24. navigate to the next page
+      .get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Do you have any other medical issues that you have not already identified?"); //25. check the title of a header of the page
+
+  });
+
+  it("Should check the waitlist-inquiry.4.1 page elements - Back Surgery scenario ", () => {
+
+    /*
+    1. navigate to the "waitlist-inquiry.4.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. choose the necessary value
+    5. navigate to the next page
+    6. check the title of a header of the page
+    7. rotate the mannequin
+    8. choose the body region
+    9. check the visibility of the body region's name
+    10. navigate to the next page
+    11. check the title of a header of the page
+    12. check the visibility of the checkboxes
+    13. choose the operated body part
+    14. navigate to the next page
+    15. check the title of a header of the page
+    16. check the visibility of the checkboxes
+    17. choose the surgery type
+    18. navigate to the next page
+    19. check the title of a header of the page
+    */
+
+    cy.visit("/waitlist-inquiry.4.1")   //1. navigate to the "waitlist-inquiry.4.1" dialog
+      .contains("Have you had Surgery in the past?") //2. check the title of the dialog
+      .get(waitlistInquiry.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(waitlistInquiry.yesSurgeryRadioBtn)
+      .click()   //4. choose the necessary value
+
+    cy.get(waitlistInquiry.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click(); //5. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please select all regions of the body where you have had Surgery:"); //6. check the title of a header of the page
+
+    cy.get(waitlistInquiry.rotateButton)
+      .should("be.visible")
+      .click(); //7. rotate the mannequin
+
+    cy.get(waitlistInquiry.backBackRegion)
+      .should("be.visible")
+      .click(); //8. choose the body region
+    cy.get(waitlistInquiry.bodyPartsTitleBar)
+      .should("be.visible")
+      .and("have.text", "Back"); //9. check the visibility of the body region's name
+
+    cy.get(waitlistInquiry.nextBtn)
+      .should("be.visible")
+      .and("contain", "Next")
+      .click(); //10. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please select all regions of the body where you have had Surgery:"); //11. check the title of a header of the page
+
+    cy.get(waitlistInquiry.glandBackCheckBox)
+      .should("be.visible")
+      .and("have.text", "Adrenal Gland") //12. check the visibility of the checkboxes
+      .get(waitlistInquiry.flankBackCheckBox)
+      .should("be.visible")
+      .and("have.text", "Flank") //12. check the visibility of the checkboxes
+      .click() //13. choose the operated body part
+      .get(waitlistInquiry.kidneyBackCheckBox)
+      .should("be.visible")
+      .and("have.text", "Kidney") //12. check the visibility of the checkboxes
+      .get(waitlistInquiry.scapulaBackCheckBox)
+      .should("be.visible")
+      .and("have.text", "Scapula (Shoulder Blade)") //12. check the visibility of the checkboxes
+      .get(waitlistInquiry.spineBackCheckBox)
+      .should("be.visible")
+      .and("have.text", "Spine") //12. check the visibility of the checkboxes
+      .get(waitlistInquiry.nextBtn)
+      .click(); //14. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please select all surgical procedures performed on your Flank"); //15. check the title of a header of the page
+
+    cy.get(waitlistInquiry.lesionFlankSurgery)
+      .should("be.visible")
+      .and("have.text", "Removal of Lesion") //16. check the visibility of the checkboxes
+      .get(waitlistInquiry.tumorFlankSurgery)
+      .should("be.visible")
+      .and("have.text", "Tumor Removal") //16. check the visibility of the checkboxes
+      .click(); //17. choose the surgery type
+
+    cy.get(waitlistInquiry.nextBtn)
+      .click() //18. navigate to the next page
+      .get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Do you have any other medical issues that you have not already identified?");  //19. check the title of a header of the page
+
+  });
+
+  it("Should check the waitlist-inquiry.4.1 page elements - Had No Surgery scenario ", () => {
+
+    /*
+    1. navigate to the "waitlist-inquiry.4.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. choose the necessary value
+    5. navigate to the next page
+    6. check the title of a header of the page
+    */
+
+    cy.visit("/waitlist-inquiry.4.1")   //1. navigate to the "waitlist-inquiry.4.1" dialog
+      .contains("Have you had Surgery in the past?") //2. check the title of the dialog
+      .get(waitlistInquiry.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(waitlistInquiry.noSurgeryRadioBtn)
+      .click();   //4. choose the necessary value
+
+    cy.get(waitlistInquiry.nextBtn)
+      .click(); //5. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Do you have any other medical issues that you have not already identified?"); //6. check the title of a header of the page
+
+  });
+
 })
