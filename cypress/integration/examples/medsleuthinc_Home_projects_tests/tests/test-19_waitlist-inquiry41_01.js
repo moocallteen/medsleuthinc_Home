@@ -357,7 +357,30 @@ describe("transplan kidney donor page test", () => {
 
   });
 
-  it.only("Should check the waitlist-inquiry.4.1 page elements - Back Surgery scenario ", () => {
+  it("Should check the waitlist-inquiry.4.1 page elements - Back Surgery scenario ", () => {
+
+    /*
+    1. navigate to the "waitlist-inquiry.4.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. choose the necessary value
+    5. navigate to the next page
+    6. check the title of a header of the page
+    7. rotate the mannequin
+    8. choose the body region
+    9. check the visibility of the body region's name
+    10. navigate to the next page
+    11. check the title of a header of the page
+    12. check the visibility of the checkboxes
+    13. choose the operated body part
+    14. navigate to the next page
+    15. check the title of a header of the page
+    16. check the visibility of the checkboxes
+    17. choose the surgery type
+    18. navigate to the next page
+    19. check the title of a header of the page
+    */
+
     cy.visit("/waitlist-inquiry.4.1")   //1. navigate to the "waitlist-inquiry.4.1" dialog
       .contains("Have you had Surgery in the past?") //2. check the title of the dialog
       .get(waitlistInquiry.introStartSurBtn)
@@ -386,56 +409,84 @@ describe("transplan kidney donor page test", () => {
       .click(); //8. choose the body region
     cy.get(waitlistInquiry.bodyPartsTitleBar)
       .should("be.visible")
-      .and("have.text", "Back") //9. check the visibility of the body region's name
-      .click(); //10. choose the body region
+      .and("have.text", "Back"); //9. check the visibility of the body region's name
 
     cy.get(waitlistInquiry.nextBtn)
       .should("be.visible")
       .and("contain", "Next")
-      .click(); //11. navigate to the next page
+      .click(); //10. navigate to the next page
 
     cy.get(waitlistInquiry.headerBar)
       .should("be.visible")
-      .and("have.text", "Please select all regions of the body where you have had Surgery:"); //12. check the title of a header of the page
+      .and("have.text", "Please select all regions of the body where you have had Surgery:"); //11. check the title of a header of the page
 
     cy.get(waitlistInquiry.glandBackCheckBox)
       .should("be.visible")
-      .and("have.text", "Adrenal Gland") //13. check the visibility of the checkboxes
+      .and("have.text", "Adrenal Gland") //12. check the visibility of the checkboxes
       .get(waitlistInquiry.flankBackCheckBox)
       .should("be.visible")
-      .and("have.text", "Flank") //13. check the visibility of the checkboxes
-      .click() //14. choose the operated body part
+      .and("have.text", "Flank") //12. check the visibility of the checkboxes
+      .click() //13. choose the operated body part
       .get(waitlistInquiry.kidneyBackCheckBox)
       .should("be.visible")
-      .and("have.text", "Kidney") //13. check the visibility of the checkboxes
+      .and("have.text", "Kidney") //12. check the visibility of the checkboxes
       .get(waitlistInquiry.scapulaBackCheckBox)
       .should("be.visible")
-      .and("have.text", "Scapula (Shoulder Blade)") //13. check the visibility of the checkboxes
+      .and("have.text", "Scapula (Shoulder Blade)") //12. check the visibility of the checkboxes
       .get(waitlistInquiry.spineBackCheckBox)
       .should("be.visible")
-      .and("have.text", "Spine") //13. check the visibility of the checkboxes
+      .and("have.text", "Spine") //12. check the visibility of the checkboxes
       .get(waitlistInquiry.nextBtn)
-      .click(); //15. navigate to the next page
+      .click(); //14. navigate to the next page
 
     cy.get(waitlistInquiry.headerBar)
       .should("be.visible")
-      .and("have.text", "Please select all surgical procedures performed on your Flank"); //16. check the title of a header of the page
+      .and("have.text", "Please select all surgical procedures performed on your Flank"); //15. check the title of a header of the page
 
     cy.get(waitlistInquiry.lesionFlankSurgery)
       .should("be.visible")
-      .and("have.text", "Removal of Lesion") //17. check the visibility of the checkboxes
+      .and("have.text", "Removal of Lesion") //16. check the visibility of the checkboxes
       .get(waitlistInquiry.tumorFlankSurgery)
       .should("be.visible")
-      .and("have.text", "Tumor Removal") //17. check the visibility of the checkboxes
-      .click(); //18. choose the surgery type
+      .and("have.text", "Tumor Removal") //16. check the visibility of the checkboxes
+      .click(); //17. choose the surgery type
 
     cy.get(waitlistInquiry.nextBtn)
-      .click() //19. navigate to the next page
+      .click() //18. navigate to the next page
       .get(waitlistInquiry.headerBar)
       .should("be.visible")
-      .and("have.text", "Do you have any other medical issues that you have not already identified?");  //20. check the title of a header of the page
+      .and("have.text", "Do you have any other medical issues that you have not already identified?");  //19. check the title of a header of the page
 
   });
 
+  it("Should check the waitlist-inquiry.4.1 page elements - Had No Surgery scenario ", () => {
+
+    /*
+    1. navigate to the "waitlist-inquiry.4.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. choose the necessary value
+    5. navigate to the next page
+    6. check the title of a header of the page
+    */
+
+    cy.visit("/waitlist-inquiry.4.1")   //1. navigate to the "waitlist-inquiry.4.1" dialog
+      .contains("Have you had Surgery in the past?") //2. check the title of the dialog
+      .get(waitlistInquiry.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(waitlistInquiry.noSurgeryRadioBtn)
+      .click();   //4. choose the necessary value
+
+    cy.get(waitlistInquiry.nextBtn)
+      .click(); //5. navigate to the next page
+
+    cy.get(waitlistInquiry.headerBar)
+      .should("be.visible")
+      .and("have.text", "Do you have any other medical issues that you have not already identified?"); //6. check the title of a header of the page
+
+  });
 
 })
