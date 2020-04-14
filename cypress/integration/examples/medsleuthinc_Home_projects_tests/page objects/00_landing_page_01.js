@@ -24,5 +24,4 @@ module.exports = {
     yourEmailAddressFiled: 'input[id="txtEmail"]',
     iKnowRecipientRadioBtn: 'label[for="donortype.namedrecip"]',
     iDontKnowRecipientRadioBtn: 'label[for="donortype.altruist"]'
-
 }
