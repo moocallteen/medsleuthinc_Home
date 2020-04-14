@@ -23,7 +23,6 @@ module.exports = {
     yourPhoneNumberTypeSelect: 'select[id="selectID"]',
     yourEmailAddressFiled: 'input[id="txtEmail"]',
     iKnowRecipientRadioBtn: 'label[for="donortype.namedrecip"]',
-    iDontKnowRecipientRadioBtn: 'label[for="donortype.altruist"]',
-
+    iDontKnowRecipientRadioBtn: 'label[for="donortype.altruist"]'
 
 }

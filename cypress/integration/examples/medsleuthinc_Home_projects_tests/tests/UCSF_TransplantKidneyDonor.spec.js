@@ -2579,6 +2579,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - Strenuous Sports scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -2596,6 +2597,7 @@ describe("transplan kidney donor page test", () => {
     14. navigate to the next page
     15. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -2692,6 +2694,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - Recreational Activities scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -2709,6 +2712,7 @@ describe("transplan kidney donor page test", () => {
     14. navigate to the next page
     15. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -2805,6 +2809,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - 2 Flights Of Stairs scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -2822,6 +2827,7 @@ describe("transplan kidney donor page test", () => {
     14. navigate to the next page
     15. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -2918,6 +2924,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - 1 Flight Of Stairs Negative Answers scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -2947,6 +2954,7 @@ describe("transplan kidney donor page test", () => {
     26. navigate to the next page
     27. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -3083,6 +3091,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - 1 Flight Of Stairs Positive Answers scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -3135,6 +3144,7 @@ describe("transplan kidney donor page test", () => {
     49. navigate to the next page
     50. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -3387,6 +3397,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - 1 Block Or Less Negative Answers scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -3416,6 +3427,7 @@ describe("transplan kidney donor page test", () => {
     26. navigate to the next page
     27. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -3551,6 +3563,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - 1 Block Or Less Positive Answers scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -3603,6 +3616,7 @@ describe("transplan kidney donor page test", () => {
     49. navigate to the next page
     50. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -3856,6 +3870,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - Short Of Breath Positive Answers scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -3908,6 +3923,7 @@ describe("transplan kidney donor page test", () => {
     49. navigate to the next page
     50. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -4161,6 +4177,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - Wheelchair Bound scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -4172,6 +4189,7 @@ describe("transplan kidney donor page test", () => {
     8. navigate to the next page
     9. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
@@ -4231,6 +4249,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the activity.0 page elements - Unable scenario ", () => {
+
     /*
     1. navigate to the "activity.0" dialog
     2. check the title of the dialog
@@ -4242,6 +4261,7 @@ describe("transplan kidney donor page test", () => {
     8. navigate to the next page
     9. check the title of a header of the page
     */
+
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
     var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
     var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";

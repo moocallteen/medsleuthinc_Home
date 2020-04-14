@@ -29,10 +29,12 @@ describe("transplan kidney donor page test", () => {
       .then(el => {
         assert.include(el.text(), text);
       });
+
     cy.get(landingPage.termsLink)
       .should("be.visible")
       .get(landingPage.startSurveyBtn)
       .click();
+
     cy.get(landingPage.yourFirstNameField)
       .should("be.visible")
       .get(landingPage.nextBtn)
@@ -93,6 +95,7 @@ describe("transplan kidney donor page test", () => {
       .type('test@test.com')
       .get(landingPage.nextBtn)
       .click();
+
     cy.contains("Donor Type")
       .should("be.visible")
       .get(landingPage.iKnowRecipientRadioBtn)

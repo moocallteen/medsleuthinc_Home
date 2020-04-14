@@ -16,5 +16,4 @@ module.exports = {
     otherLanguageBar: 'div[class="text_field test"]',
     otherLanguageField: 'input[id="patsubj.primary.language.if.other"]',
     doYouNeedTransltorBar: 'div[name="entry_patsubj_needs_translator"]'
-
 }

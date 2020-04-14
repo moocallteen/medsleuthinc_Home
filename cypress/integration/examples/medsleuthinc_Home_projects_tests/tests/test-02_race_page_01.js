@@ -10,7 +10,8 @@ describe("transplan kidney donor page test", () => {
     cy.viewport(1280, 800);
   });
 
-it("should check the Demographics page elements", () => {
+  it("should check the Demographics page elements", () => {
+
     var headingText = "Please enter your Race:";
     var americanIndianAlaskaText = "American Indian or Alaska Native";
     var arabianText = "Arabian";
@@ -34,6 +35,7 @@ it("should check the Demographics page elements", () => {
     ];
     var otherLanguageHeading = "If Other:";
     var doYouNeedTranslatorHeading = "Do you need a translator?YesNo";
+
     cy.visit("/race.0")
       .get(landingPage.startSurveyBtn)
       .click()
@@ -65,7 +67,8 @@ it("should check the Demographics page elements", () => {
       cy.get(demographicsPage.languageSelector)
         .select(languages[i])
         .should("be.visible");
-    }
+    };
+
     cy.get(demographicsPage.otherLanguageBar)
       .should("have.text", otherLanguageHeading)
       .get(demographicsPage.otherLanguageField)
@@ -77,5 +80,7 @@ it("should check the Demographics page elements", () => {
       .get(landingPage.validationErrorMsg)
       .first()
       .should("have.text", "Required");
+
   });
+
 })

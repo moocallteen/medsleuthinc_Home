@@ -49,6 +49,5 @@ module.exports = {
     spineBackCheckBox: 'label[for="choice.bodypart.id.entry.bodyparts.back.11.63"]',
 
     lesionFlankSurgery: 'label[for="choice.surgery.id.658"]',
-    tumorFlankSurgery: 'label[for="choice.surgery.id.659"]',
-
+    tumorFlankSurgery: 'label[for="choice.surgery.id.659"]'
 }
