@@ -18,6 +18,12 @@ import alcoholPage from "../page objects/16_alcohol0_01";
 import illicitDrugsPage from "../page objects/17_illicitdrugs0_01";
 import activityPage from "../page objects/18_activity0_01";
 import waitlistInquiry from "../page objects/19_waitlist-inquiry41_01";
+import otherMedConditions from "../page objects/20_other-med-conditions1_01";
+import medService from "../page objects/21_med-service0_01";
+import familyMedHistory0 from "../page objects/22_family-medical-history0_01";
+import familyMedHistory1 from "../page objects/23_family-medical-history1_01";
+
+
 
 
 
@@ -31,12 +37,13 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("should check the Landing page elements", () => {
+
     var text = "Welcome to the BREEZE TRANSPLANT online health";
     var firstName = "First name";
     var middleName = "Middle name";
     var lastName = "Last name";
+
     cy.visit("/landing-page")
-      .wait(200)
       .get(landingPage.logo)
       .should("be.visible")
       .get(landingPage.headerBar)
@@ -49,11 +56,12 @@ describe("transplan kidney donor page test", () => {
       .then(el => {
         assert.include(el.text(), text);
       });
+
     cy.get(landingPage.termsLink)
       .should("be.visible")
       .get(landingPage.startSurveyBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(landingPage.yourFirstNameField)
       .should("be.visible")
       .get(landingPage.nextBtn)
@@ -113,8 +121,8 @@ describe("transplan kidney donor page test", () => {
       .get(landingPage.yourEmailAddressFiled)
       .type('test@test.com')
       .get(landingPage.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.contains("Donor Type")
       .should("be.visible")
       .get(landingPage.iKnowRecipientRadioBtn)
@@ -127,6 +135,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("should check the referral.0 page elements", () => {
+
     var textNextBtn = "Next";
     var transplantCandidateText = "From the transplant candidate";
     var candidatesSomeoneText = "From someone I know on behalf of the transplant candidate (a family member or friend)";
@@ -134,56 +143,59 @@ describe("transplan kidney donor page test", () => {
     var myOwnResearchText = "From my own research";
     var anotherPatientText = "From another donor, recipient or patient.";
     var otherText = "Other";
+
     cy.visit("/referral.0")
-      .wait(200)
       .get(referralPage.introStartSurBtn)
       .click()
       .get(referralPage.nextBtn)
       .then(el => {
         assert.include(el.text(), textNextBtn);
-
-        cy.get(referralPage.transplantCandidateRadioBtn)
-          .should("be.visible")
-          .get(referralPage.transplantCandidateTextBlock)
-          .should("have.text", transplantCandidateText)
-          .get(referralPage.candidatesSomeoneRadioBtn)
-          .should("be.visible")
-          .get(referralPage.candidatesSomeoneTextBlock)
-          .should("have.text", candidatesSomeoneText)
-          .get(referralPage.socialMediaRadioBtn)
-          .should("be.visible")
-          .get(referralPage.socialMediaTextBlock)
-          .should("have.text", socialMediaText)
-          .get(referralPage.myOwnResearchRadioBtn)
-          .should("be.visible")
-          .get(referralPage.myOwnResearchTextBlock)
-          .should("have.text", myOwnResearchText)
-          .get(referralPage.anotherPatientRadioBtn)
-          .should("be.visible")
-          .get(referralPage.anotherPatientTextBlock)
-          .should("have.text", anotherPatientText)
-          .get(referralPage.otherRadioBtn)
-          .should("be.visible")
-          .get(referralPage.otherTextBlock)
-          .should("have.text", otherText)
-          .get(referralPage.nextBtn)
-          .should("be.visible")
-          .get(referralPage.nextBtn)
-          .click()
-          .get(referralPage.validationErrorMsg)
-          .should("have.text", "Required")
-          .get(referralPage.myOwnResearchRadioBtn)
-          .check()
-          .get(referralPage.nextBtn)
-          .should("have.text", textNextBtn)
-          .click();
-        cy.contains("Demographics")
-          .should("be.visible")
       });
+
+
+    cy.get(referralPage.transplantCandidateRadioBtn)
+      .should("be.visible")
+      .get(referralPage.transplantCandidateTextBlock)
+      .should("have.text", transplantCandidateText)
+      .get(referralPage.candidatesSomeoneRadioBtn)
+      .should("be.visible")
+      .get(referralPage.candidatesSomeoneTextBlock)
+      .should("have.text", candidatesSomeoneText)
+      .get(referralPage.socialMediaRadioBtn)
+      .should("be.visible")
+      .get(referralPage.socialMediaTextBlock)
+      .should("have.text", socialMediaText)
+      .get(referralPage.myOwnResearchRadioBtn)
+      .should("be.visible")
+      .get(referralPage.myOwnResearchTextBlock)
+      .should("have.text", myOwnResearchText)
+      .get(referralPage.anotherPatientRadioBtn)
+      .should("be.visible")
+      .get(referralPage.anotherPatientTextBlock)
+      .should("have.text", anotherPatientText)
+      .get(referralPage.otherRadioBtn)
+      .should("be.visible")
+      .get(referralPage.otherTextBlock)
+      .should("have.text", otherText)
+      .get(referralPage.nextBtn)
+      .should("be.visible")
+      .get(referralPage.nextBtn)
+      .click()
+      .get(referralPage.validationErrorMsg)
+      .should("have.text", "Required")
+      .get(referralPage.myOwnResearchRadioBtn)
+      .check()
+      .get(referralPage.nextBtn)
+      .should("have.text", textNextBtn)
+      .click();
+
+    cy.contains("Demographics")
+      .should("be.visible");
 
   });
 
   it("should check the Demographics page elements", () => {
+
     var headingText = "Please enter your Race:";
     var americanIndianAlaskaText = "American Indian or Alaska Native";
     var arabianText = "Arabian";
@@ -207,8 +219,8 @@ describe("transplan kidney donor page test", () => {
     ];
     var otherLanguageHeading = "If Other:";
     var doYouNeedTranslatorHeading = "Do you need a translator?YesNo";
+
     cy.visit("/race.0")
-      .wait(200)
       .get(landingPage.startSurveyBtn)
       .click()
       .get(demographicsPage.headingText)
@@ -240,6 +252,7 @@ describe("transplan kidney donor page test", () => {
         .select(languages[i])
         .should("be.visible");
     };
+
     cy.get(demographicsPage.otherLanguageBar)
       .should("have.text", otherLanguageHeading)
       .get(demographicsPage.otherLanguageField)
@@ -255,6 +268,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.htn.0 page elements - Yes scenario", () => {
+
     var medicationQtyTxt = "How many medications do you take to control your blood pressure?";
     var selectorText = "Select One";
     var selectorValues = [
@@ -262,10 +276,11 @@ describe("transplan kidney donor page test", () => {
       "2",
       ">2"
     ];
+
     cy.visit("/screening.htn.0")
-      .wait(200)
       .contains("Do you take any medications to control your Blood Pressure?")
       .should("be.visible");
+
     cy.get(screeningHtn0.introStartSurBtn)
       .should("be.visible")
       .click()
@@ -284,8 +299,8 @@ describe("transplan kidney donor page test", () => {
       .and("contain", "Yes")
       .click()
       .get(screeningHtn0.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningHtn0.headerBar)
       .should("be.visible")
       .and("contain", medicationQtyTxt)
@@ -296,52 +311,57 @@ describe("transplan kidney donor page test", () => {
       cy.get(screeningHtn0.medicationQtySelector)
         .select(selectorValues[i])
         .should("be.visible")
-    }
+    };
+
     cy.get(screeningHtn0.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.contains("Thank you for your generous offer to be a kidney donor")
       .should("be.visible");
+
     cy.contains("Unfortunately, you are not eligible to be a donor at this time")
       .should("be.visible");
+
     cy.contains("Your high blood pressure places you at increased risk of kidney disease and dangerous complications if you donate your kidney.")
       .should("be.visible");
+
     cy.get(screeningHtn0.footerText)
       .should("be.visible");
 
   });
 
   it("Should check the screening.htn.0 page elements - No scenario", () => {
+
     cy.visit("/screening.htn.0")
-      .wait(200)
       .get(screeningHtn0.introStartSurBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningHtn0.noRadioBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningHtn0.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.contains("Do you currently take pills or insulin for Diabetes?")
       .should("be.visible");
 
   });
 
   it("Should check the screening.diabetesrx page elements - Yes scenario", () => {
+
     var headerBarText = "Thank you for your generous offer to be a kidney donor";
     var contentHeaderText = "Unfortunately, you are not eligible to be a donor at this time";
     var contentReasonText = "Your diabetes places you at increased risk of kidney disease and dangerous complications if you donate your kidney.";
     var contentFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
 
     cy.visit("/screening.diabetesrx")
-      .wait(200)
       .contains("Do you currently take pills or insulin for Diabetes?")
       .should("be.visible");
+
     cy.get(screeningDiabetesrx.introStartSurBtn)
       .should("be.visible")
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningDiabetesrx.nextBtn)
       .should("be.visible")
       .and("contain", "Next")
@@ -357,8 +377,8 @@ describe("transplan kidney donor page test", () => {
       .and("contain", "Yes")
       .click()
       .get(screeningDiabetesrx.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningDiabetesrx.headerBar)
       .should("be.visible")
       .and("have.text", headerBarText)
@@ -375,9 +395,10 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.diabetesrx page elements - No scenario", () => {
+
     var validationText = "Have you had more than one kidney stone in the past 10 years?";
+
     cy.visit("/screening.diabetesrx")
-      .wait(200)
       .get(screeningDiabetesrx.introStartSurBtn)
       .click()
       .get(screeningDiabetesrx.noRadioBtn)
@@ -392,15 +413,17 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.kidneystones page elements - Yes scenario", () => {
+
     var pageToCheckTitle = "Do you smoke cigarettes or marijuana?";
+
     cy.visit("/screening.kidneystones")
-      .wait(200)
       .contains("Have you had more than one kidney stone in the past 10 years?")
       .should("be.visible");
+
     cy.get(screeningKidneystones.introStartSurBtn)
       .should("be.visible")
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningKidneystones.nextBtn)
       .should("be.visible")
       .and("contain", "Next")
@@ -417,7 +440,6 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(screeningKidneystones.nextBtn)
       .click()
-      .wait(200)
       .get(screeningKidneystones.headerBar)
       .then(el => {
         assert.include(el.text(), pageToCheckTitle)
@@ -426,9 +448,10 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.kidneystones page elements - No scenario", () => {
+
     var pageToCheckTitle = "Do you smoke cigarettes or marijuana?";
+
     cy.visit("/screening.kidneystones")
-      .wait(200)
       .get(screeningKidneystones.introStartSurBtn)
       .click()
       .get(screeningKidneystones.noRadioBtn)
@@ -443,16 +466,18 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.tobacco page elements - Yes-Yes scenario", () => {
+
     var quitHeaderTitle = "Would you be willing to quit smoking 6 weeks prior to surgery?";
     var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
+
     cy.visit("/screening.tobacco")
-      .wait(200)
       .contains("Do you smoke cigarettes or marijuana?")
       .should("be.visible");
+
     cy.get(screeningTobacco.introStartSurBtn)
       .should("be.visible")
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningTobacco.nextBtn)
       .should("be.visible")
       .and("contain", "Next")
@@ -468,8 +493,8 @@ describe("transplan kidney donor page test", () => {
       .and("contain", "Yes")
       .click()
       .get(screeningTobacco.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningTobacco.headerBar)
       .should("be.visible")
       .and("have.text", quitHeaderTitle)
@@ -495,9 +520,10 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.tobacco page elements - No scenario", () => {
+
     var pageToCheckTitle = "Do you use recreational or illicit drugs not including marijuana?";
+
     cy.visit("/screening.tobacco")
-      .wait(200)
       .get(screeningTobacco.introStartSurBtn)
       .click()
       .get(screeningTobacco.noTobaccoRadioBtn)
@@ -510,12 +536,13 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.tobacco page elements - Yes-No scenario", () => {
+
     var pageToCheckTitle = "Thank you for your generous offer to be a kidney donor";
     var contentHeaderText = "Unfortunately, you are not eligible to be a donor at this time";
     var contentReasonText = "You must be willing to quit using marijuana or tobacco products for at least 6 weeks prior to surgery";
     var contentFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
+
     cy.visit("/screening.tobacco")
-      .wait(200)
       .get(screeningTobacco.introStartSurBtn)
       .click()
       .get(screeningTobacco.yesTobaccoRadioBtn)
@@ -538,16 +565,17 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.ildrs page elements - Yes scenario", () => {
+
     var headerToCheck = "Please review the important information below prior to proceeding to the online evaluation";
     var notInterestedText = "I am no longer interested in living donation";
     var continueText = "Continue with the evaluation";
+
     cy.visit("/screening.ildrs")
-      .wait(200)
       .contains("Do you use recreational or illicit drugs not including marijuana?")
       .get(screeningIlDrugs.introStartSurBtn)
       .should("be.visible")
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(screeningIlDrugs.nextBtn)
       .should("be.visible")
       .and("contain", "Next")
@@ -564,13 +592,12 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(screeningIlDrugs.nextBtn)
       .click()
-      .wait(200)
       .get(screeningIlDrugs.headerBar)
       .should("be.visible")
       .and("have.text", headerToCheck);
-    cy.get(screeningIlDrugs.notInterestedToCheck)
+
+    cy.get(screeningIlDrugs.nextBtn)
       .scrollIntoView()
-      .wait(300)
       .get(screeningIlDrugs.notInterestedToCheck)
       .should("be.visible")
       .and("have.text", notInterestedText)
@@ -581,11 +608,12 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.ildrs page elements - No scenario", () => {
+
     var headerToCheck = "Please review the important information below prior to proceeding to the online evaluation";
     var notInterestedText = "I am no longer interested in living donation";
     var continueText = "Continue with the evaluation";
+
     cy.visit("/screening.ildrs")
-      .wait(200)
       .contains("Do you use recreational or illicit drugs not including marijuana?")
       .get(screeningIlDrugs.introStartSurBtn)
       .click()
@@ -596,8 +624,10 @@ describe("transplan kidney donor page test", () => {
       .get(screeningIlDrugs.headerBar)
       .should("be.visible")
       .and("have.text", headerToCheck);
+
     cy.get(screeningIlDrugs.continueToCheck)
       .scrollIntoView();
+
     cy.get(screeningIlDrugs.notInterestedToCheck)
       .should("be.visible")
       .and("have.text", notInterestedText)
@@ -614,16 +644,16 @@ describe("transplan kidney donor page test", () => {
     var contentToCheck = "Thank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.org";
 
     cy.visit("/what_to_expect.0")
-      .wait(200)
       .contains("Please review the important information below prior to proceeding to the online evaluation")
       .get(whatToExpectPage.introStartSurBtn)
       .should("be.visible")
-      .click()
-      .wait(200);
+      .click();
+
     cy.contains("Donor Evaluation")
       .should("be.visible")
       .get(whatToExpectPage.evaluationInfoText)
-      .should("be.visible")
+      .should("be.visible");
+
     cy.get(whatToExpectPage.continueToCheck)
       .scrollIntoView()
       .get(whatToExpectPage.nextBtn)
@@ -652,13 +682,14 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the screening.what_to_expect.0 page elements - Continue With the Ealuation scenario", () => {
+
     var textToCheck = "Thank you for your participation";
     var contentToCheck = "Kidney donation surgery will take place at UCSF and will require hospitalization for 2-3 daysThank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.orgNext";
 
     cy.visit("/what_to_expect.0")
-      .wait(200)
       .get(whatToExpectPage.introStartSurBtn)
       .click();
+
     cy.get(whatToExpectPage.continueToCheck)
       .scrollIntoView()
       .get(whatToExpectPage.continueToCheck)
@@ -675,11 +706,12 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the thankyou_opt_out.0 page elements", () => {
+
     var thankYouContentToCheck = "Thank you for considering living kidney donation. If you wish to contact us please send an e-mail to: Living.Donor@ucsfmedctr.orgNext";
     var headerText = "This health questionnaire will take approximately 15 to 20 minutes to complete.";
     var contentToCheck = "In order to complete this questionnaire, you will need to provide the names of all medications, vitamins, and herbal supplements that you currently take. Please include those medications that you take on a regular basis, and also those medications that you take occasionally ('as needed')";
+
     cy.visit("/thankyou_opt_out.0")
-      .wait(200)
       .contains("Thank you for your participation")
       .get(thankYouOptOut.introStartSurBtn)
       .should("be.visible")
@@ -690,8 +722,8 @@ describe("transplan kidney donor page test", () => {
       .get(thankYouOptOut.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(thankYouOptOut.headerBar)
       .should("be.visible")
       .and("have.text", headerText)
@@ -702,17 +734,18 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the instructions.04 page elements - Enter medications scenario ", () => {
+
     var enterMedicationsTitle = "Enter medications";
     var doNotTakeMedsTitle = "I do not take any medication";
     var pageContentText = "In order to complete this questionnaire, you will need to provide the names of all medications, vitamins, and herbal supplements that you currently take. Please include those medications that you take on a regular basis, and also those medications that you take occasionally ('as needed')";
     var medsListHeaderTxt = "Please enter your medications, one by one. You may enter either the brand or generic name.";
+
     cy.visit("instructions.04")
-      .wait(200)
       .contains("This health questionnaire will take approximately 15 to 20 minutes to complete.")
       .get(instructionsPage.introStartSurBtn)
       .should("be.visible")
-      .click()
-      .wait(200);
+      .click();
+
     cy.contains(pageContentText)
       .get(instructionsPage.nextBtn)
       .should("be.visible")
@@ -726,7 +759,6 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(instructionsPage.nextBtn)
       .click()
-      .wait(200)
       .get(instructionsPage.headerBar)
       .should("be.visible")
       .and("have.text", medsListHeaderTxt);
@@ -734,9 +766,10 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the instructions.04 page elements - I do not take any medication scenario ", () => {
+
     var medConditionsListHeader = "Do you have or have you had any of the following medical conditions?";
+
     cy.visit("instructions.04")
-      .wait(300)
       .contains("This health questionnaire will take approximately 15 to 20 minutes to complete.")
       .get(instructionsPage.introStartSurBtn)
       .click()
@@ -751,6 +784,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the medications-list-rx-ada-1 page elements - Enter Medication scenario ", () => {
+
     var enterMedsHeaderTitle = "Please enter your medications, one by one. You may enter either the brand or generic name.";
     var dosageHeading = "Dosage (Optional)";
     var doses = [
@@ -785,18 +819,16 @@ describe("transplan kidney donor page test", () => {
     var medConditionsListHeader = "Do you have or have you had any of the following medical conditions?";
 
     cy.visit("/instructions.04")
-      .wait(200)
       .get(medicationList.introStartSurBtn)
       .click()
-      .wait(200)
       .get(medicationList.enterMedicationsRadioBtn)
       .click()
       .get(medicationList.nextBtn)
       .click()
-      .wait(200)
       .get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", enterMedsHeaderTitle);
+
     cy.contains("Search for medications")
       .get(medicationList.nextBtn)
       .should("be.visible")
@@ -810,7 +842,7 @@ describe("transplan kidney donor page test", () => {
       .get(medicationList.medsInputField)
       .should("be.visible")
       .type("Vitamin C")
-      .wait(200)
+      .wait(100)
       .get(medicationList.medsListWrapper)
       .should("be.visible")
       .and("contain", "Vitamin C")
@@ -823,7 +855,8 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medicationList.medsInputField)
       .type("Xanax")
-      .wait(200);
+      .wait(100);
+
     cy.get(medicationList.medsListWrapper)
       .should("be.visible")
       .and("contain", "Xanax")
@@ -843,18 +876,20 @@ describe("transplan kidney donor page test", () => {
         .select(doses[i])
         .should("be.visible");
     };
+
     cy.get(medicationList.dosageSelector)
-      .select("0.5 mg")
+      .select("0.5 mg");
+
     for (var i = 0; i < frequences.length; i++) {
       cy.get(medicationList.frequencySelector)
         .select(frequences[i])
         .should("be.visible");
     };
+
     cy.get(medicationList.frequencySelector)
       .select("Twice a Day")
       .get(medicationList.nextBtn)
       .click()
-      .wait(200)
       .get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", listConfirmHeaderTxt)
@@ -865,8 +900,10 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Next")
       .click();
+
     cy.contains(otherInputFieldHeading)
       .should("be.visible");
+
     cy.get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", reasonHeaderTitle)
@@ -891,6 +928,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Next")
       .click();
+
     cy.get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", medConditionsListHeader);
@@ -898,6 +936,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the medications-list-rx-ada-1 page elements - Make Changes scenario ", () => {
+
     var doses = [
       "2000 mg",
       "1500 mg",
@@ -925,8 +964,8 @@ describe("transplan kidney donor page test", () => {
     ];
     var medConditionsListHeader = "Do you have or have you had any of the following medical conditions?";
     var listConfirmHeaderTxt = "If below is a complete list of medications, vitamins and supplements taken on a regular/occasional basis, click NEXT:";
+
     cy.visit("/instructions.04")
-      .wait(200)
       .get(medicationList.introStartSurBtn)
       .click()
       .get(medicationList.enterMedicationsRadioBtn)
@@ -952,13 +991,15 @@ describe("transplan kidney donor page test", () => {
       .get(medicationList.suggestedItem)
       .click()
       .get(medicationList.medsDropdownExpandBtn)
-      .click()
-      .get(medicationList.dosageSelector)
+      .click();
+
+    cy.get(medicationList.dosageSelector)
     for (var i = 0; i < doses.length; i++) {
       cy.get(medicationList.dosageSelector)
         .select(doses[i])
         .should("be.visible");
     };
+
     cy.get(medicationList.dosageSelector)
       .select("1000 mg")
     for (var i = 0; i < frequences.length; i++) {
@@ -966,6 +1007,7 @@ describe("transplan kidney donor page test", () => {
         .select(frequences[i])
         .should("be.visible");
     };
+
     cy.get(medicationList.frequencySelector)
       .select("In the Evening")
       .get(medicationList.nextBtn)
@@ -974,9 +1016,10 @@ describe("transplan kidney donor page test", () => {
       .get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", listConfirmHeaderTxt);
+
     cy.get(medicationList.nextBtn)
-      .click()
-      .wait(200);
+      .click();
+
     cy.get(medicationList.headerBar)
       .should("be.visible")
       .and("have.text", medConditionsListHeader);
@@ -984,6 +1027,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the shc-condition-category page elements - No follow-ups scenario ", () => {
+
     var airwayModalContent = "Airway and/or Lungs×For Example: Asthma COPD Interstitial Lung Disease (ILD) Pneumothorax (Collapsed Lung) Pulmonary Fibrosis Restrictive Lung Disease Sleep Apnea Tuberculosis";
     var bloodDisModalContent = "Blood Disorder (Abnormal Bruising, Bleeding, or Clotting)×For Example: Anemia (Low blood count) Blood Transfusion Hemophilia A (Factor VIII Deficiency) I have or had a clot in my leg (DVT) Idiopathic Thrombocytopenic Purpura (ITP) Thalassemia Von Willebrand's Disease";
     var cancerModalContent = "Cancer, Chemotherapy, and/or Radiation Therapy×For Example: Cancer Multiple Myeloma";
@@ -996,6 +1040,7 @@ describe("transplan kidney donor page test", () => {
     var mentalWellModalContent = "Mental Well-Being×For Example: ADHD Depression Eating Disorders Insomnia Panic Attacks Post-Traumatic Stress Disorder (PTSD) Social Anxiety or Phobia";
     var musclesModalContent = "Muscles, Bones, and/or Joints×For Example: Carpal Tunnel Syndrome  Fibromyalgia  Gout  Herniated Disc (Cervical)  Infection Bone and/or Joint  Joint Pain/Arthritis  Low Back Pain  Lyme Disease  Scoliosis  Spinal Stenosis (Cervical)";
     var neuroDefModalContent = "Neurological Deficit (Brain and/or Spine)×For Example: Aneurysm (Brain) Multiple Sclerosis Parkinson's Disease Peripheral Neuropathy Sciatica Seizures Spinal Cord Injury Stroke or TIA";
+
     cy.visit("/shc-condition-category")
       .contains("Do you have or have you had any of the following medical conditions?")
       .get(medConditionsSurvey.introStartSurBtn)
@@ -1014,6 +1059,7 @@ describe("transplan kidney donor page test", () => {
 
     cy.contains("Airway and/or Lungs")
       .scrollIntoView();
+
     cy.get(medConditionsSurvey.yesAirwaysRadioBtn)
       .should("be.visible")
       .and("contain", "Yes")
@@ -1021,6 +1067,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetAirways)
       .scrollIntoView()
       .should("be.visible")
@@ -1030,6 +1077,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.airwaysModalDialog)
       .should("be.visible")
       .and("have.text", airwayModalContent);
+
     cy.get(medConditionsSurvey.airwaysModalDialog)
       .click("topLeft");
 
@@ -1041,6 +1089,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetBloodDis)
       .scrollIntoView()
       .should("be.visible")
@@ -1050,6 +1099,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.bloodDisModalDialog)
       .should("be.visible")
       .and("have.text", bloodDisModalContent);
+
     cy.get(medConditionsSurvey.bloodDisModalDialog)
       .click("topLeft");
 
@@ -1061,6 +1111,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetCancer)
       .scrollIntoView()
       .should("be.visible")
@@ -1070,6 +1121,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.cancerModalDialog)
       .should("be.visible")
       .and("have.text", cancerModalContent);
+
     cy.get(medConditionsSurvey.cancerModalDialog)
       .click("topLeft");
 
@@ -1081,6 +1133,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetDiabetes)
       .scrollIntoView()
       .should("be.visible")
@@ -1090,6 +1143,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.diabetesModalDialog)
       .should("be.visible")
       .and("have.text", diabetesModalContent);
+
     cy.get(medConditionsSurvey.diabetesModalDialog)
       .click("topLeft");
 
@@ -1101,6 +1155,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetDigestiveTract)
       .scrollIntoView()
       .should("be.visible")
@@ -1110,6 +1165,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.digestiveTractModalDialog)
       .should("be.visible")
       .and("have.text", digestiveTractModalContent);
+
     cy.get(medConditionsSurvey.digestiveTractModalDialog)
       .click("topLeft");
 
@@ -1121,6 +1177,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetHeart)
       .scrollIntoView()
       .should("be.visible")
@@ -1130,6 +1187,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.heartModalDialog)
       .should("be.visible")
       .and("have.text", heartModalContent);
+
     cy.get(medConditionsSurvey.heartModalDialog)
       .click("topLeft");
 
@@ -1141,6 +1199,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetImmuneMed)
       .scrollIntoView()
       .should("be.visible")
@@ -1150,6 +1209,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.immuneMedModalDialog)
       .should("be.visible")
       .and("have.text", immuneMedModalContent);
+
     cy.get(medConditionsSurvey.immuneMedModalDialog)
       .click("topLeft");
 
@@ -1161,6 +1221,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetInfection)
       .scrollIntoView()
       .should("be.visible")
@@ -1170,6 +1231,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.infectionModalDialog)
       .should("be.visible")
       .and("have.text", infectionModalContent);
+
     cy.get(medConditionsSurvey.infectionModalDialog)
       .click("topLeft");
 
@@ -1181,6 +1243,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetKidneys)
       .scrollIntoView()
       .should("be.visible")
@@ -1190,6 +1253,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.kidneysModalDialog)
       .should("be.visible")
       .and("have.text", kidneysModalContent);
+
     cy.get(medConditionsSurvey.kidneysModalDialog)
       .click("topLeft");
 
@@ -1201,6 +1265,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetMentalWell)
       .scrollIntoView()
       .should("be.visible")
@@ -1210,6 +1275,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.mentalWellModalDialog)
       .should("be.visible")
       .and("have.text", mentalWellModalContent);
+
     cy.get(medConditionsSurvey.mentalWellModalDialog)
       .click("topLeft");
 
@@ -1221,6 +1287,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetMuscles)
       .scrollIntoView()
       .should("be.visible")
@@ -1230,6 +1297,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.musclesModalDialog)
       .should("be.visible")
       .and("have.text", musclesModalContent);
+
     cy.get(medConditionsSurvey.musclesModalDialog)
       .click("topLeft");
 
@@ -1241,6 +1309,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "No")
       .click();
+
     cy.get(medConditionsSurvey.dataTargetNeuroDef)
       .scrollIntoView()
       .should("be.visible")
@@ -1250,6 +1319,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.neuroDefModalDialog)
       .should("be.visible")
       .and("have.text", neuroDefModalContent);
+
     cy.get(medConditionsSurvey.neuroDefModalDialog)
       .click("topLeft");
 
@@ -1258,11 +1328,12 @@ describe("transplan kidney donor page test", () => {
       .wait(200)
       .get(medConditionsSurvey.headerBar)
       .should("be.visible")
-      .and("contain", "Do you have any ALLERGIES to medications?")
+      .and("contain", "Do you have any ALLERGIES to medications?");
 
   });
 
   it("Should check the shc-condition-category page elements -  Airway and/or Lungs conditions - Asthma follow-up scenario ", () => {
+
     var asthmaCondText = "Asthma";
     var bronchiectasisCondText = "Bronchiectasis";
     var chronicBronchitisCondText = "COPD (Chronic Bronchitis and/or Emphysema)";
@@ -1280,6 +1351,7 @@ describe("transplan kidney donor page test", () => {
     var steroidsQueryHeading = "Have you ever taken steroids to manage your Asthma?";
     var hospitalizedQueryHeading = "Have you been hospitalized because of your Asthma?";
     var intubatedQueryHeading = "Have you ever been intubated (that is, had a breathing tube) because of your Asthma?";
+
     cy.visit("/shc-condition-category")
       .contains("Do you have or have you had any of the following medical conditions?")
       .get(medConditionsSurvey.introStartSurBtn)
@@ -1328,61 +1400,78 @@ describe("transplan kidney donor page test", () => {
     cy.get(medConditionsSurvey.noMusclesRadioBtn)
       .scrollIntoView()
       .click();
+
     cy.get(medConditionsSurvey.noNeuroDefRadioBtn)
       .scrollIntoView()
       .click();
+
     cy.get(medConditionsSurvey.nextBtn)
       .click();
+
     cy.get(medConditionsSurvey.headerBar)
       .should("be.visible")
       .and("have.text", "Specifically, which of the following conditions apply?");
+
     cy.contains("A condition related to Airway and/or Lungs. Please check all that apply:");
     cy.get(medConditionsSurvey.asthmaCheckBox)
       .should("be.visible")
       .and("have.text", asthmaCondText);
+
     cy.get(medConditionsSurvey.bronchiectasisCheckBox)
       .should("be.visible")
       .and("have.text", bronchiectasisCondText);
+
     cy.get(medConditionsSurvey.chronicBronchitisCheckBox)
       .should("be.visible")
       .and("have.text", chronicBronchitisCondText);
+
     cy.get(medConditionsSurvey.fluidAroundLungsCheckBox)
       .should("be.visible")
       .and("have.text", fluidAroundLungsCondText);
+
     cy.get(medConditionsSurvey.fluidInLungsCheckBox)
       .should("be.visible")
       .and("have.text", fluidInLungsCondText);
+
     cy.get(medConditionsSurvey.ildCheckBox)
       .should("be.visible")
       .and("have.text", ildCondText);
+
     cy.get(medConditionsSurvey.pneumoniaCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", pneumoniaCondText);
+
     cy.get(medConditionsSurvey.pneumothoraxCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", pneumothoraxCondText);
+
     cy.get(medConditionsSurvey.pulmonaryFibrosisCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", pulmonaryFibrosisCondText);
+
     cy.get(medConditionsSurvey.sleepApneaCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", sleepApneaCondText);
+
     cy.get(medConditionsSurvey.influenzaCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", influenzaCondText);
+
     cy.get(medConditionsSurvey.tuberculosisCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", tuberculosisCondText);
+
     cy.get(medConditionsSurvey.urtInfectionCheckBox)
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", urtInfectionCondText);
+
     cy.get(medConditionsSurvey.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
@@ -1390,6 +1479,7 @@ describe("transplan kidney donor page test", () => {
       .get(medConditionsSurvey.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
+
     cy.get(medConditionsSurvey.asthmaCheckBox)
       .scrollIntoView()
       .click()
@@ -1397,10 +1487,12 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medConditionsSurvey.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Asthma?")
+      .and("have.text", "With regard to your Asthma?");
+
     cy.get(medConditionsSurvey.steroidsQuery)
       .should("be.visible")
-      .and("contain", steroidsQueryHeading)
+      .and("contain", steroidsQueryHeading);
+
     cy.get(medConditionsSurvey.yesSteroidsQuery)
       .should("be.visible")
       .and("have.text", "Yes")
@@ -1408,6 +1500,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "No")
       .click();
+
     cy.get(medConditionsSurvey.hospitalizedQuery)
       .should("be.visible")
       .and("contain", hospitalizedQueryHeading)
@@ -1418,6 +1511,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "No")
       .click();
+
     cy.get(medConditionsSurvey.intubatedQuery)
       .should("be.visible")
       .and("contain", intubatedQueryHeading)
@@ -1432,11 +1526,12 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medConditionsSurvey.headerBar)
       .should("be.visible")
-      .and("have.text", "Do you have any ALLERGIES to medications?")
+      .and("have.text", "Do you have any ALLERGIES to medications?");
 
   });
 
   it("Should check the med-allergies page elements - Yes Vitamin C scenario ", () => {
+
     var anaphylaxisReactionCheckBoxTitle = "ANAPHYLAXIS";
     var anxietyReactionCheckBoxTitle = "Anxiety";
     var breathIssuesReactionCheckBoxTitle = "Difficulty breathing, speaking and/or swallowing";
@@ -1444,12 +1539,14 @@ describe("transplan kidney donor page test", () => {
     var rashHivesReactionCheckBoxTitle = "Rash or Hives";
     var swellingReactionCheckBoxTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
     var otherReactionCheckBoxTitle = "Other";
+
     cy.visit("/med-allergies")
       .contains("Do you have any ALLERGIES to medications?")
       .get(medAllergies.introStartSurBtn)
       .should("be.visible")
       .and("contain", "Start Survey")
       .click();
+
     cy.get(medAllergies.noMedAllergies)
       .should("be.visible")
       .and("have.text", "No")
@@ -1464,6 +1561,7 @@ describe("transplan kidney donor page test", () => {
       .get(medAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "Please enter the medications which you take:");
+
     cy.contains("Search for medications")
       .get(medAllergies.nextBtn)
       .should("be.visible")
@@ -1472,6 +1570,7 @@ describe("transplan kidney donor page test", () => {
       .get(medAllergies.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Please add medications");
+
     cy.get(medAllergies.placeHolder)
       .should("be.visible")
       .get(medAllergies.medsInputField)
@@ -1486,6 +1585,7 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medAllergies.nextBtn)
       .click();
+
     cy.contains("Aspirin")
       .get(medAllergies.headerBar)
       .should("be.visible")
@@ -1497,12 +1597,14 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "Make Changes")
       .click();
+
     cy.get(medAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "Please enter the medications which you take:")
       .get(medAllergies.deleteMedBtn)
       .should("be.visible")
       .click();
+
     cy.get(medAllergies.medsInputField)
       .type("Vitamin C")
       .get(medAllergies.medsListWrapper)
@@ -1514,6 +1616,7 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medAllergies.nextBtn)
       .click();
+
     cy.contains("Vitamin C")
       .get(medAllergies.makeChangesBtn)
       .should("be.visible")
@@ -1522,6 +1625,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Next")
       .click();
+
     cy.contains("If Other, please explain:")
       .get(medAllergies.headerBar)
       .should("be.visible")
@@ -1534,6 +1638,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required")
       .wait(300);
+
     cy.get(medAllergies.anaphylaxisReactionCheckBox)
       .scrollIntoView()
       .should("be.visible")
@@ -1562,6 +1667,7 @@ describe("transplan kidney donor page test", () => {
       .type("Other Reaction")
       .get(medAllergies.nextBtn)
       .click();
+
     cy.get(medAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "Are you allergic to any of the following?");
@@ -1570,10 +1676,12 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the med-allergies page elements - No scenario ", () => {
+
     cy.visit("/med-allergies")
       .contains("Do you have any ALLERGIES to medications?")
       .get(medAllergies.introStartSurBtn)
       .click();
+
     cy.get(medAllergies.noMedAllergies)
       .click()
       .get(medAllergies.nextBtn)
@@ -1581,11 +1689,13 @@ describe("transplan kidney donor page test", () => {
       .get(medAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "Are you allergic to any of the following?");
+
     cy.contains("Please check all that apply:");
 
   });
 
   it("Should check the material-allergies page elements - Betadine scenario ", () => {
+
     var betadineMaterialAllergyTitle = "Betadine";
     var chlorhexidineMaterialAllergyTitle = "Chlorhexidine";
     var contrastMaterialAllergyTitle = "Contrast (X-Ray Dye)";
@@ -1608,7 +1718,9 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "Start Survey")
       .click();
+
     cy.contains("Please check all that apply:");
+
     cy.get(materialAllergies.betadineMaterialAllergyCheckBox)
       .should("be.visible")
       .and("have.text", betadineMaterialAllergyTitle)
@@ -1635,10 +1747,12 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Next")
       .click();
+
     cy.get(materialAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "What is the nature of your allergy to Betadine?");
     cy.contains("Please check all that apply:");
+
     cy.get(materialAllergies.anaphylaxisReactionCheckBox)
       .scrollIntoView()
       .should("be.visible")
@@ -1665,9 +1779,11 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(materialAllergies.otherInputField)
       .type("Other Reaction");
+
     cy.contains("If Other, please explain:");
     cy.get(materialAllergies.nextBtn)
       .click();
+
     cy.get(materialAllergies.headerBar)
       .should("be.visible")
       .and("have.text", "Do you smoke cigarettes?")
@@ -1675,6 +1791,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the material-allergies page elements - NO, I am NOT Allergic scenario ", () => {
+
     var betadineMaterialAllergyTitle = "Betadine";
     var chlorhexidineMaterialAllergyTitle = "Chlorhexidine";
     var contrastMaterialAllergyTitle = "Contrast (X-Ray Dye)";
@@ -1687,7 +1804,9 @@ describe("transplan kidney donor page test", () => {
       .contains("Are you allergic to any of the following?")
       .get(materialAllergies.introStartSurBtn)
       .click();
+
     cy.contains("Please check all that apply:");
+
     cy.get(materialAllergies.betadineMaterialAllergyCheckBox)
       .should("be.visible")
       .and("have.text", betadineMaterialAllergyTitle)
@@ -1714,13 +1833,15 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Next")
       .click();
+
     cy.get(materialAllergies.headerBar)
       .should("be.visible")
-      .and("have.text", "Do you smoke cigarettes?")
+      .and("have.text", "Do you smoke cigarettes?");
 
   });
 
   it("Should check the doyousmoke.0 page elements - Yes scenario ", () => {
+
     var selectorText = "Select One";
     var yearsValues = [
       "1",
@@ -1789,6 +1910,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
@@ -1811,13 +1933,16 @@ describe("transplan kidney donor page test", () => {
       .get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your current tobacco use:");
+
     cy.contains("Approximately, how many years have you smoked?");
     cy.contains("Approximately, how many packs per day?");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
@@ -1826,13 +1951,16 @@ describe("transplan kidney donor page test", () => {
         .select(yearsValues[i])
         .should("be.visible")
     };
+
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .select("5");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
@@ -1841,22 +1969,28 @@ describe("transplan kidney donor page test", () => {
         .select(packsValues[i])
         .should("be.visible")
     };
+
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .select("1/4 pack");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click();
+
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
+
     cy.contains("Do you have a history of Alcohol Abuse?");
 
   });
 
   it("Should check the doyousmoke.0 page elements - No scenario ", () => {
+
     cy.visit("/doyousmoke.0")
       .contains("Do you smoke cigarettes?")
       .get(doYouSmokeCigarettes.introStartSurBtn)
       .click();
+
     cy.get(doYouSmokeCigarettes.yesDoYouSmokeRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
@@ -1869,6 +2003,7 @@ describe("transplan kidney donor page test", () => {
       .and("have.text", "I Used To")
       .get(doYouSmokeCigarettes.nextBtn)
       .click();
+
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
@@ -2066,6 +2201,7 @@ describe("transplan kidney donor page test", () => {
       .contains("Do you smoke cigarettes?")
       .get(doYouSmokeCigarettes.introStartSurBtn)
       .click();
+
     cy.get(doYouSmokeCigarettes.yesDoYouSmokeRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
@@ -2078,13 +2214,16 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(doYouSmokeCigarettes.nextBtn)
       .click();
+
     cy.contains("With regard to your past tobacco use:");
     cy.contains("What year did you quit?");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required")
+      .and("have.text", "Required");
+
     cy.get(doYouSmokeCigarettes.quitYearSelector)
       .should("be.visible")
       .and("contain", selectorText)
@@ -2093,20 +2232,25 @@ describe("transplan kidney donor page test", () => {
         .select(quitYearValues[i])
         .should("be.visible")
     };
+
     cy.get(doYouSmokeCigarettes.quitYearSelector)
       .select("2010")
       .get(doYouSmokeCigarettes.nextBtn)
       .click();
+
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "With regard to your past tobacco use:");
+
     cy.contains("Approximately, how many years have you smoked?");
     cy.contains("Approximately, how many packs per day?");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
@@ -2115,13 +2259,16 @@ describe("transplan kidney donor page test", () => {
         .select(yearsValues[i])
         .should("be.visible")
     };
+
     cy.get(doYouSmokeCigarettes.yearsQuantitySelector)
       .select("5");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click()
       .get(doYouSmokeCigarettes.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .should("be.visible")
       .and("contain", selectorText)
@@ -2130,10 +2277,13 @@ describe("transplan kidney donor page test", () => {
         .select(packsValues[i])
         .should("be.visible")
     };
+
     cy.get(doYouSmokeCigarettes.packsQuantitySelector)
       .select("1/4 pack");
+
     cy.get(doYouSmokeCigarettes.nextBtn)
       .click();
+
     cy.get(doYouSmokeCigarettes.headerBar)
       .should("be.visible")
       .and("have.text", "Approximately, how often do you drink beer, wine, or liquor?");
@@ -2142,19 +2292,23 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the alcohol.0 page elements - Positive answer scenario ", () => {
+
     var neverTitle = "Never";
     var yearOnceTitle = "Once or twice per year";
     var monthOnceTitle = "Once or twice per month";
     var weekOnceTitle = "Once or twice per week";
     var everyDayTwoTitle = "Everyday (1-2 drinks)";
     var everyDayMoreTitle = "Everyday (>2 drinks)";
+
     cy.visit("/alcohol.0")
       .contains("Approximately, how often do you drink beer, wine, or liquor?")
       .get(alcoholPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
+
     cy.contains("Do you have a history of Alcohol Abuse?");
+
     cy.get(alcoholPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
@@ -2162,6 +2316,7 @@ describe("transplan kidney donor page test", () => {
       .get(alcoholPage.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(alcoholPage.neverRadioBtn)
       .should("be.visible")
       .and("have.text", neverTitle)
@@ -2180,12 +2335,14 @@ describe("transplan kidney donor page test", () => {
       .get(alcoholPage.everyDayMoreRadioBtn)
       .should("be.visible")
       .and("have.text", everyDayMoreTitle)
-      .click()
-      .get(alcoholPage.nextBtn)
+      .click();
+
+    cy.get(alcoholPage.nextBtn)
       .click()
       .get(alcoholPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
+
     cy.get(alcoholPage.yesAbuseRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
@@ -2195,6 +2352,7 @@ describe("transplan kidney donor page test", () => {
       .and("have.text", "No")
       .get(alcoholPage.nextBtn)
       .click();
+
     cy.get(alcoholPage.headerBar)
       .should("be.visible")
       .and("have.text", "Do you use recreational or illicit drugs?");
@@ -2202,22 +2360,27 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the alcohol.0 page elements - Negative answer scenario ", () => {
+
     var neverTitle = "Never";
     var yearOnceTitle = "Once or twice per year";
     var monthOnceTitle = "Once or twice per month";
     var weekOnceTitle = "Once or twice per week";
     var everyDayTwoTitle = "Everyday (1-2 drinks)";
     var everyDayMoreTitle = "Everyday (>2 drinks)";
+
     cy.visit("/alcohol.0")
       .contains("Approximately, how often do you drink beer, wine, or liquor?")
       .get(alcoholPage.introStartSurBtn)
       .click();
+
     cy.contains("Do you have a history of Alcohol Abuse?");
+
     cy.get(alcoholPage.nextBtn)
       .click()
       .get(alcoholPage.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(alcoholPage.neverRadioBtn)
       .should("be.visible")
       .and("have.text", neverTitle)
@@ -2236,12 +2399,14 @@ describe("transplan kidney donor page test", () => {
       .and("have.text", everyDayTwoTitle)
       .get(alcoholPage.everyDayMoreRadioBtn)
       .should("be.visible")
-      .and("have.text", everyDayMoreTitle)
-      .get(alcoholPage.nextBtn)
+      .and("have.text", everyDayMoreTitle);
+
+    cy.get(alcoholPage.nextBtn)
       .click()
       .get(alcoholPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
+
     cy.get(alcoholPage.yesAbuseRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
@@ -2251,6 +2416,7 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(alcoholPage.nextBtn)
       .click();
+
     cy.get(alcoholPage.headerBar)
       .should("be.visible")
       .and("have.text", "Do you use recreational or illicit drugs?");
@@ -2258,25 +2424,29 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the illicitdrugs.0 page elements - Yes scenario ", () => {
+
     var marijuanaIllicitDrugsTitle = "Marijuana";
     var cocaineIllicitDrugsTitle = "Cocaine";
     var heroinIllicitDrugsTitle = "Heroin";
     var methamphetaminesIllicitDrugsTitle = "Methamphetamines ('Ecstasy', 'Crystal Meth')";
     var otherIllicitDrugsTitle = "Other";
+
     cy.visit("/illicitdrugs.0")
       .contains("Do you use recreational or illicit drugs?")
       .get(illicitDrugsPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
+
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required")
-      .get(illicitDrugsPage.yesIllicitDrugsRadioBtn)
+      .and("have.text", "Required");
+
+    cy.get(illicitDrugsPage.yesIllicitDrugsRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
       .click()
@@ -2291,15 +2461,18 @@ describe("transplan kidney donor page test", () => {
       .get(illicitDrugsPage.headerBar)
       .should("be.visible")
       .and("have.text", "Please indicate the recreational or illicit drug(s) you currently use:");
+
     cy.contains("Please check all that apply:");
     cy.contains("If other:");
+
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required")
+      .and("have.text", "Required");
+
     cy.get(illicitDrugsPage.marijuanaIllicitDrugsCheckBox)
       .should("be.visible")
       .and("have.text", marijuanaIllicitDrugsTitle)
@@ -2322,6 +2495,7 @@ describe("transplan kidney donor page test", () => {
       .type("Other Drugs")
       .get(illicitDrugsPage.nextBtn)
       .click();
+
     cy.get(illicitDrugsPage.headerBar)
       .should("be.visible")
       .and("have.text", "Which of the following most closely represents your level of physical activity?");
@@ -2330,20 +2504,23 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the illicitdrugs.0 page elements - No scenario ", () => {
+
     cy.visit("/illicitdrugs.0")
       .contains("Do you use recreational or illicit drugs?")
       .get(illicitDrugsPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
+
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required")
-      .get(illicitDrugsPage.yesIllicitDrugsRadioBtn)
+      .and("have.text", "Required");
+
+    cy.get(illicitDrugsPage.yesIllicitDrugsRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
       .get(illicitDrugsPage.noIllicitDrugsRadioBtn)
@@ -2354,8 +2531,9 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "I Used To")
       .get(illicitDrugsPage.nextBtn)
-      .click()
-      .get(illicitDrugsPage.headerBar)
+      .click();
+
+    cy.get(illicitDrugsPage.headerBar)
       .should("be.visible")
       .and("have.text", "Which of the following most closely represents your level of physical activity?");
     cy.contains("Please select ONE of the following:");
@@ -2363,6 +2541,7 @@ describe("transplan kidney donor page test", () => {
   });
 
   it("Should check the illicitdrugs.0 page elements - I Used To scenario ", () => {
+
     var marijuanaIllicitDrugsTitle = "Marijuana";
     var cocaineIllicitDrugsTitle = "Cocaine";
     var heroinIllicitDrugsTitle = "Heroin";
@@ -2492,20 +2671,23 @@ describe("transplan kidney donor page test", () => {
       "1901",
       "1900"
     ];
+
     cy.visit("/illicitdrugs.0")
       .contains("Do you use recreational or illicit drugs?")
       .get(illicitDrugsPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
+
     cy.get(illicitDrugsPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required")
-      .get(illicitDrugsPage.yesIllicitDrugsRadioBtn)
+      .and("have.text", "Required");
+
+    cy.get(illicitDrugsPage.yesIllicitDrugsRadioBtn)
       .should("be.visible")
       .and("have.text", "Yes")
       .get(illicitDrugsPage.noIllicitDrugsRadioBtn)
@@ -2520,9 +2702,11 @@ describe("transplan kidney donor page test", () => {
       .get(illicitDrugsPage.headerBar)
       .should("be.visible")
       .and("have.text", "Please indicate the recreational or illicit drug(s) you have previously used:");
+
     cy.contains("When did you last use drugs?");
     cy.contains("Please check all that apply:");
     cy.contains("If other:");
+
     cy.get(illicitDrugsPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -2531,6 +2715,7 @@ describe("transplan kidney donor page test", () => {
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Required");
+
     cy.get(illicitDrugsPage.quitYearSelector)
       .should("be.visible")
       .and("contain", selectorText)
@@ -2539,8 +2724,10 @@ describe("transplan kidney donor page test", () => {
         .select(quitYearValues[i])
         .should("be.visible")
     };
+
     cy.get(illicitDrugsPage.quitYearSelector)
       .select("2010");
+
     cy.get(illicitDrugsPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -2549,6 +2736,7 @@ describe("transplan kidney donor page test", () => {
       .get(illicitDrugsPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
+
     cy.get(illicitDrugsPage.marijuanaIllicitDrugsCheckBox)
       .should("be.visible")
       .and("have.text", marijuanaIllicitDrugsTitle)
@@ -2570,8 +2758,9 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .type("Other Drugs")
       .get(illicitDrugsPage.nextBtn)
-      .click()
-      .get(illicitDrugsPage.headerBar)
+      .click();
+
+    cy.get(illicitDrugsPage.headerBar)
       .should("be.visible")
       .and("have.text", "Which of the following most closely represents your level of physical activity?");
     cy.contains("Please select ONE of the following:");
@@ -2581,31 +2770,36 @@ describe("transplan kidney donor page test", () => {
   it("Should check the activity.0 page elements - Strenuous Sports scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. check the title of a header of the section
-    11. validation error message checking
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. navigate to the next page
-    15. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. check the title of a header of the section
+      11. validation error message checking
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. navigate to the next page
+      15. check the title of a header of the page
+      */
 
     var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var doNotFrequencyTitle = "I do not exercise on a regular basis";
     var onceFrequencyTitle = "Once per week";
@@ -2613,114 +2807,120 @@ describe("transplan kidney donor page test", () => {
     var threeFrequencyTitle = "Three times per week";
     var moreThreeFrequencyTitle = "More than three times per week";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click();  //8. navigate to the next page
+      .click(); //8. navigate to the next page
 
     cy.get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Approximately how often do you exercise per week?");  //9. check the title of a header of the page
-    cy.contains("Please select one of the following choices:");   //10. check the title of a header of the section
+      .and("have.text", "Approximately how often do you exercise per week?"); //9. check the title of a header of the page
+    cy.contains("Please select one of the following choices:"); //10. check the title of a header of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //11. validation error message checking
+      .and("have.text", "Required"); //11. validation error message checking
 
     cy.get(activityPage.doNotFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", doNotFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", doNotFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.onceFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", onceFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", onceFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.twiceFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", twiceFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", twiceFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.threeFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", threeFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", threeFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.moreThreeFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", moreThreeFrequencyTitle)        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value
+      .and("have.text", moreThreeFrequencyTitle) //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.nextBtn)
-      .click()  //14. navigate to the next page
+      .click() //14. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //15. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //15. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - Recreational Activities scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. check the title of a header of the section
-    11. validation error message checking
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. navigate to the next page
-    15. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. check the title of a header of the section
+      11. validation error message checking
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. navigate to the next page
+      15. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var doNotFrequencyTitle = "I do not exercise on a regular basis";
     var onceFrequencyTitle = "Once per week";
@@ -2728,114 +2928,120 @@ describe("transplan kidney donor page test", () => {
     var threeFrequencyTitle = "Three times per week";
     var moreThreeFrequencyTitle = "More than three times per week";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click();  //8. navigate to the next page
+      .click(); //8. navigate to the next page
 
     cy.get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Approximately how often do you exercise per week?");  //9. check the title of a header of the page
-    cy.contains("Please select one of the following choices:");   //10. check the title of a header of the section
+      .and("have.text", "Approximately how often do you exercise per week?"); //9. check the title of a header of the page
+    cy.contains("Please select one of the following choices:"); //10. check the title of a header of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //11. validation error message checking
+      .and("have.text", "Required"); //11. validation error message checking
 
     cy.get(activityPage.doNotFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", doNotFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", doNotFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.onceFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", onceFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", onceFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.twiceFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", twiceFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", twiceFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.threeFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", threeFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", threeFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.moreThreeFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", moreThreeFrequencyTitle)        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value
+      .and("have.text", moreThreeFrequencyTitle) //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.nextBtn)
-      .click()  //14. navigate to the next page
+      .click() //14. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //15. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //15. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - 2 Flights Of Stairs scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. check the title of a header of the section
-    11. validation error message checking
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. navigate to the next page
-    15. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. check the title of a header of the section
+      11. validation error message checking
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. navigate to the next page
+      15. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var doNotFrequencyTitle = "I do not exercise on a regular basis";
     var onceFrequencyTitle = "Once per week";
@@ -2843,173 +3049,179 @@ describe("transplan kidney donor page test", () => {
     var threeFrequencyTitle = "Three times per week";
     var moreThreeFrequencyTitle = "More than three times per week";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
-      .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
+      .contains("Which of the following most closely represents your level of physical") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
       .and("have.text", unableActivityTitle)
       .get(activityPage.nextBtn)
-      .click();  //8. navigate to the next page
+      .click(); //8. navigate to the next page
 
     cy.get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Approximately how often do you exercise per week?");  //9. check the title of a header of the page
-    cy.contains("Please select one of the following choices:");   //10. check the title of a header of the section
+      .and("have.text", "Approximately how often do you exercise per week?"); //9. check the title of a header of the page
+    cy.contains("Please select one of the following choices:"); //10. check the title of a header of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //11. validation error message checking
+      .and("have.text", "Required"); //11. validation error message checking
 
     cy.get(activityPage.doNotFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", doNotFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", doNotFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.onceFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", onceFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", onceFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.twiceFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", twiceFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", twiceFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.threeFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", threeFrequencyTitle)        //12. check the visibility of the checkboxes
+      .and("have.text", threeFrequencyTitle) //12. check the visibility of the checkboxes
       .get(activityPage.moreThreeFrequencyCheckBox)
       .should("be.visible")
-      .and("have.text", moreThreeFrequencyTitle)        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value
+      .and("have.text", moreThreeFrequencyTitle) //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.nextBtn)
-      .click()  //14. navigate to the next page
+      .click() //14. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //15. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //15. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - 1 Flight Of Stairs Negative Answers scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. validation error message checking
-    11. check the title of a header of the section
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. validation error message checking
-    15. check the title of a header of the section
-    16. check the visibility of the checkboxes
-    17. choose the necessary value
-    18. validation error message checking
-    19. check the title of a header of the section
-    20. check the visibility of the checkboxes
-    21. choose the necessary value
-    22. validation error message checking
-    23. check the title of a header of the section
-    24. check the visibility of the checkboxes
-    25. choose the necessary value
-    26. navigate to the next page
-    27. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. validation error message checking
+      11. check the title of a header of the section
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. validation error message checking
+      15. check the title of a header of the section
+      16. check the visibility of the checkboxes
+      17. choose the necessary value
+      18. validation error message checking
+      19. check the title of a header of the section
+      20. check the visibility of the checkboxes
+      21. choose the necessary value
+      22. validation error message checking
+      23. check the title of a header of the section
+      24. check the visibility of the checkboxes
+      25. choose the necessary value
+      26. navigate to the next page
+      27. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking   //6. check the visibility of the checkboxes
+      .and("have.text", "Required"); //5. validation error message checking   //6. check the visibility of the checkboxes
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //9. check the title of a header of the page
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3018,17 +3230,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //10. validation error message checking
+      .and("contain", "Required"); //10. validation error message checking
 
-    cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
+    cy.contains("Do you get chest pain at REST?") //11. check the title of a header of the section
       .scrollIntoView();
-    cy.get(activityPage.yesPainRestCheckBox)        //12. check the visibility of the checkboxes
+    cy.get(activityPage.yesPainRestCheckBox) //12. check the visibility of the checkboxes
       .should("be.visible")
       .and("have.text", "Yes")
-      .get(activityPage.noPainRestCheckBox)        //12. check the visibility of the checkboxes
+      .get(activityPage.noPainRestCheckBox) //12. check the visibility of the checkboxes
       .should("be.visible")
       .and("have.text", "No")
-      .click()    //13. choose the necessary value      
+      .click() //13. choose the necessary value
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3036,17 +3248,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");     //14. validation error message checking
+      .and("contain", "Required"); //14. validation error message checking
 
-    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")//15. check the title of a header of the section
+    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)") //15. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")    //16. check the visibility of the checkboxes
+      .and("have.text", "Yes") //16. check the visibility of the checkboxes
       .get(activityPage.noPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "No")    //16. check the visibility of the checkboxes
-      .click()                    //17. choose the necessary value
+      .and("have.text", "No") //16. check the visibility of the checkboxes
+      .click() //17. choose the necessary value
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3054,16 +3266,16 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //18. validation error message checking
+      .and("contain", "Required"); //18. validation error message checking
 
-    cy.contains("Have you had a stress test?");       //19. check the title of a header of the section
+    cy.contains("Have you had a stress test?"); //19. check the title of a header of the section
     cy.get(activityPage.yesStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")    //20. check the visibility of the checkboxes
+      .and("have.text", "Yes") //20. check the visibility of the checkboxes
       .get(activityPage.noStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")    //20. check the visibility of the checkboxes
-      .click()                    //21. choose the necessary value
+      .and("have.text", "No") //20. check the visibility of the checkboxes
+      .click() //21. choose the necessary value
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3071,156 +3283,149 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //22. validation error message checking
+      .and("contain", "Required"); //22. validation error message checking
 
-    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");       //23. check the title of a header of the section
+    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?"); //23. check the title of a header of the section
     cy.get(activityPage.yesCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")    //24. check the visibility of the checkboxes
+      .and("have.text", "Yes") //24. check the visibility of the checkboxes
       .get(activityPage.noCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "No")    //24. check the visibility of the checkboxes
-      .click();                    //25. choose the necessary value
+      .and("have.text", "No") //24. check the visibility of the checkboxes
+      .click(); //25. choose the necessary value
 
     cy.get(activityPage.nextBtn)
-      .click()                    //26. navigate to the next page
+      .click() //26. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");       //27. check the title of a header of the page
-
+      .and("have.text", "Have you had Surgery in the past?"); //27. check the title of a header of the page
   });
 
   it("Should check the activity.0 page elements - 1 Flight Of Stairs Positive Answers scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. validation error message checking
-    11. check the title of a header of the section
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. validation error message checking
-    15. check the title of a header of the section
-    16. check the visibility of the checkboxes
-    17. choose the necessary value
-    18. validation error message checking
-    19. check the title of a header of the section
-    20. check the visibility of the checkboxes
-    21. choose the necessary value
-    22. validation error message checking
-    23. check the title of a header of the section
-    24. check the visibility of the checkboxes
-    25. choose the necessary value
-    26. navigate to the next page
-    27. check the title of a header of the page
-    28. check the title of a header of the section
-    29. check the visibility of the selector's content
-    30. choose the necessary value
-    31. validation error message checking
-    32. check the title of a header of the section
-    33. input the necessary date
-    34. validation error message checking
-    35. check the title of a header of the section
-    36. check the visibility of the checkboxes
-    37. choose the necessary value
-    38. navigate to the next page
-    39. check the title of a header of the page
-    40. check the title of a header of the section
-    41. check the visibility of the selector's content
-    42. choose the necessary value
-    43. validation error message checking
-    44. check the title of a header of the section
-    45. input the necessary date
-    46. check the title of a header of the section
-    47. check the visibility of the checkboxes
-    48. choose the necessary value
-    49. navigate to the next page
-    50. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. validation error message checking
+      11. check the title of a header of the section
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. validation error message checking
+      15. check the title of a header of the section
+      16. check the visibility of the checkboxes
+      17. choose the necessary value
+      18. validation error message checking
+      19. check the title of a header of the section
+      20. check the visibility of the checkboxes
+      21. choose the necessary value
+      22. validation error message checking
+      23. check the title of a header of the section
+      24. check the visibility of the checkboxes
+      25. choose the necessary value
+      26. navigate to the next page
+      27. check the title of a header of the page
+      28. check the title of a header of the section
+      29. check the visibility of the selector's content
+      30. choose the necessary value
+      31. validation error message checking
+      32. check the title of a header of the section
+      33. input the necessary date
+      34. validation error message checking
+      35. check the title of a header of the section
+      36. check the visibility of the checkboxes
+      37. choose the necessary value
+      38. navigate to the next page
+      39. check the title of a header of the page
+      40. check the title of a header of the section
+      41. check the visibility of the selector's content
+      42. choose the necessary value
+      43. validation error message checking
+      44. check the title of a header of the section
+      45. input the necessary date
+      46. check the title of a header of the section
+      47. check the visibility of the checkboxes
+      48. choose the necessary value
+      49. navigate to the next page
+      50. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var selectorText = "Select One";
-    var stressTestsQtyValues = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
-    var catheterizationQtyValues = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
+    var stressTestsQtyValues = ["1", "2", "3", "4", "5"];
+    var catheterizationQtyValues = ["1", "2", "3", "4", "5"];
     var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
     var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
     var bypassCathTitle = "I had Bypass Surgery";
     var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
     var ablationCathTitle = "I had an Ablation for Arrhythmia";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //9. check the title of a header of the page
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3229,17 +3434,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //10. validation error message checking
+      .and("contain", "Required"); //10. validation error message checking
 
-    cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
+    cy.contains("Do you get chest pain at REST?") //11. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value 
+      .and("have.text", "Yes") //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.noPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")   //12. check the visibility of the checkboxes
+      .and("have.text", "No") //12. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3247,17 +3452,19 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");     //14. validation error message checking
+      .and("contain", "Required"); //14. validation error message checking
 
-    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")//15. check the title of a header of the section
+    cy.contains(
+      "Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)"
+    ) //15. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")    //16. check the visibility of the checkboxes
-      .click()                    //17. choose the necessary value 
+      .and("have.text", "Yes") //16. check the visibility of the checkboxes
+      .click() //17. choose the necessary value
       .get(activityPage.noPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "No")    //16. check the visibility of the checkboxes
+      .and("have.text", "No") //16. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3265,16 +3472,16 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //18. validation error message checking
+      .and("contain", "Required"); //18. validation error message checking
 
-    cy.contains("Have you had a stress test?");       //19. check the title of a header of the section
+    cy.contains("Have you had a stress test?"); //19. check the title of a header of the section
     cy.get(activityPage.yesStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")    //20. check the visibility of the checkboxes
-      .click()                    //21. choose the necessary value
+      .and("have.text", "Yes") //20. check the visibility of the checkboxes
+      .click() //21. choose the necessary value
       .get(activityPage.noStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")    //20. check the visibility of the checkboxes
+      .and("have.text", "No") //20. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3282,33 +3489,32 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //22. validation error message checking
+      .and("contain", "Required"); //22. validation error message checking
 
-    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");       //23. check the title of a header of the section
+    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?"); //23. check the title of a header of the section
     cy.get(activityPage.yesCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")    //24. check the visibility of the checkboxes
-      .click()                    //25. choose the necessary value
+      .and("have.text", "Yes") //24. check the visibility of the checkboxes
+      .click() //25. choose the necessary value
       .get(activityPage.noCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "No");    //24. check the visibility of the checkboxes
+      .and("have.text", "No"); //24. check the visibility of the checkboxes
     cy.get(activityPage.nextBtn)
-      .click()                    //26. navigate to the next page            
+      .click() //26. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //27. check the title of a header of the page
 
-    cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
+    cy.contains("How many stress tests have you had?"); //28. check the title of a header of the section
     cy.get(activityPage.stressTestsQtySelect)
       .should("be.visible")
-      .and("contain", selectorText)    //29. check the visibility of the selector's content
+      .and("contain", selectorText); //29. check the visibility of the selector's content
     for (var i = 0; i < stressTestsQtyValues.length; i++) {
       cy.get(activityPage.stressTestsQtySelect)
         .select(stressTestsQtyValues[i])
-        .should("be.visible")
-    };    //29. check the visibility of the selector's content
-    cy.get(activityPage.stressTestsQtySelect)
-      .select("2");                    //30. choose the necessary value
+        .should("be.visible");
+    } //29. check the visibility of the selector's content
+    cy.get(activityPage.stressTestsQtySelect).select("2"); //30. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3317,45 +3523,44 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //31. validation error message checking
+      .and("contain", "Required"); //31. validation error message checking
 
-    cy.contains("Approximately when was your most recent stress test?");       //32. check the title of a header of the section
+    cy.contains("Approximately when was your most recent stress test?"); //32. check the title of a header of the section
     cy.get(activityPage.stressTestsDateInput)
       .should("be.visible")
-      .type("02281984")   //33. input the necessary date
+      .type("02281984") //33. input the necessary date
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //34. validation error message checking
+      .and("contain", "Required"); //34. validation error message checking
 
-    cy.contains("Was your most recent stress test normal?");       //35. check the title of a header of the section
+    cy.contains("Was your most recent stress test normal?"); //35. check the title of a header of the section
     cy.get(activityPage.yesNormalTest)
       .should("be.visible")
-      .and("have.text", "Yes")    //36. check the visibility of the checkboxes
-      .click()                    //37. choose the necessary value 
+      .and("have.text", "Yes") //36. check the visibility of the checkboxes
+      .click() //37. choose the necessary value
       .get(activityPage.noNormalTest)
       .should("be.visible")
-      .and("have.text", "No")    //36. check the visibility of the checkboxes
+      .and("have.text", "No") //36. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
-      .click()            //38. navigate to the next page
+      .click() //38. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //39. check the title of a header of the page
 
-    cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
+    cy.contains("How many Cardiac Catheterizations have you had?"); //40. check the title of a header of the section
     cy.get(activityPage.catheterizationQtySelect)
       .should("be.visible")
-      .and("contain", selectorText)    //41. check the visibility of the selector's content
+      .and("contain", selectorText); //41. check the visibility of the selector's content
     for (var i = 0; i < catheterizationQtyValues.length; i++) {
       cy.get(activityPage.catheterizationQtySelect)
         .select(catheterizationQtyValues[i])
-        .should("be.visible")
-    };    //41. check the visibility of the selector's content
-    cy.get(activityPage.catheterizationQtySelect)
-      .select("1");                    //42. choose the necessary value
+        .should("be.visible");
+    } //41. check the visibility of the selector's content
+    cy.get(activityPage.catheterizationQtySelect).select("1"); //42. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3364,125 +3569,133 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //43. validation error message checking
+      .and("contain", "Required"); //43. validation error message checking
 
-    cy.contains("Approximately when was your most recent Cardiac Catheterization?");     //44. check the title of a header of the section
+    cy.contains(
+      "Approximately when was your most recent Cardiac Catheterization?"
+    ); //44. check the title of a header of the section
     cy.get(activityPage.catheterizationDateInput)
       .should("be.visible")
-      .type("02281984")   //45. input the necessary date
+      .type("02281984"); //45. input the necessary date
 
-    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?");     //46. check the title of a header of the section
+    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?"); //46. check the title of a header of the section
     cy.get(activityPage.angioplastyStentCathCheckBox)
       .should("be.visible")
-      .and("have.text", angioplastyStentCathTitle)    //47. check the visibility of the checkboxes
-      .click()                    //48. choose the necessary value
+      .and("have.text", angioplastyStentCathTitle) //47. check the visibility of the checkboxes
+      .click() //48. choose the necessary value
       .get(activityPage.angioplastyNoStentCathCheckBox)
       .should("be.visible")
-      .and("have.text", angioplastyNoStentCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", angioplastyNoStentCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.bypassCathCheckBox)
       .should("be.visible")
-      .and("have.text", bypassCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", bypassCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.pacemakerCathCheckBox)
       .should("be.visible")
-      .and("have.text", pacemakerCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", pacemakerCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.ablationCathCheckBox)
       .should("be.visible")
-      .and("have.text", ablationCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", ablationCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()                                 //49. navigate to the next page
+      .click() //49. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //50. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //50. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - 1 Block Or Less Negative Answers scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. validation error message checking
-    11. check the title of a header of the section
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. validation error message checking
-    15. check the title of a header of the section
-    16. check the visibility of the checkboxes
-    17. choose the necessary value
-    18. validation error message checking
-    19. check the title of a header of the section
-    20. check the visibility of the checkboxes
-    21. choose the necessary value
-    22. validation error message checking
-    23. check the title of a header of the section
-    24. check the visibility of the checkboxes
-    25. choose the necessary value
-    26. navigate to the next page
-    27. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. validation error message checking
+      11. check the title of a header of the section
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. validation error message checking
+      15. check the title of a header of the section
+      16. check the visibility of the checkboxes
+      17. choose the necessary value
+      18. validation error message checking
+      19. check the title of a header of the section
+      20. check the visibility of the checkboxes
+      21. choose the necessary value
+      22. validation error message checking
+      23. check the title of a header of the section
+      24. check the visibility of the checkboxes
+      25. choose the necessary value
+      26. navigate to the next page
+      27. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //9. check the title of a header of the page
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3491,17 +3704,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //10. validation error message checking
+      .and("contain", "Required"); //10. validation error message checking
 
-    cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
+    cy.contains("Do you get chest pain at REST?") //11. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //12. check the visibility of the checkboxes
+      .and("have.text", "Yes") //12. check the visibility of the checkboxes
       .get(activityPage.noPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value      
+      .and("have.text", "No") //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3509,17 +3722,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //14. validation error message checking
+      .and("contain", "Required"); //14. validation error message checking
 
-    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")   //15. check the title of a header of the section
+    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)") //15. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //16. check the visibility of the checkboxes
+      .and("have.text", "Yes") //16. check the visibility of the checkboxes
       .get(activityPage.noPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //16. check the visibility of the checkboxes
-      .click()    //17. choose the necessary value 
+      .and("have.text", "No") //16. check the visibility of the checkboxes
+      .click() //17. choose the necessary value
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3527,16 +3740,16 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //18. validation error message checking
+      .and("contain", "Required"); //18. validation error message checking
 
-    cy.contains("Have you had a stress test?");   //19. check the title of a header of the section
+    cy.contains("Have you had a stress test?"); //19. check the title of a header of the section
     cy.get(activityPage.yesStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //20. check the visibility of the checkboxes
+      .and("have.text", "Yes") //20. check the visibility of the checkboxes
       .get(activityPage.noStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //20. check the visibility of the checkboxes
-      .click()    //21. choose the necessary value
+      .and("have.text", "No") //20. check the visibility of the checkboxes
+      .click() //21. choose the necessary value
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3544,155 +3757,149 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //22. validation error message checking
+      .and("contain", "Required"); //22. validation error message checking
 
-    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");   //23. check the title of a header of the section
+    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?"); //23. check the title of a header of the section
     cy.get(activityPage.yesCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //24. check the visibility of the checkboxes
+      .and("have.text", "Yes") //24. check the visibility of the checkboxes
       .get(activityPage.noCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //24. check the visibility of the checkboxes
-      .click();    //25. choose the necessary value
+      .and("have.text", "No") //24. check the visibility of the checkboxes
+      .click(); //25. choose the necessary value
     cy.get(activityPage.nextBtn)
-      .click()                    //26. navigate to the next page 
+      .click() //26. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");       //27. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //27. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - 1 Block Or Less Positive Answers scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. validation error message checking
-    11. check the title of a header of the section
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. validation error message checking
-    15. check the title of a header of the section
-    16. check the visibility of the checkboxes
-    17. choose the necessary value
-    18. validation error message checking
-    19. check the title of a header of the section
-    20. check the visibility of the checkboxes
-    21. choose the necessary value
-    22. validation error message checking
-    23. check the title of a header of the section
-    24. check the visibility of the checkboxes
-    25. choose the necessary value
-    26. navigate to the next page
-    27. check the title of a header of the page
-    28. check the title of a header of the section
-    29. check the visibility of the selector's content
-    30. choose the necessary value
-    31. validation error message checking
-    32. check the title of a header of the section
-    33. input the necessary date
-    34. validation error message checking
-    35. check the title of a header of the section
-    36. check the visibility of the checkboxes
-    37. choose the necessary value
-    38. navigate to the next page
-    39. check the title of a header of the page
-    40. check the title of a header of the section
-    41. check the visibility of the selector's content
-    42. choose the necessary value
-    43. validation error message checking
-    44. check the title of a header of the section
-    45. input the necessary date
-    46. check the title of a header of the section
-    47. check the visibility of the checkboxes
-    48. choose the necessary value
-    49. navigate to the next page
-    50. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. validation error message checking
+      11. check the title of a header of the section
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. validation error message checking
+      15. check the title of a header of the section
+      16. check the visibility of the checkboxes
+      17. choose the necessary value
+      18. validation error message checking
+      19. check the title of a header of the section
+      20. check the visibility of the checkboxes
+      21. choose the necessary value
+      22. validation error message checking
+      23. check the title of a header of the section
+      24. check the visibility of the checkboxes
+      25. choose the necessary value
+      26. navigate to the next page
+      27. check the title of a header of the page
+      28. check the title of a header of the section
+      29. check the visibility of the selector's content
+      30. choose the necessary value
+      31. validation error message checking
+      32. check the title of a header of the section
+      33. input the necessary date
+      34. validation error message checking
+      35. check the title of a header of the section
+      36. check the visibility of the checkboxes
+      37. choose the necessary value
+      38. navigate to the next page
+      39. check the title of a header of the page
+      40. check the title of a header of the section
+      41. check the visibility of the selector's content
+      42. choose the necessary value
+      43. validation error message checking
+      44. check the title of a header of the section
+      45. input the necessary date
+      46. check the title of a header of the section
+      47. check the visibility of the checkboxes
+      48. choose the necessary value
+      49. navigate to the next page
+      50. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var selectorText = "Select One";
-    var stressTestsQtyValues = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
-    var catheterizationQtyValues = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
+    var stressTestsQtyValues = ["1", "2", "3", "4", "5"];
+    var catheterizationQtyValues = ["1", "2", "3", "4", "5"];
     var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
     var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
     var bypassCathTitle = "I had Bypass Surgery";
     var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
     var ablationCathTitle = "I had an Ablation for Arrhythmia";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //9. check the title of a header of the page
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3701,17 +3908,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //10. validation error message checking
+      .and("contain", "Required"); //10. validation error message checking
 
-    cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
+    cy.contains("Do you get chest pain at REST?") //11. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value      
+      .and("have.text", "Yes") //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.noPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //12. check the visibility of the checkboxes
+      .and("have.text", "No") //12. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3719,17 +3926,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //14. validation error message checking
+      .and("contain", "Required"); //14. validation error message checking
 
-    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")   //15. check the title of a header of the section
+    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)") //15. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //16. check the visibility of the checkboxes
-      .click()    //17. choose the necessary value 
+      .and("have.text", "Yes") //16. check the visibility of the checkboxes
+      .click() //17. choose the necessary value
       .get(activityPage.noPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //16. check the visibility of the checkboxes
+      .and("have.text", "No") //16. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3737,16 +3944,16 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //18. validation error message checking
+      .and("contain", "Required"); //18. validation error message checking
 
-    cy.contains("Have you had a stress test?");   //19. check the title of a header of the section
+    cy.contains("Have you had a stress test?"); //19. check the title of a header of the section
     cy.get(activityPage.yesStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //20. check the visibility of the checkboxes
-      .click()    //21. choose the necessary value
+      .and("have.text", "Yes") //20. check the visibility of the checkboxes
+      .click() //21. choose the necessary value
       .get(activityPage.noStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //20. check the visibility of the checkboxes
+      .and("have.text", "No") //20. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -3754,33 +3961,33 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //22. validation error message checking
+      .and("contain", "Required"); //22. validation error message checking
 
-    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");   //23. check the title of a header of the section
+    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?"); //23. check the title of a header of the section
     cy.get(activityPage.yesCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //24. check the visibility of the checkboxes
-      .click()    //25. choose the necessary value
+      .and("have.text", "Yes") //24. check the visibility of the checkboxes
+      .click() //25. choose the necessary value
       .get(activityPage.noCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "No");        //24. check the visibility of the checkboxes
+      .and("have.text", "No"); //24. check the visibility of the checkboxes
     cy.get(activityPage.nextBtn)
-      .click()                    //26. navigate to the next page 
+      .click() //26. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //27. check the title of a header of the page
 
-    cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
+    cy.contains("How many stress tests have you had?"); //28. check the title of a header of the section
     cy.get(activityPage.stressTestsQtySelect)
       .should("be.visible")
-      .and("contain", selectorText)    //29. check the visibility of the selector's content
+      .and("contain", selectorText); //29. check the visibility of the selector's content
     for (var i = 0; i < stressTestsQtyValues.length; i++) {
       cy.get(activityPage.stressTestsQtySelect)
         .select(stressTestsQtyValues[i])
-        .should("be.visible")
-    };    //29. check the visibility of the selector's content
+        .should("be.visible");
+    } //29. check the visibility of the selector's content
     cy.get(activityPage.stressTestsQtySelect)
-      .select("2");                    //30. choose the necessary value
+      .select("2"); //30. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3789,46 +3996,46 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //31. validation error message checking
+      .and("contain", "Required"); //31. validation error message checking
 
-    cy.contains("Approximately when was your most recent stress test?");       //32. check the title of a header of the section
+    cy.contains("Approximately when was your most recent stress test?"); //32. check the title of a header of the section
     cy.get(activityPage.stressTestsDateInput)
       .should("be.visible")
-      .type("02281984")   //33. input the necessary date
+      .type("02281984") //33. input the necessary date
 
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //34. validation error message checking
+      .and("contain", "Required"); //34. validation error message checking
 
-    cy.contains("Was your most recent stress test normal?");       //35. check the title of a header of the section
+    cy.contains("Was your most recent stress test normal?"); //35. check the title of a header of the section
     cy.get(activityPage.yesNormalTest)
       .should("be.visible")
-      .and("have.text", "Yes")    //36. check the visibility of the checkboxes
-      .click()                    //37. choose the necessary value 
+      .and("have.text", "Yes") //36. check the visibility of the checkboxes
+      .click() //37. choose the necessary value
       .get(activityPage.noNormalTest)
       .should("be.visible")
-      .and("have.text", "No")    //36. check the visibility of the checkboxes
+      .and("have.text", "No") //36. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
-      .click()            //38. navigate to the next page
+      .click() //38. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //39. check the title of a header of the page
 
-    cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
+    cy.contains("How many Cardiac Catheterizations have you had?"); //40. check the title of a header of the section
     cy.get(activityPage.catheterizationQtySelect)
       .should("be.visible")
-      .and("contain", selectorText)    //41. check the visibility of the selector's content
+      .and("contain", selectorText); //41. check the visibility of the selector's content
     for (var i = 0; i < catheterizationQtyValues.length; i++) {
       cy.get(activityPage.catheterizationQtySelect)
         .select(catheterizationQtyValues[i])
-        .should("be.visible")
-    };    //41. check the visibility of the selector's content
+        .should("be.visible");
+    } //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect)
-      .select("1");                    //42. choose the necessary value
+      .select("1"); //42. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -3837,169 +4044,163 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //43. validation error message checking
+      .and("contain", "Required"); //43. validation error message checking
 
-    cy.contains("Approximately when was your most recent Cardiac Catheterization?");     //44. check the title of a header of the section
+    cy.contains("Approximately when was your most recent Cardiac Catheterization?"); //44. check the title of a header of the section
     cy.get(activityPage.catheterizationDateInput)
       .should("be.visible")
-      .type("02281984")   //45. input the necessary date
+      .type("02281984"); //45. input the necessary date
 
-    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?");     //46. check the title of a header of the section
+    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?"); //46. check the title of a header of the section
     cy.get(activityPage.angioplastyStentCathCheckBox)
       .should("be.visible")
-      .and("have.text", angioplastyStentCathTitle)    //47. check the visibility of the checkboxes
-      .click()                    //48. choose the necessary value
+      .and("have.text", angioplastyStentCathTitle) //47. check the visibility of the checkboxes
+      .click() //48. choose the necessary value
       .get(activityPage.angioplastyNoStentCathCheckBox)
       .should("be.visible")
-      .and("have.text", angioplastyNoStentCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", angioplastyNoStentCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.bypassCathCheckBox)
       .should("be.visible")
-      .and("have.text", bypassCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", bypassCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.pacemakerCathCheckBox)
       .should("be.visible")
-      .and("have.text", pacemakerCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", pacemakerCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.ablationCathCheckBox)
       .should("be.visible")
-      .and("have.text", ablationCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", ablationCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()                                 //49. navigate to the next page
+      .click() //49. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //50. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //50. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - Short Of Breath Positive Answers scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    10. validation error message checking
-    11. check the title of a header of the section
-    12. check the visibility of the checkboxes
-    13. choose the necessary value
-    14. validation error message checking
-    15. check the title of a header of the section
-    16. check the visibility of the checkboxes
-    17. choose the necessary value
-    18. validation error message checking
-    19. check the title of a header of the section
-    20. check the visibility of the checkboxes
-    21. choose the necessary value
-    22. validation error message checking
-    23. check the title of a header of the section
-    24. check the visibility of the checkboxes
-    25. choose the necessary value
-    26. navigate to the next page
-    27. check the title of a header of the page
-    28. check the title of a header of the section
-    29. check the visibility of the selector's content
-    30. choose the necessary value
-    31. validation error message checking
-    32. check the title of a header of the section
-    33. input the necessary date
-    34. validation error message checking
-    35. check the title of a header of the section
-    36. check the visibility of the checkboxes
-    37. choose the necessary value
-    38. navigate to the next page
-    39. check the title of a header of the page
-    40. check the title of a header of the section
-    41. check the visibility of the selector's content
-    42. choose the necessary value
-    43. validation error message checking
-    44. check the title of a header of the section
-    45. input the necessary date
-    46. check the title of a header of the section
-    47. check the visibility of the checkboxes
-    48. choose the necessary value
-    49. navigate to the next page
-    50. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      10. validation error message checking
+      11. check the title of a header of the section
+      12. check the visibility of the checkboxes
+      13. choose the necessary value
+      14. validation error message checking
+      15. check the title of a header of the section
+      16. check the visibility of the checkboxes
+      17. choose the necessary value
+      18. validation error message checking
+      19. check the title of a header of the section
+      20. check the visibility of the checkboxes
+      21. choose the necessary value
+      22. validation error message checking
+      23. check the title of a header of the section
+      24. check the visibility of the checkboxes
+      25. choose the necessary value
+      26. navigate to the next page
+      27. check the title of a header of the page
+      28. check the title of a header of the section
+      29. check the visibility of the selector's content
+      30. choose the necessary value
+      31. validation error message checking
+      32. check the title of a header of the section
+      33. input the necessary date
+      34. validation error message checking
+      35. check the title of a header of the section
+      36. check the visibility of the checkboxes
+      37. choose the necessary value
+      38. navigate to the next page
+      39. check the title of a header of the page
+      40. check the title of a header of the section
+      41. check the visibility of the selector's content
+      42. choose the necessary value
+      43. validation error message checking
+      44. check the title of a header of the section
+      45. input the necessary date
+      46. check the title of a header of the section
+      47. check the visibility of the checkboxes
+      48. choose the necessary value
+      49. navigate to the next page
+      50. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var selectorText = "Select One";
-    var stressTestsQtyValues = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
-    var catheterizationQtyValues = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
+    var stressTestsQtyValues = ["1", "2", "3", "4", "5"];
+    var catheterizationQtyValues = ["1", "2", "3", "4", "5"];
     var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
     var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
     var bypassCathTitle = "I had Bypass Surgery";
     var pacemakerCathTitle = "I had a Pacemaker and/or Defibrillator placed";
     var ablationCathTitle = "I had an Ablation for Arrhythmia";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //9. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //9. check the title of a header of the page
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -4008,17 +4209,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //10. validation error message checking
+      .and("contain", "Required"); //10. validation error message checking
 
-    cy.contains("Do you get chest pain at REST?")   //11. check the title of a header of the section
+    cy.contains("Do you get chest pain at REST?") //11. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //12. check the visibility of the checkboxes
-      .click()    //13. choose the necessary value      
+      .and("have.text", "Yes") //12. check the visibility of the checkboxes
+      .click() //13. choose the necessary value
       .get(activityPage.noPainRestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //12. check the visibility of the checkboxes
+      .and("have.text", "No") //12. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -4026,17 +4227,17 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //14. validation error message checking
+      .and("contain", "Required"); //14. validation error message checking
 
-    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)")   //15. check the title of a header of the section
+    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)") //15. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //16. check the visibility of the checkboxes
-      .click()    //17. choose the necessary value 
+      .and("have.text", "Yes") //16. check the visibility of the checkboxes
+      .click() //17. choose the necessary value
       .get(activityPage.noPainActivityCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //16. check the visibility of the checkboxes
+      .and("have.text", "No") //16. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -4044,16 +4245,16 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //18. validation error message checking
+      .and("contain", "Required"); //18. validation error message checking
 
-    cy.contains("Have you had a stress test?");   //19. check the title of a header of the section
+    cy.contains("Have you had a stress test?"); //19. check the title of a header of the section
     cy.get(activityPage.yesStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //20. check the visibility of the checkboxes
-      .click()    //21. choose the necessary value
+      .and("have.text", "Yes") //20. check the visibility of the checkboxes
+      .click() //21. choose the necessary value
       .get(activityPage.noStressTestCheckBox)
       .should("be.visible")
-      .and("have.text", "No")        //20. check the visibility of the checkboxes
+      .and("have.text", "No") //20. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .should("be.visible")
@@ -4061,33 +4262,33 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //22. validation error message checking
+      .and("contain", "Required"); //22. validation error message checking
 
-    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?");   //23. check the title of a header of the section
+    cy.contains("Have you had a Cardiac Catheterization (Cardiac Cath)?"); //23. check the title of a header of the section
     cy.get(activityPage.yesCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "Yes")        //24. check the visibility of the checkboxes
-      .click()    //25. choose the necessary value
+      .and("have.text", "Yes") //24. check the visibility of the checkboxes
+      .click() //25. choose the necessary value
       .get(activityPage.noCatheterizationCheckBox)
       .should("be.visible")
-      .and("have.text", "No");        //24. check the visibility of the checkboxes
+      .and("have.text", "No"); //24. check the visibility of the checkboxes
     cy.get(activityPage.nextBtn)
-      .click()                    //26. navigate to the next page 
+      .click() //26. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");       //27. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //27. check the title of a header of the page
 
-    cy.contains("How many stress tests have you had?");       //28. check the title of a header of the section
+    cy.contains("How many stress tests have you had?"); //28. check the title of a header of the section
     cy.get(activityPage.stressTestsQtySelect)
       .should("be.visible")
-      .and("contain", selectorText)    //29. check the visibility of the selector's content
+      .and("contain", selectorText); //29. check the visibility of the selector's content
     for (var i = 0; i < stressTestsQtyValues.length; i++) {
       cy.get(activityPage.stressTestsQtySelect)
         .select(stressTestsQtyValues[i])
-        .should("be.visible")
-    };    //29. check the visibility of the selector's content
+        .should("be.visible");
+    } //29. check the visibility of the selector's content
     cy.get(activityPage.stressTestsQtySelect)
-      .select("2");                    //30. choose the necessary value
+      .select("2"); //30. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -4096,46 +4297,46 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //31. validation error message checking
+      .and("contain", "Required"); //31. validation error message checking
 
-    cy.contains("Approximately when was your most recent stress test?");       //32. check the title of a header of the section
+    cy.contains("Approximately when was your most recent stress test?"); //32. check the title of a header of the section
     cy.get(activityPage.stressTestsDateInput)
       .should("be.visible")
-      .type("02281984")   //33. input the necessary date
+      .type("02281984") //33. input the necessary date
 
       .get(activityPage.nextBtn)
       .scrollIntoView()
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //34. validation error message checking
+      .and("contain", "Required"); //34. validation error message checking
 
-    cy.contains("Was your most recent stress test normal?");       //35. check the title of a header of the section
+    cy.contains("Was your most recent stress test normal?"); //35. check the title of a header of the section
     cy.get(activityPage.yesNormalTest)
       .should("be.visible")
-      .and("have.text", "Yes")    //36. check the visibility of the checkboxes
-      .click()                    //37. choose the necessary value 
+      .and("have.text", "Yes") //36. check the visibility of the checkboxes
+      .click() //37. choose the necessary value
       .get(activityPage.noNormalTest)
       .should("be.visible")
-      .and("have.text", "No")    //36. check the visibility of the checkboxes
+      .and("have.text", "No") //36. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
       .scrollIntoView()
-      .click()            //38. navigate to the next page
+      .click() //38. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Heart:");  //39. check the title of a header of the page
+      .and("have.text", "With regard to your Heart:"); //39. check the title of a header of the page
 
-    cy.contains("How many Cardiac Catheterizations have you had?");     //40. check the title of a header of the section
+    cy.contains("How many Cardiac Catheterizations have you had?"); //40. check the title of a header of the section
     cy.get(activityPage.catheterizationQtySelect)
       .should("be.visible")
-      .and("contain", selectorText)    //41. check the visibility of the selector's content
+      .and("contain", selectorText); //41. check the visibility of the selector's content
     for (var i = 0; i < catheterizationQtyValues.length; i++) {
       cy.get(activityPage.catheterizationQtySelect)
         .select(catheterizationQtyValues[i])
-        .should("be.visible")
-    };    //41. check the visibility of the selector's content
+        .should("be.visible");
+    } //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect)
-      .select("1");                    //42. choose the necessary value
+      .select("1"); //42. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -4144,179 +4345,191 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("contain", "Required");   //43. validation error message checking
+      .and("contain", "Required"); //43. validation error message checking
 
-    cy.contains("Approximately when was your most recent Cardiac Catheterization?");     //44. check the title of a header of the section
+    cy.contains("Approximately when was your most recent Cardiac Catheterization?"); //44. check the title of a header of the section
     cy.get(activityPage.catheterizationDateInput)
       .should("be.visible")
-      .type("02281984");   //45. input the necessary date
+      .type("02281984"); //45. input the necessary date
 
-    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?");     //46. check the title of a header of the section
+    cy.contains("Which procedure was performed during your most recent Cardiac Catheterization?"); //46. check the title of a header of the section
     cy.get(activityPage.angioplastyStentCathCheckBox)
       .should("be.visible")
-      .and("have.text", angioplastyStentCathTitle)    //47. check the visibility of the checkboxes
-      .click()                    //48. choose the necessary value
+      .and("have.text", angioplastyStentCathTitle) //47. check the visibility of the checkboxes
+      .click() //48. choose the necessary value
       .get(activityPage.angioplastyNoStentCathCheckBox)
       .should("be.visible")
-      .and("have.text", angioplastyNoStentCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", angioplastyNoStentCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.bypassCathCheckBox)
       .should("be.visible")
-      .and("have.text", bypassCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", bypassCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.pacemakerCathCheckBox)
       .should("be.visible")
-      .and("have.text", pacemakerCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", pacemakerCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.ablationCathCheckBox)
       .should("be.visible")
-      .and("have.text", ablationCathTitle)    //47. check the visibility of the checkboxes
+      .and("have.text", ablationCathTitle) //47. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()                                 //49. navigate to the next page
+      .click() //49. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //50. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //50. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - Wheelchair Bound scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //9. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //9. check the title of a header of the page
 
   });
 
   it("Should check the activity.0 page elements - Unable scenario ", () => {
 
     /*
-    1. navigate to the "activity.0" dialog
-    2. check the title of the dialog
-    3. click to start survey
-    4. check the title of the section
-    5. validation error message checking
-    6. check the visibility of the checkboxes
-    7. choose the necessary value
-    8. navigate to the next page
-    9. check the title of a header of the page
-    */
+      1. navigate to the "activity.0" dialog
+      2. check the title of the dialog
+      3. click to start survey
+      4. check the title of the section
+      5. validation error message checking
+      6. check the visibility of the checkboxes
+      7. choose the necessary value
+      8. navigate to the next page
+      9. check the title of a header of the page
+      */
 
-    var strenuousActivityTitle = "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
-    var recreationalActivityTitle = "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
-    var twoFlightsActivityTitle = "I am able to climb 2 flights of stairs without stopping";
-    var oneFlightActivityTitle = "I can only climb 1 flight of stairs or less before stopping";
-    var oneBlockActivityTitle = "I can only walk 1 block or less before stopping";
+    var strenuousActivityTitle =
+      "I am able to participate in strenuous sports such as swimming, singles tennis, football, basketball, or skiing";
+    var recreationalActivityTitle =
+      "I am able to participate in moderate recreational activities like golf, doubles tennis, dancing, throwing a baseball or football";
+    var twoFlightsActivityTitle =
+      "I am able to climb 2 flights of stairs without stopping";
+    var oneFlightActivityTitle =
+      "I can only climb 1 flight of stairs or less before stopping";
+    var oneBlockActivityTitle =
+      "I can only walk 1 block or less before stopping";
     var shortOfBreathActivityTitle = "I am short of breath at rest";
     var wheelchairActivityTitle = "None of the above: I am wheelchair bound";
-    var unableActivityTitle = "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
+    var unableActivityTitle =
+      "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
-    cy.visit("/activity.0")   //1. navigate to the "activity.0" dialog
+    cy.visit("/activity.0") //1. navigate to the "activity.0" dialog
       .contains("Which of the following most closely represents your level of physical activity?") //2. check the title of the dialog
       .get(activityPage.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click(); //3. click to start survey
 
-    cy.contains("Please select ONE of the following:");  //4. check the title of the section
+    cy.contains("Please select ONE of the following:"); //4. check the title of the section
     cy.get(activityPage.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(activityPage.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //5. validation error message checking
+      .and("have.text", "Required"); //5. validation error message checking
 
     cy.get(activityPage.strenuousActivityCheckBox)
       .should("be.visible")
-      .and("have.text", strenuousActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", strenuousActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.recreationalActivityCheckBox)
       .should("be.visible")
-      .and("have.text", recreationalActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", recreationalActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.twoFlightsActivityCheckBox)
       .should("be.visible")
-      .and("have.text", twoFlightsActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", twoFlightsActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneFlightActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneFlightActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneFlightActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.oneBlockActivityCheckBox)
       .should("be.visible")
-      .and("have.text", oneBlockActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", oneBlockActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.shortOfBreathActivityCheckBox)
       .should("be.visible")
-      .and("have.text", shortOfBreathActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", shortOfBreathActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.wheelchairActivityCheckBox)
       .should("be.visible")
-      .and("have.text", wheelchairActivityTitle)   //6. check the visibility of the checkboxes
+      .and("have.text", wheelchairActivityTitle) //6. check the visibility of the checkboxes
       .get(activityPage.unableActivityCheckBox)
       .should("be.visible")
-      .and("have.text", unableActivityTitle)   //6. check the visibility of the checkboxes
-      .click()   //7. choose the necessary value
+      .and("have.text", unableActivityTitle) //6. check the visibility of the checkboxes
+      .click() //7. choose the necessary value
       .get(activityPage.nextBtn)
-      .click()  //8. navigate to the next page
+      .click() //8. navigate to the next page
       .get(activityPage.headerBar)
       .should("be.visible")
-      .and("have.text", "Have you had Surgery in the past?");  //9. check the title of a header of the page
+      .and("have.text", "Have you had Surgery in the past?"); //9. check the title of a header of the page
 
   });
 
@@ -4797,6 +5010,796 @@ describe("transplan kidney donor page test", () => {
     cy.get(waitlistInquiry.headerBar)
       .should("be.visible")
       .and("have.text", "Do you have any other medical issues that you have not already identified?"); //6. check the title of a header of the page
+
+  });
+
+  it("Should check the other-med-conditions.1 page elements - Yes scenario ", () => {
+
+    /*
+    1. navigate to the "other-med-conditions.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. navigate to the next page
+    8. check the title of a header of the page
+    9. validation error message checking
+    10. type the description of all other medical issues
+    11. navigate to the next page
+    12. check the title of a header of the page
+    */
+
+    cy.visit("/other-med-conditions.1")   //1. navigate to the "other-med-conditions.1" dialog
+      .contains("Do you have any other medical issues that you have not already identified?") //2. check the title of the dialog
+      .get(otherMedConditions.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(otherMedConditions.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(otherMedConditions.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");   //4. validation error message checking
+
+    cy.get(otherMedConditions.yesOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+      .click()   //6. choose the necessary value      
+      .get(otherMedConditions.noOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No");   //5. check the visibility of the checkboxes
+
+    cy.get(otherMedConditions.nextBtn)
+      .click();  //7. navigate to the next page
+
+    cy.get(otherMedConditions.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please describe all other medical issues:"); //8. check the title of a header of the page
+
+    cy.get(otherMedConditions.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(otherMedConditions.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");   //9. validation error message checking
+
+    cy.get(otherMedConditions.inputOtherMedCond)
+      .should("be.visible")
+      .type("Other Medical Condition");  //10. type the description of all other medical issues
+
+    cy.get(otherMedConditions.nextBtn)
+      .click();       //11. navigate to the next page
+
+    cy.get(otherMedConditions.headerBar)
+      .should("be.visible")
+      .and("have.text", "Have you ever received treatment or care from one of our affiliated clinics?");    //12. check the title of a header of the page
+
+  });
+
+  it("Should check the other-med-conditions.1 page elements - No scenario ", () => {
+
+    /*
+    1. navigate to the "other-med-conditions.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the visibility of the checkboxes
+    5. choose the necessary value
+    6. navigate to the next page
+    7. check the title of a header of the page
+    */
+
+    cy.visit("/other-med-conditions.1")   //1. navigate to the "other-med-conditions.1" dialog
+      .contains("Do you have any other medical issues that you have not already identified?") //2. check the title of the dialog
+      .get(otherMedConditions.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(otherMedConditions.yesOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")   //4. check the visibility of the checkboxes
+      .get(otherMedConditions.noOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No")   //4. check the visibility of the checkboxes
+      .click();   //5. choose the necessary value
+
+    cy.get(otherMedConditions.nextBtn)
+      .click();  //6. navigate to the next page
+
+    cy.get(otherMedConditions.headerBar)
+      .should("be.visible")
+      .and("have.text", "Have you ever received treatment or care from one of our affiliated clinics?");    //7. check the title of a header of the page
+
+  });
+
+  it("Should check the med-service.0 page elements - Yes scenario ", () => {
+
+    /*
+    1. navigate to the "med-servise.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. navigate to the next page
+    8. check the title of a header of the page
+    */
+
+    cy.visit("/med-service.0")   //1. navigate to the "med-servise.0" dialog
+      .contains("Have you ever received treatment or care from one of our affiliated clinics?") //2. check the title of the dialog
+      .get(medService.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(medService.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(medService.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");   //4. validation error message checking
+
+    cy.get(medService.yesOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+      .click()   //6. choose the necessary value      
+      .get(medService.noOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No");   //5. check the visibility of the checkboxes
+
+    cy.get(medService.nextBtn)
+      .click();  //7. navigate to the next page
+
+    cy.get(medService.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Family's Medical History:"); //8. check the title of a header of the page
+
+  });
+
+  it("Should check the med-service.0 page elements - No scenario ", () => {
+
+    /*
+    1. navigate to the "med-servise.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. navigate to the next page
+    8. check the title of a header of the page
+    */
+
+    cy.visit("/med-service.0")   //1. navigate to the "med-servise.0" dialog
+      .contains("Have you ever received treatment or care from one of our affiliated clinics?") //2. check the title of the dialog
+      .get(medService.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(medService.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(medService.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");   //4. validation error message checking
+
+    cy.get(medService.yesOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+      .get(medService.noOtherMedCondRadioBtn)
+      .should("be.visible")
+      .and("have.text", "No")   //5. check the visibility of the checkboxes
+      .click();   //6. choose the necessary value      
+
+    cy.get(medService.nextBtn)
+      .click();  //7. navigate to the next page
+
+    cy.get(medService.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Family's Medical History:"); //8. check the title of a header of the page
+
+  });
+
+  it("Should check the family-medical-history.0 page elements - Kidney Disease scenario ", () => {
+
+    /*
+    1. navigate to the "family-medical-history.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the title of the section
+    6. check the visibility of the checkboxes
+    7. choose the necessary value
+    8. validation error message checking
+    9. check the title of the section
+    10. check the visibility of the checkboxes
+    11. choose the necessary value
+    12. validation error message checking
+    13. check the title of the section
+    14. check the visibility of the checkboxes
+    15. choose the necessary value
+    16. validation error message checking
+    17. check the title of the section
+    18. check the visibility of the checkboxes
+    19. choose the necessary value
+    20. validation error message checking
+    21. check the title of the section
+    22. check the visibility of the checkboxes
+    23. choose the necessary value
+    24. navigate to the next page
+    25. check the title of a header of the page
+    26. validation error message checking
+    27. check the visibility of the checkboxes
+    28. choose the necessary value
+    29. navigate to the next page
+    30. check the title of a header of the page
+    */
+
+    cy.visit("/family-medical-history.0")   //1. navigate to the "family-medical-history.0" dialog
+      .contains("With regard to your Family's Medical History:") //2. check the title of the dialog
+      .get(familyMedHistory0.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(familyMedHistory0.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(familyMedHistory0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //4. validation error message checking
+
+    cy.contains("Do any of your family members have Kidney Disease?")    //5. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory0.yesKidneyDisease)
+      .should("be.visible")
+      .and("have.text", "Yes")   //6. check the visibility of the checkboxes
+      .click()   //7. choose the necessary value
+      .get(familyMedHistory0.noKidneyDisease)
+      .should("be.visible")
+      .and("have.text", "No");   //6. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //8. validation error message checking
+
+    cy.contains("Do any of your family members have Polycystic Kidney Disease (PCKD)?")    //9. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory0.yesPolycystic)
+      .should("be.visible")
+      .and("have.text", "Yes")   //10. check the visibility of the checkboxes
+      .get(familyMedHistory0.noPolycystic)
+      .should("be.visible")
+      .and("have.text", "No")   //10. check the visibility of the checkboxes
+      .click();   //11. choose the necessary value
+
+    cy.get(familyMedHistory0.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //12. validation error message checking
+
+    cy.contains("Do any of your family members have Kidney Stones?");    //13. check the title of the section
+    cy.get(familyMedHistory0.yesKidneyStones)
+      .should("be.visible")
+      .and("have.text", "Yes")   //14. check the visibility of the checkboxes
+      .get(familyMedHistory0.noKidneyStones)
+      .should("be.visible")
+      .and("have.text", "No")   //14. check the visibility of the checkboxes
+      .click();   //15. choose the necessary value
+
+    cy.get(familyMedHistory0.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //16. validation error message checking
+
+    cy.contains("Do any of your family members have Diabetes?");    //17. check the title of the section
+    cy.get(familyMedHistory0.yesDiabetes)
+      .should("be.visible")
+      .and("have.text", "Yes")   //18. check the visibility of the checkboxes
+      .get(familyMedHistory0.noDiabetes)
+      .should("be.visible")
+      .and("have.text", "No")   //18. check the visibility of the checkboxes
+      .click();   //19. choose the necessary value
+
+    cy.get(familyMedHistory0.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //20. validation error message checking
+
+    cy.contains("Do any of your family members have Sickle Cell?");    //21. check the title of the section
+    cy.get(familyMedHistory0.yesSickleCell)
+      .should("be.visible")
+      .and("have.text", "Yes")   //22. check the visibility of the checkboxes
+      .get(familyMedHistory0.noSickleCell)
+      .should("be.visible")
+      .and("have.text", "No")   //22. check the visibility of the checkboxes
+      .click();   //23. choose the necessary value
+
+    cy.get(familyMedHistory0.nextBtn)
+      .click();  //24. navigate to the next page
+
+    cy.get(familyMedHistory0.headerBar)
+      .should("be.visible")
+      .and("have.text", "Which members of your family have Kidney Disease?"); //25. check the title of a header of the page
+
+    cy.get(familyMedHistory0.nextBtn)
+      .click()
+      .get(familyMedHistory0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //26. validation error message checking
+
+    cy.get(familyMedHistory0.motherFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Mother");   //27. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.fatherFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Father");   //27. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.childFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Child");   //27. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.siblingFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Sibling");   //27. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.grandparentFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Grandparent")   //27. check the visibility of the checkboxes
+      .click();   //28. choose the necessary value
+
+    cy.get(familyMedHistory0.auntUnkleFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Aunt/Uncle");   //27. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.cousinFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Cousin");   //27. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory0.nextBtn)
+      .click();  //29. navigate to the next page
+
+    cy.get(familyMedHistory0.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Family's Medical History:"); //30. check the title of a header of the page
+
+  });
+
+  it("Should check the family-medical-history.0 page elements - No scenario ", () => {
+
+    /*
+    1. navigate to the "family-medical-history.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the title of the section
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. check the title of the section
+    8. check the visibility of the checkboxes
+    9. choose the necessary value
+    10. check the title of the section
+    11. check the visibility of the checkboxes
+    12. choose the necessary value
+    13. check the title of the section
+    14. check the visibility of the checkboxes
+    15. choose the necessary value
+    16. check the title of the section
+    17. check the visibility of the checkboxes
+    18. choose the necessary value
+    19. navigate to the next page
+    20. check the title of a header of the page
+    */
+
+    cy.visit("/family-medical-history.0")   //1. navigate to the "family-medical-history.0" dialog
+      .contains("With regard to your Family's Medical History:") //2. check the title of the dialog
+      .get(familyMedHistory0.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.contains("Do any of your family members have Kidney Disease?")    //4. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory0.yesKidneyDisease)
+      .should("be.visible")
+      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+      .get(familyMedHistory0.noKidneyDisease)
+      .should("be.visible")
+      .and("have.text", "No")   //5. check the visibility of the checkboxes
+      .click()   //6. choose the necessary value
+
+    cy.contains("Do any of your family members have Polycystic Kidney Disease (PCKD)?")    //7. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory0.yesPolycystic)
+      .should("be.visible")
+      .and("have.text", "Yes")   //8. check the visibility of the checkboxes
+      .get(familyMedHistory0.noPolycystic)
+      .should("be.visible")
+      .and("have.text", "No")   //8. check the visibility of the checkboxes
+      .click();   //9. choose the necessary value
+
+    cy.contains("Do any of your family members have Kidney Stones?");    //10. check the title of the section
+    cy.get(familyMedHistory0.yesKidneyStones)
+      .should("be.visible")
+      .and("have.text", "Yes")   //11. check the visibility of the checkboxes
+      .get(familyMedHistory0.noKidneyStones)
+      .should("be.visible")
+      .and("have.text", "No")   //11. check the visibility of the checkboxes
+      .click();   //12. choose the necessary value
+
+    cy.contains("Do any of your family members have Diabetes?");    //13. check the title of the section
+    cy.get(familyMedHistory0.yesDiabetes)
+      .should("be.visible")
+      .and("have.text", "Yes")   //14. check the visibility of the checkboxes
+      .get(familyMedHistory0.noDiabetes)
+      .should("be.visible")
+      .and("have.text", "No")   //14. check the visibility of the checkboxes
+      .click();   //15. choose the necessary value
+
+    cy.contains("Do any of your family members have Sickle Cell?");    //16. check the title of the section
+    cy.get(familyMedHistory0.yesSickleCell)
+      .should("be.visible")
+      .and("have.text", "Yes")   //17. check the visibility of the checkboxes
+      .get(familyMedHistory0.noSickleCell)
+      .should("be.visible")
+      .and("have.text", "No")   //17. check the visibility of the checkboxes
+      .click();   //18. choose the necessary value
+
+    cy.get(familyMedHistory0.nextBtn)
+      .click();  //19. navigate to the next page
+
+    cy.get(familyMedHistory0.headerBar)
+      .should("be.visible")
+      .and("have.text", "With regard to your Family's Medical History:"); //20. check the title of a header of the page
+
+  });
+
+  it("Should check the family-medical-history.1 page elements - High Blood Pressure scenario ", () => {
+
+    /*
+    1. navigate to the "family-medical-history.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the title of the section
+    6. check the visibility of the checkboxes
+    7. choose the necessary value
+    8. validation error message checking
+    9. check the title of the section
+    10. check the visibility of the checkboxes
+    11. choose the necessary value
+    12. validation error message checking
+    13. check the title of the section
+    14. check the visibility of the checkboxes
+    15. choose the necessary value
+    16. validation error message checking
+    17. check the title of the section
+    18. check the visibility of the checkboxes
+    19. choose the necessary value
+    20. validation error message checking
+    21. check the title of the section
+    22. check the visibility of the checkboxes
+    23. choose the necessary value
+    24. validation error message checking
+    25. check the title of the section
+    26. check the visibility of the checkboxes
+    27. choose the necessary value
+    28. validation error message checking
+    29. check the title of the section
+    30. check the visibility of the checkboxes
+    31. choose the necessary value
+    32. navigate to the next page
+    33. check the title of a header of the page
+    34. validation error message checking
+    35. check the visibility of the checkboxes
+    36. choose the necessary value
+    37. navigate to the next page
+    38. check the title of a header of the page
+    */
+
+    cy.visit("/family-medical-history.1")   //1. navigate to the "family-medical-history.1" dialog
+      .contains("With regard to your Family's Medical History:") //2. check the title of the dialog
+      .get(familyMedHistory1.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.get(familyMedHistory1.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //4. validation error message checking
+
+    cy.contains("Do any of your family members have Cancer?")    //5. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesCancerFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //6. check the visibility of the checkboxes
+    cy.get(familyMedHistory1.noCancerFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //6. check the visibility of the checkboxes
+      .click();   //7. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //8. validation error message checking
+
+    cy.contains("Do any of your family members have High Blood Pressure?")    //9. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesBloodPressureFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //10. check the visibility of the checkboxes
+      .click()   //11. choose the necessary value
+      .get(familyMedHistory1.noBloodPressureFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No");   //10. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //12. validation error message checking
+
+    cy.contains("Do any of your family members have Heart Disease?")    //13. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesHeartDieseseFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //14. check the visibility of the checkboxes
+      .get(familyMedHistory1.noHeartDieseseFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //14. check the visibility of the checkboxes
+      .click();   //15. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //16. validation error message checking
+
+    cy.contains("Do any of your family members have Lupus?")    //17. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesLupusFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //18. check the visibility of the checkboxes
+      .get(familyMedHistory1.noLupusFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //18. check the visibility of the checkboxes
+      .click();   //19. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .scrollIntoView()
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //20. validation error message checking
+
+    cy.contains("Do any of your family members have Blood Clots?");    //21. check the title of the section
+    cy.get(familyMedHistory1.yesBloodClotsFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //22. check the visibility of the checkboxes
+      .get(familyMedHistory1.noBloodClotsFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //22. check the visibility of the checkboxes
+      .click();   //23. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //24. validation error message checking
+
+    cy.contains("Do any of your family members have Mental Illness?");    //25. check the title of the section
+    cy.get(familyMedHistory1.yesMentalIllFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //26. check the visibility of the checkboxes
+      .get(familyMedHistory1.noMentalIllFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //26. check the visibility of the checkboxes
+      .click();   //27. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //28. validation error message checking
+
+    cy.contains("Have any of your family members died before the age of 50?");    //29. check the title of the section
+    cy.get(familyMedHistory1.yesDied50FamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //30. check the visibility of the checkboxes
+      .get(familyMedHistory1.noDied50FamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //30. check the visibility of the checkboxes
+      .click();   //31. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .click();  //32. navigate to the next page
+
+    cy.get(familyMedHistory1.headerBar)
+      .should("be.visible")
+      .and("have.text", "Which members of your family have High Blood Pressure?"); //33. check the title of a header of the page
+
+    cy.get(familyMedHistory1.nextBtn)
+      .click()
+      .get(familyMedHistory1.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");   //34. validation error message checking
+
+    cy.get(familyMedHistory1.motherFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Mother");   //35. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.fatherFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Father");   //35. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.childFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Child");   //35. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.siblingFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Sibling");   //35. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.grandparentFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Grandparent")   //35. check the visibility of the checkboxes
+      .click();   //36. choose the necessary value
+
+    cy.get(familyMedHistory1.auntUnkleFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Aunt/Uncle");   //35. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.cousinFamilyMemberCheckBox)
+      .should("be.visible")
+      .and("have.text", "Cousin");   //35. check the visibility of the checkboxes
+
+    cy.get(familyMedHistory1.nextBtn)
+      .click();  //37. navigate to the next page
+
+    cy.get(familyMedHistory1.headerBar)
+      .should("be.visible")
+      .and("have.text", "What is your blood type:"); //38. check the title of a header of the page
+
+  });
+
+  it("Should check the family-medical-history.1 page elements - No scenario ", () => {
+
+    /*
+    1. navigate to the "family-medical-history.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the title of the section
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. check the title of the section
+    8. check the visibility of the checkboxes
+    9. choose the necessary value
+    10. check the title of the section
+    11. check the visibility of the checkboxes
+    12. choose the necessary value
+    13. check the title of the section
+    14. check the visibility of the checkboxes
+    15. choose the necessary value
+    16. check the title of the section
+    17. check the visibility of the checkboxes
+    18. choose the necessary value
+    19. check the title of the section
+    20. check the visibility of the checkboxes
+    21. choose the necessary value
+    22. check the title of the section
+    23. check the visibility of the checkboxes
+    24. choose the necessary value
+    25. navigate to the next page
+    26. check the title of a header of the page
+    */
+
+    cy.visit("/family-medical-history.1")   //1. navigate to the "family-medical-history.1" dialog
+      .contains("With regard to your Family's Medical History:") //2. check the title of the dialog
+      .get(familyMedHistory1.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();  //3. click to start survey
+
+    cy.contains("Do any of your family members have Cancer?")    //4. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesCancerFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+    cy.get(familyMedHistory1.noCancerFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //5. check the visibility of the checkboxes
+      .click();   //6. choose the necessary value
+
+    cy.contains("Do any of your family members have High Blood Pressure?")    //7. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesBloodPressureFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //8. check the visibility of the checkboxes
+      .get(familyMedHistory1.noBloodPressureFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //8. check the visibility of the checkboxes
+      .click();   //9. choose the necessary value
+
+    cy.contains("Do any of your family members have Heart Disease?")    //10. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesHeartDieseseFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //11. check the visibility of the checkboxes
+      .get(familyMedHistory1.noHeartDieseseFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //11. check the visibility of the checkboxes
+      .click();   //12. choose the necessary value
+
+    cy.contains("Do any of your family members have Lupus?")    //13. check the title of the section
+      .scrollIntoView();
+    cy.get(familyMedHistory1.yesLupusFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //14. check the visibility of the checkboxes
+      .get(familyMedHistory1.noLupusFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //14. check the visibility of the checkboxes
+      .click();   //15. choose the necessary value
+
+    cy.contains("Do any of your family members have Blood Clots?");    //16. check the title of the section
+    cy.get(familyMedHistory1.yesBloodClotsFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //17. check the visibility of the checkboxes
+      .get(familyMedHistory1.noBloodClotsFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //17. check the visibility of the checkboxes
+      .click();   //18. choose the necessary value
+
+    cy.contains("Do any of your family members have Mental Illness?");    //19. check the title of the section
+    cy.get(familyMedHistory1.yesMentalIllFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //20. check the visibility of the checkboxes
+      .get(familyMedHistory1.noMentalIllFamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //20. check the visibility of the checkboxes
+      .click();   //21. choose the necessary value
+
+    cy.contains("Have any of your family members died before the age of 50?");    //22. check the title of the section
+    cy.get(familyMedHistory1.yesDied50FamilyIssue)
+      .should("be.visible")
+      .and("have.text", "Yes")   //23. check the visibility of the checkboxes
+      .get(familyMedHistory1.noDied50FamilyIssue)
+      .should("be.visible")
+      .and("have.text", "No")   //23. check the visibility of the checkboxes
+      .click();   //24. choose the necessary value
+
+    cy.get(familyMedHistory1.nextBtn)
+      .click();  //25. navigate to the next page
+
+    cy.get(familyMedHistory1.headerBar)
+      .should("be.visible")
+      .and("have.text", "What is your blood type:"); //26. check the title of a header of the page
 
   });
 
