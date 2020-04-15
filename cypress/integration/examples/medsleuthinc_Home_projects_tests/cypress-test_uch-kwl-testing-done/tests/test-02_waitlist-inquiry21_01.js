@@ -112,23 +112,23 @@ describe("transplan kidney donor page test", () => {
     // link to the ticket [https://trello.com/c/3DE56I17]
 
     /*
-1. navigate to the "waitlist-inquiry.2.1" dialog
-2. check the title of the dialog
-3. click to start survey
-4. activate "Yes" radio button
-5. navigate to the next page
-6. check the title of the page
-7. input the demanded information
-8. input the demanded information
-9. navigate to the next page
-10. check the title of the page
-11. check the content availability on page
-12. check the visibility  of the item
-13. open the modal
-14. check the visibility of the modal's content
-15. close the modal
-16. check the visibility of the radio buttons
-*/
+    1. navigate to the "waitlist-inquiry.2.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. activate "Yes" radio button
+    5. navigate to the next page
+    6. check the title of the page
+    7. input the demanded information
+    8. input the demanded information
+    9. navigate to the next page
+    10. check the title of the page
+    11. check the content availability on page
+    12. check the visibility  of the item
+    13. open the modal
+    14. check the visibility of the modal's content
+    15. close the modal
+    16. check the visibility of the radio buttons
+    */
 
     var infectionModalContent = "Infection×For Example: Bladder And/Or Urinary Tract Infection Bone Infection (Osteomyelitis) Gangrene (for example black toe) Infection of AV Fistula or AV Graft Infection of Peritoneal Dialysis Catheter (Peritonitis) Joint Infection (Septic Arthritis) Kidney Infection Severe Systemic Infection (Sepsis) Skin and/or Soft Tissue Infection";
 
