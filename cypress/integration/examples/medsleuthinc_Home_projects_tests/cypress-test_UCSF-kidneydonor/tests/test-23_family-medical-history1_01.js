@@ -220,9 +220,9 @@ describe("transplan kidney donor page test", () => {
     cy.get(familyMedHistory1.nextBtn)
       .click();  //37. navigate to the next page
 
-    cy.get(familyMedHistory1.headerBar)
-      .should("be.visible")
-      .and("have.text", "What is your blood type:"); //38. check the title of a header of the page
+    // cy.get(familyMedHistory1.headerBar)
+    // .should("be.visible")
+    // .and("have.text", "What is your blood type:"); //38. check the title of a header of the page
 
   });
 
