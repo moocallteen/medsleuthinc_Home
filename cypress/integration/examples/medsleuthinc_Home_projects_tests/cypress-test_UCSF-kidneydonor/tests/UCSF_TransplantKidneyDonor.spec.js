@@ -150,7 +150,6 @@ describe("transplan kidney donor page test", () => {
         assert.include(el.text(), textNextBtn);
       });
 
-
     cy.get(referralPage.transplantCandidateRadioBtn)
       .should("be.visible")
       .get(referralPage.transplantCandidateTextBlock)
