@@ -1,4 +1,4 @@
-import screeningHtn0 from "../page objects/03_screening-htn_page_01";
+import screeningHtn0 from "../page-objects/03_screening-htn_page_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

@@ -1,4 +1,4 @@
-import activityPage from "../page objects/18_activity0_01";
+import activityPage from "../page-objects/18_activity0_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

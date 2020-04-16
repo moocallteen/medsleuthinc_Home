@@ -1,4 +1,4 @@
-import screeningKidneystones from "../page objects/05_screening-kidneystones_01";
+import screeningKidneystones from "../page-objects/05_screening-kidneystones_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

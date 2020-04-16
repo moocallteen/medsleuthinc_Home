@@ -1,4 +1,4 @@
-import medAllergies from "../page objects/13_med-allergies_01";
+import medAllergies from "../page-objects/13_med-allergies_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

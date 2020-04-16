@@ -1,4 +1,4 @@
-import screeningDiabetesrx from "../page objects/04_screening-diabetesrx_01";
+import screeningDiabetesrx from "../page-objects/04_screening-diabetesrx_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

@@ -1,4 +1,4 @@
-import instructionsPage from "../page objects/10_instructions_01";
+import instructionsPage from "../page-objects/10_instructions_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

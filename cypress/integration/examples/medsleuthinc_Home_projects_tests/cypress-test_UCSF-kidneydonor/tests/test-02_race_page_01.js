@@ -1,5 +1,5 @@
-import landingPage from "../page objects/00_landing_page_01";
-import demographicsPage from "../page objects/02_race_page_01";
+import landingPage from "../page-objects/00_landing_page_01";
+import demographicsPage from "../page-objects/02_race_page_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

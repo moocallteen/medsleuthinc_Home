@@ -1,4 +1,4 @@
-import familyMedHistory0 from "../page objects/22_family-medical-history0_01";
+import familyMedHistory0 from "../page-objects/22_family-medical-history0_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

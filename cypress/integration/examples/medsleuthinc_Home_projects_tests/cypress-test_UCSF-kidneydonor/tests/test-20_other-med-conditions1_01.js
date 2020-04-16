@@ -1,4 +1,4 @@
-import otherMedConditions from "../page objects/20_other-med-conditions1_01";
+import otherMedConditions from "../page-objects/20_other-med-conditions1_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

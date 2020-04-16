@@ -1,4 +1,4 @@
-import screeningIlDrugs from "../page objects/07_screening-ildrs_01";
+import screeningIlDrugs from "../page-objects/07_screening-ildrs_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

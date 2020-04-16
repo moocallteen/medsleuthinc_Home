@@ -1,4 +1,4 @@
-import screeningTobacco from "../page objects/06_screening-tobacco_01";
+import screeningTobacco from "../page-objects/06_screening-tobacco_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

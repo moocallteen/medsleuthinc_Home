@@ -1,4 +1,4 @@
-import medConditionsSurvey from "../page objects/12_shc-condition-category_01";
+import medConditionsSurvey from "../page-objects/12_shc-condition-category_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

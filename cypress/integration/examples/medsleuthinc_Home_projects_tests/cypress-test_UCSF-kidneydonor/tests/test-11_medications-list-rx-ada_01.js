@@ -1,4 +1,4 @@
-import medicationList from "../page objects/11_medications-list-rx-ada_01";
+import medicationList from "../page-objects/11_medications-list-rx-ada_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

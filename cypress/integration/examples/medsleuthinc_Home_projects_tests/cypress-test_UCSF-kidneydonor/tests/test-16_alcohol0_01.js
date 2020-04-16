@@ -1,4 +1,4 @@
-import alcoholPage from "../page objects/16_alcohol0_01";
+import alcoholPage from "../page-objects/16_alcohol0_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

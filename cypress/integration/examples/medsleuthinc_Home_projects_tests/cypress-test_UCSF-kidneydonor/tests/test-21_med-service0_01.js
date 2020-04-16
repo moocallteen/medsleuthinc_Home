@@ -1,4 +1,4 @@
-import medService from "../page objects/21_med-service0_01";
+import medService from "../page-objects/21_med-service0_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

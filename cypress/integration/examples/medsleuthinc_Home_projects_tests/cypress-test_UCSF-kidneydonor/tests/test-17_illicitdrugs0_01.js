@@ -1,4 +1,4 @@
-import illicitDrugsPage from "../page objects/17_illicitdrugs0_01";
+import illicitDrugsPage from "../page-objects/17_illicitdrugs0_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

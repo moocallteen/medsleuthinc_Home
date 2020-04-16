@@ -1,4 +1,4 @@
-import doYouSmokeCigarettes from "../page objects/15_doyousmoke0_01";
+import doYouSmokeCigarettes from "../page-objects/15_doyousmoke0_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {

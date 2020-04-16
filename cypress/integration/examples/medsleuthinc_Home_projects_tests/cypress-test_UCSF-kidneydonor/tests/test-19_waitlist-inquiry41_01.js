@@ -1,4 +1,4 @@
-import waitlistInquiry from "../page objects/19_waitlist-inquiry41_01";
+import waitlistInquiry from "../page-objects/19_waitlist-inquiry41_01";
 
 describe("transplan kidney donor page test", () => {
   before(() => {
