@@ -1,29 +1,27 @@
-import landingPage from "../page objects/00_landing_page_01";
-import referralPage from "../page objects/01_referral_page_01";
-import demographicsPage from "../page objects/02_race_page_01";
-import screeningHtn0 from "../page objects/03_screening-htn_page_01";
-import screeningDiabetesrx from "../page objects/04_screening-diabetesrx_01";
-import screeningKidneystones from "../page objects/05_screening-kidneystones_01";
-import screeningTobacco from "../page objects/06_screening-tobacco_01";
-import screeningIlDrugs from "../page objects/07_screening-ildrs_01";
-import whatToExpectPage from "../page objects/08_what_to_expect_01";
-import thankYouOptOut from "../page objects/09_thankyou_opt_out_01";
-import instructionsPage from "../page objects/10_instructions_01";
-import medicationList from "../page objects/11_medications-list-rx-ada_01";
-import medConditionsSurvey from "../page objects/12_shc-condition-category_01";
-import medAllergies from "../page objects/13_med-allergies_01";
-import materialAllergies from "../page objects/14_material-allergies_01";
-import doYouSmokeCigarettes from "../page objects/15_doyousmoke0_01";
-import alcoholPage from "../page objects/16_alcohol0_01";
-import illicitDrugsPage from "../page objects/17_illicitdrugs0_01";
-import activityPage from "../page objects/18_activity0_01";
-import waitlistInquiry from "../page objects/19_waitlist-inquiry41_01";
-import otherMedConditions from "../page objects/20_other-med-conditions1_01";
-import medService from "../page objects/21_med-service0_01";
-import familyMedHistory0 from "../page objects/22_family-medical-history0_01";
-import familyMedHistory1 from "../page objects/23_family-medical-history1_01";
-
-
+import landingPage from "../page-objects/00_landing_page_01";
+import referralPage from "../page-objects/01_referral_page_01";
+import demographicsPage from "../page-objects/02_race_page_01";
+import screeningHtn0 from "../page-objects/03_screening-htn_page_01";
+import screeningDiabetesrx from "../page-objects/04_screening-diabetesrx_01";
+import screeningKidneystones from "../page-objects/05_screening-kidneystones_01";
+import screeningTobacco from "../page-objects/06_screening-tobacco_01";
+import screeningIlDrugs from "../page-objects/07_screening-ildrs_01";
+import whatToExpectPage from "../page-objects/08_what_to_expect_01";
+import thankYouOptOut from "../page-objects/09_thankyou_opt_out_01";
+import instructionsPage from "../page-objects/10_instructions_01";
+import medicationList from "../page-objects/11_medications-list-rx-ada_01";
+import medConditionsSurvey from "../page-objects/12_shc-condition-category_01";
+import medAllergies from "../page-objects/13_med-allergies_01";
+import materialAllergies from "../page-objects/14_material-allergies_01";
+import doYouSmokeCigarettes from "../page-objects/15_doyousmoke0_01";
+import alcoholPage from "../page-objects/16_alcohol0_01";
+import illicitDrugsPage from "../page-objects/17_illicitdrugs0_01";
+import activityPage from "../page-objects/18_activity0_01";
+import waitlistInquiry from "../page-objects/19_waitlist-inquiry41_01";
+import otherMedConditions from "../page-objects/20_other-med-conditions1_01";
+import medService from "../page-objects/21_med-service0_01";
+import familyMedHistory0 from "../page-objects/22_family-medical-history0_01";
+import familyMedHistory1 from "../page-objects/23_family-medical-history1_01";
 
 
 
