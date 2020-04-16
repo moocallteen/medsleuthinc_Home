@@ -697,9 +697,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "Required"); //14. validation error message checking
 
-    cy.contains(
-      "Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)"
-    ) //15. check the title of a header of the section
+    cy.contains("Do you get chest pain with ACTIVITY? (for example: walking or climbing stairs)") //15. check the title of a header of the section
       .scrollIntoView();
     cy.get(activityPage.yesPainActivityCheckBox)
       .should("be.visible")
@@ -756,8 +754,9 @@ describe("transplan kidney donor page test", () => {
       cy.get(activityPage.stressTestsQtySelect)
         .select(stressTestsQtyValues[i])
         .should("be.visible");
-    } //29. check the visibility of the selector's content
-    cy.get(activityPage.stressTestsQtySelect).select("2"); //30. choose the necessary value
+    }; //29. check the visibility of the selector's content
+    cy.get(activityPage.stressTestsQtySelect)
+      .select("2"); //30. choose the necessary value
 
     cy.get(activityPage.nextBtn)
       .scrollIntoView()
@@ -802,7 +801,7 @@ describe("transplan kidney donor page test", () => {
       cy.get(activityPage.catheterizationQtySelect)
         .select(catheterizationQtyValues[i])
         .should("be.visible");
-    } //41. check the visibility of the selector's content
+    }; //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect).select("1"); //42. choose the necessary value
 
     cy.get(activityPage.nextBtn)
@@ -814,9 +813,7 @@ describe("transplan kidney donor page test", () => {
       .should("be.visible")
       .and("contain", "Required"); //43. validation error message checking
 
-    cy.contains(
-      "Approximately when was your most recent Cardiac Catheterization?"
-    ); //44. check the title of a header of the section
+    cy.contains("Approximately when was your most recent Cardiac Catheterization?"); //44. check the title of a header of the section
     cy.get(activityPage.catheterizationDateInput)
       .should("be.visible")
       .type("02281984"); //45. input the necessary date
@@ -1228,7 +1225,7 @@ describe("transplan kidney donor page test", () => {
       cy.get(activityPage.stressTestsQtySelect)
         .select(stressTestsQtyValues[i])
         .should("be.visible");
-    } //29. check the visibility of the selector's content
+    }; //29. check the visibility of the selector's content
     cy.get(activityPage.stressTestsQtySelect)
       .select("2"); //30. choose the necessary value
 
@@ -1276,7 +1273,7 @@ describe("transplan kidney donor page test", () => {
       cy.get(activityPage.catheterizationQtySelect)
         .select(catheterizationQtyValues[i])
         .should("be.visible");
-    } //41. check the visibility of the selector's content
+    }; //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect)
       .select("1"); //42. choose the necessary value
 
@@ -1390,7 +1387,13 @@ describe("transplan kidney donor page test", () => {
       "None of the above: I am unable to perform any physical activity because I have severe back, joint, and/or neck pain";
 
     var selectorText = "Select One";
-    var stressTestsQtyValues = ["1", "2", "3", "4", "5"];
+    var stressTestsQtyValues = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ];
     var catheterizationQtyValues = ["1", "2", "3", "4", "5"];
     var angioplastyStentCathTitle = "I had a Ballon Angioplasty with Stent";
     var angioplastyNoStentCathTitle = "I had a Ballon Angioplasty, NO Stent";
@@ -1529,7 +1532,7 @@ describe("transplan kidney donor page test", () => {
       cy.get(activityPage.stressTestsQtySelect)
         .select(stressTestsQtyValues[i])
         .should("be.visible");
-    } //29. check the visibility of the selector's content
+    }; //29. check the visibility of the selector's content
     cy.get(activityPage.stressTestsQtySelect)
       .select("2"); //30. choose the necessary value
 
@@ -1577,7 +1580,7 @@ describe("transplan kidney donor page test", () => {
       cy.get(activityPage.catheterizationQtySelect)
         .select(catheterizationQtyValues[i])
         .should("be.visible");
-    } //41. check the visibility of the selector's content
+    }; //41. check the visibility of the selector's content
     cy.get(activityPage.catheterizationQtySelect)
       .select("1"); //42. choose the necessary value
 
