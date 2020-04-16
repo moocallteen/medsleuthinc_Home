@@ -22,12 +22,12 @@ describe("transplan kidney donor page test", () => {
     8. check the title of a header of the page
     */
 
-    cy.visit("/med-service.0")   //1. navigate to the "med-servise.0" dialog
-      .contains("Have you ever received treatment or care from one of our affiliated clinics?") //2. check the title of the dialog
+    cy.visit("/med-service.0")    //1. navigate to the "med-servise.0" dialog
+      .contains("Have you ever received treatment or care from one of our affiliated clinics?")    //2. check the title of the dialog
       .get(medService.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click();    //3. click to start survey
 
     cy.get(medService.nextBtn)
       .should("be.visible")
@@ -35,22 +35,22 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medService.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //4. validation error message checking
+      .and("have.text", "Required");    //4. validation error message checking
 
     cy.get(medService.yesOtherMedCondRadioBtn)
       .should("be.visible")
-      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
-      .click()   //6. choose the necessary value      
+      .and("have.text", "Yes")    //5. check the visibility of the checkboxes
+      .click()    //6. choose the necessary value
       .get(medService.noOtherMedCondRadioBtn)
       .should("be.visible")
-      .and("have.text", "No");   //5. check the visibility of the checkboxes
+      .and("have.text", "No");    //5. check the visibility of the checkboxes
 
     cy.get(medService.nextBtn)
-      .click();  //7. navigate to the next page
+      .click();    //7. navigate to the next page
 
     cy.get(medService.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Family's Medical History:"); //8. check the title of a header of the page
+      .and("have.text", "With regard to your Family's Medical History:");    //8. check the title of a header of the page
 
   });
 
@@ -67,12 +67,12 @@ describe("transplan kidney donor page test", () => {
     8. check the title of a header of the page
     */
 
-    cy.visit("/med-service.0")   //1. navigate to the "med-servise.0" dialog
-      .contains("Have you ever received treatment or care from one of our affiliated clinics?") //2. check the title of the dialog
+    cy.visit("/med-service.0")    //1. navigate to the "med-servise.0" dialog
+      .contains("Have you ever received treatment or care from one of our affiliated clinics?")    //2. check the title of the dialog
       .get(medService.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
-      .click();  //3. click to start survey
+      .click();    //3. click to start survey
 
     cy.get(medService.nextBtn)
       .should("be.visible")
@@ -80,22 +80,22 @@ describe("transplan kidney donor page test", () => {
       .click()
       .get(medService.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");   //4. validation error message checking
+      .and("have.text", "Required");    //4. validation error message checking
 
     cy.get(medService.yesOtherMedCondRadioBtn)
       .should("be.visible")
-      .and("have.text", "Yes")   //5. check the visibility of the checkboxes
+      .and("have.text", "Yes")    //5. check the visibility of the checkboxes
       .get(medService.noOtherMedCondRadioBtn)
       .should("be.visible")
-      .and("have.text", "No")   //5. check the visibility of the checkboxes
-      .click();   //6. choose the necessary value      
+      .and("have.text", "No")    //5. check the visibility of the checkboxes
+      .click();    //6. choose the necessary value
 
     cy.get(medService.nextBtn)
-      .click();  //7. navigate to the next page
+      .click();    //7. navigate to the next page
 
     cy.get(medService.headerBar)
       .should("be.visible")
-      .and("have.text", "With regard to your Family's Medical History:"); //8. check the title of a header of the page
+      .and("have.text", "With regard to your Family's Medical History:");    //8. check the title of a header of the page
 
   });
 
