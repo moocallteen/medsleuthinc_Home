@@ -1,6 +1,6 @@
 import alcoholPage from "../page-objects/16_alcohol0_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

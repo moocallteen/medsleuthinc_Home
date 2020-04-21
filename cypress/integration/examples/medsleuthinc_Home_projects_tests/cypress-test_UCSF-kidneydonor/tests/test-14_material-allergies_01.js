@@ -1,6 +1,6 @@
 import materialAllergies from "../page-objects/14_material-allergies_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

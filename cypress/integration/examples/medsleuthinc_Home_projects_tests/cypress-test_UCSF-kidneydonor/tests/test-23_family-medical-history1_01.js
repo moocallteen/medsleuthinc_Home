@@ -1,6 +1,6 @@
 import familyMedHistory1 from "../page-objects/23_family-medical-history1_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

@@ -1,6 +1,6 @@
 import referralPage from "../page-objects/01_referral_page_01";
 
-describe("transplan kidney donor referral.0 page test", () => {
+describe("transplant kidney donor referral.0 page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

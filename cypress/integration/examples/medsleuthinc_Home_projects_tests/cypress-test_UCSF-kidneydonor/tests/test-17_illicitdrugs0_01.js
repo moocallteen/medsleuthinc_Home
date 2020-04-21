@@ -1,6 +1,6 @@
 import illicitDrugsPage from "../page-objects/17_illicitdrugs0_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

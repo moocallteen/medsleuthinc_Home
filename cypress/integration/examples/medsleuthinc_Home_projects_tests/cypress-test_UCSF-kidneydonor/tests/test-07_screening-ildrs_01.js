@@ -1,6 +1,6 @@
 import screeningIlDrugs from "../page-objects/07_screening-ildrs_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

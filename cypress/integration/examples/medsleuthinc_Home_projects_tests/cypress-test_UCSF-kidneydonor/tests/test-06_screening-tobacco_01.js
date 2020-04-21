@@ -1,6 +1,6 @@
 import screeningTobacco from "../page-objects/06_screening-tobacco_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

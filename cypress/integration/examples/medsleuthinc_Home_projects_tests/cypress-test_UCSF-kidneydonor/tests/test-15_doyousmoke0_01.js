@@ -1,6 +1,6 @@
 import doYouSmokeCigarettes from "../page-objects/15_doyousmoke0_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

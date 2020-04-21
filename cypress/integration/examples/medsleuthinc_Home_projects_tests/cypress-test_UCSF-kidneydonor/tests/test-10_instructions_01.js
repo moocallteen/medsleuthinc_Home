@@ -1,6 +1,6 @@
 import instructionsPage from "../page-objects/10_instructions_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

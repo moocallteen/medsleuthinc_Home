@@ -1,6 +1,6 @@
 import thankYouOptOut from "../page-objects/09_thankyou_opt_out_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

@@ -1,6 +1,6 @@
 import screeningDiabetesrx from "../page-objects/04_screening-diabetesrx_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

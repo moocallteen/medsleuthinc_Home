@@ -1,6 +1,6 @@
 import activityPage from "../page-objects/18_activity0_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

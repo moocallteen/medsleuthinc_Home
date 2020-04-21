@@ -1,6 +1,6 @@
 import screeningKidneystones from "../page-objects/05_screening-kidneystones_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

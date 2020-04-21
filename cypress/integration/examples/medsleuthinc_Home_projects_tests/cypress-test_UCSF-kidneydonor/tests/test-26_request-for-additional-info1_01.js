@@ -1,6 +1,6 @@
 import requestForAdditionalInfo1 from "../page-objects/26_request-for-additional-info1_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

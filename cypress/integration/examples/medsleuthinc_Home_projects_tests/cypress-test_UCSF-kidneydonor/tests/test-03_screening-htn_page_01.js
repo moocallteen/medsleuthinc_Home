@@ -1,6 +1,6 @@
 import screeningHtn0 from "../page-objects/03_screening-htn_page_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

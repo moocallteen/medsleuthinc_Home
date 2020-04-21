@@ -1,6 +1,6 @@
 import medService from "../page-objects/21_med-service0_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",

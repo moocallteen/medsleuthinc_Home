@@ -1,6 +1,6 @@
 import whatToExpectPage from "../page-objects/08_what_to_expect_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
