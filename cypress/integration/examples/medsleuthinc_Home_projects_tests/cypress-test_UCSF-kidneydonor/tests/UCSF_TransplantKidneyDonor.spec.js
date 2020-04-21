@@ -25,9 +25,13 @@ import familyMedHistory1 from "../page-objects/23_family-medical-history1_01";
 import typeBlood0 from "../page-objects/24_blood0_01";
 import highriskbehavior1 from "../page-objects/25_highriskbehavior1_01";
 import requestForAdditionalInfo1 from "../page-objects/26_request-for-additional-info1_01";
+import education0 from "../page-objects/27_education0_01";
+import employmentYn from "../page-objects/28_employmentyn_01";
 
 
-describe("transplan kidney donor page test", () => {
+
+
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
@@ -6140,6 +6144,161 @@ describe("transplan kidney donor page test", () => {
     cy.get(requestForAdditionalInfo1.headerBar)
       .should("be.visible")
       .and("have.text", "Please select which of the options below most closely matches your highest level of education.");    //19. check the title of a header of the page
+
+  });
+
+  it("Should check the education.0 page elements", () => {
+
+    /*
+    1. navigate to the "education.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the radio buttons
+    6. choose the necessary value
+    7. navigate to the next page
+    8. check the title of a header of the page
+    */
+
+    var notAttendedHSEduTitle = "I have not attended high school";
+    var notGradHSEduTitle = "I have not graduated high school";
+    var hsGraduateEduTitle = "I am a high school graduate";
+    var someCollegeEduTitle = "I attended some college, but don't have a degree";
+    var associateEduTitle = "I have an Associate's degree";
+    var bachelorEduTitle = "I have a Bachelor's degree";
+    var masterEduTitle = "I have a Master's or other professional degree";
+
+    cy.visit("/education.0")    //1. navigate to the "education.0" dialog
+      .contains("Please select which of the options below most closely matches your highest level of education.")    //2. check the title of the dialog
+      .get(education0.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(education0.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(education0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");    //4. validation error message checking
+
+
+    cy.get(education0.notAttendedHSEducationChechBox)
+      .should("be.visible")
+      .and("have.text", notAttendedHSEduTitle)    //5. check the visibility of the radio buttons
+
+      .get(education0.notGradHSEducationChechBox)
+      .should("be.visible")
+      .and("have.text", notGradHSEduTitle)    //5. check the visibility of the radio buttons
+
+      .get(education0.hsGraduateEducationChechBox)
+      .should("be.visible")
+      .and("have.text", hsGraduateEduTitle)    //5. check the visibility of the radio buttons
+
+      .get(education0.someCollegeEducationChechBox)
+      .should("be.visible")
+      .and("have.text", someCollegeEduTitle)    //5. check the visibility of the radio buttons
+
+      .get(education0.associateEducationChechBox)
+      .should("be.visible")
+      .and("have.text", associateEduTitle)    //5. check the visibility of the radio buttons
+
+      .get(education0.bachelorEducationChechBox)
+      .should("be.visible")
+      .and("have.text", bachelorEduTitle)    //5. check the visibility of the radio buttons
+
+      .get(education0.masterEducationChechBox)
+      .should("be.visible")
+      .and("have.text", masterEduTitle)    //5. check the visibility of the radio buttons
+      .click();    //6. choose the necessary value
+
+    cy.get(education0.nextBtn)
+      .click();    //7. navigate to the next page
+
+    cy.get(education0.headerBar)
+      .should("be.visible")
+      .and("have.text", "Are you currently working for income?");    //8. check the title of a header of the page
+
+  });
+
+  it("Should check the blood.0 page elements", () => {
+
+    /*
+    1. navigate to the "blood.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. check the title of the section
+    8. validation error message checking
+    9. check the visibility of the checkboxes
+    10. choose the necessary value
+    11. navigate to the next page
+    12. check the title of a header of the page
+    */
+
+    cy.visit("/blood.0")    //1. navigate to the "blood.0" dialog
+      .contains("What is your blood type:")    //2. check the title of the dialog
+      .get(typeBlood0.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(typeBlood0.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(typeBlood0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");    //4. validation error message checking
+
+    cy.get(typeBlood0.aBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "A")    //5. check the visibility of the checkboxes
+      .click()    //6. choose the necessary value
+
+      .get(typeBlood0.bBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "B")    //5. check the visibility of the checkboxes
+
+      .get(typeBlood0.abBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "AB")    //5. check the visibility of the checkboxes
+
+      .get(typeBlood0.zeroBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "O")    //5. check the visibility of the checkboxes
+
+      .get(typeBlood0.unknownBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Unknown");    //5. check the visibility of the checkboxes
+
+    cy.contains("If necessary, would you be willing to accept a blood transfusion?");    //7. check the title of the section
+
+    cy.get(typeBlood0.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(typeBlood0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");    //8. validation error message checking
+
+    cy.get(typeBlood0.yesTransfusionCheckBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")    //9. check the visibility of the checkboxes
+      .click()   //10. choose the necessary value
+      .get(typeBlood0.noTransfusionCheckBtn)
+      .should("be.visible")
+      .and("have.text", "No");    //9. check the visibility of the checkboxes
+
+    cy.get(typeBlood0.nextBtn)
+      .click()    //11. navigate to the next page
+      .get(typeBlood0.headerBar)
+      .should("be.visible")
+      .and("have.text", "Within the previous 12 months, do any of the following situations apply to you?");    //12. check the title of a header of the page
 
   });
 

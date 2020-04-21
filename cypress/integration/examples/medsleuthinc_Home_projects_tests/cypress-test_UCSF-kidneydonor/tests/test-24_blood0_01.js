@@ -1,6 +1,6 @@
 import typeBlood0 from "../page-objects/24_blood0_01";
 
-describe("transplan kidney donor page test", () => {
+describe("transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
