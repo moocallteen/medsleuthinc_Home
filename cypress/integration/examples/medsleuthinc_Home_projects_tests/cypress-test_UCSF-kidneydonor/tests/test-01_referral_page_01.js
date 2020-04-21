@@ -1,17 +1,16 @@
-import referralPage from "../page-objects/00_landing_page_01";
+import referralPage from "../page-objects/01_referral_page_01";
 
 describe("transplan kidney donor referral.0 page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });
 
   it("should check the referral.0 page elements", () => {
 
-    var textNextBtn = "Next";
     var transplantCandidateText = "From the transplant candidate";
     var candidatesSomeoneText = "From someone I know on behalf of the transplant candidate (a family member or friend)";
     var socialMediaText = "From social media (such as Facebook)";
@@ -20,12 +19,14 @@ describe("transplan kidney donor referral.0 page test", () => {
     var otherText = "Other";
 
     cy.visit("/referral.0")
-      .get(referralPage.introStartSurBtn)
-      .click()
-      .get(referralPage.nextBtn)
-      .then(el => {
-        assert.include(el.text(), textNextBtn);
-      });
+      .contains("How did you learn about the opportunity for living organ donation?");
+
+    cy.get(referralPage.introStartSurBtn)
+      .click();
+
+    cy.get(referralPage.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
 
 
     cy.get(referralPage.transplantCandidateRadioBtn)
@@ -61,7 +62,7 @@ describe("transplan kidney donor referral.0 page test", () => {
       .get(referralPage.myOwnResearchRadioBtn)
       .check()
       .get(referralPage.nextBtn)
-      .should("have.text", textNextBtn)
+      .should("have.text", "Next")
       .click();
 
     cy.contains("Demographics")

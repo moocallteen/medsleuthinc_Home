@@ -4,7 +4,7 @@ describe("transplan kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });
@@ -301,7 +301,7 @@ describe("transplan kidney donor page test", () => {
 
     cy.get(waitlistInquiry.headerBar)
       .should("be.visible")
-      .and("have.text", "Please select all surgical procedures performed on your Breast");        //20. check the title of a header of the page
+      .and("have.text", "Please check all parts of your Chest listed below where you have had surgery:");        //20. check the title of a header of the page
 
     cy.get(waitlistInquiry.augumentationBrestSurgery)
       .should("be.visible")

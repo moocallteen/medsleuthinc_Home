@@ -1,12 +1,10 @@
 import requestForAdditionalInfo1 from "../page-objects/26_request-for-additional-info1_01";
 
-// copy to UCSF_TransplantKidneyDonor.spec.js
-
 describe("transplan kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });

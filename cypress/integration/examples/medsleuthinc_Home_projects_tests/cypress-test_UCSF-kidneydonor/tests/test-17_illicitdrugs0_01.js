@@ -4,7 +4,7 @@ describe("transplan kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });
@@ -303,6 +303,7 @@ describe("transplan kidney donor page test", () => {
       .and("contain", "Required");
 
     cy.get(illicitDrugsPage.quitYearSelector)
+      .scrollIntoView()
       .should("be.visible")
       .and("contain", selectorText)
     for (var i = 0; i < quitYearValues.length; i++) {

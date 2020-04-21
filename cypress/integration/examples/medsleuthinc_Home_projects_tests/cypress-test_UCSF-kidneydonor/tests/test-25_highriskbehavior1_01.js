@@ -1,12 +1,10 @@
 import highriskbehavior1 from "../page-objects/25_highriskbehavior1_01";
 
-// copy to UCSF_TransplantKidneyDonor.spec.js
-
 describe("transplan kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });
@@ -29,8 +27,8 @@ describe("transplan kidney donor page test", () => {
     13. check the title of a header of the page
     */
 
-    var dataTargetTitle = "ⓘ Why do I need to answer these questions?";
-    var helpModalContent = "The following list of questions was developed using the Centers for Disease Control’s (CDC) Donor Exclusion Criteria guidelines. The CDC is a United States federal agency under the Department of Health and Human Services. You will be asked the below questions about high risk behavior on multiple occasions during the evaluation process. This is to protect you and to protect your recipient from possible harmful infectious disease that have been known to have been transmitted during the organ donation process.";
+    var dataTargetTitle = "ⓘWhy do I need to answer these questions?";
+    var helpModalContent = "×The following list of questions was developed using the Centers for Disease Control’s (CDC) Donor Exclusion Criteria guidelines. The CDC is a United States federal agency under the Department of Health and Human Services. You will be asked the below questions about high risk behavior on multiple occasions during the evaluation process. This is to protect you and to protect your recipient from possible harmful infectious disease that have been known to have been transmitted during the organ donation process.";
 
     var escortServiceTwoBehaviorDescription = "I have had sexual intercourse with a person known to engage in acts of prostitution";
     var bloodTransfusionBehaviorDescription = "I have received a blood transfusion";
@@ -48,7 +46,7 @@ describe("transplan kidney donor page test", () => {
     var addInfoRequestHeadind = "We may need to request additional information such as laboratory or other diagnostic test from your other health care providers. Please provide us with the following information (OPTIONAL)";
 
     cy.visit("/highriskbehavior.1")    //1. navigate to the "highriskbehavior.1" dialog
-      .contains("What is your blood type:")    //2. check the title of the dialog
+      .contains("Within the previous 12 months, do any of the following situations apply to you?")    //2. check the title of the dialog
       .get(highriskbehavior1.introStartSurBtn)
       .should("be.visible")
       .and("have.text", "Start Survey")
@@ -66,6 +64,7 @@ describe("transplan kidney donor page test", () => {
     cy.contains("Please check any that apply:");    //5. check the title of the section
 
     cy.get(highriskbehavior1.dataTargetRiskBehavior)
+      .scrollIntoView()
       .should("be.visible")
       .and("have.text", dataTargetTitle)    //6. check the title of the item
       .click();    //7. open the help modal

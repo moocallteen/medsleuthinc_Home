@@ -22,14 +22,16 @@ import otherMedConditions from "../page-objects/20_other-med-conditions1_01";
 import medService from "../page-objects/21_med-service0_01";
 import familyMedHistory0 from "../page-objects/22_family-medical-history0_01";
 import familyMedHistory1 from "../page-objects/23_family-medical-history1_01";
-
+import typeBlood0 from "../page-objects/24_blood0_01";
+import highriskbehavior1 from "../page-objects/25_highriskbehavior1_01";
+import requestForAdditionalInfo1 from "../page-objects/26_request-for-additional-info1_01";
 
 
 describe("transplan kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });
@@ -134,7 +136,6 @@ describe("transplan kidney donor page test", () => {
 
   it("should check the referral.0 page elements", () => {
 
-    var textNextBtn = "Next";
     var transplantCandidateText = "From the transplant candidate";
     var candidatesSomeoneText = "From someone I know on behalf of the transplant candidate (a family member or friend)";
     var socialMediaText = "From social media (such as Facebook)";
@@ -143,12 +144,15 @@ describe("transplan kidney donor page test", () => {
     var otherText = "Other";
 
     cy.visit("/referral.0")
-      .get(referralPage.introStartSurBtn)
-      .click()
-      .get(referralPage.nextBtn)
-      .then(el => {
-        assert.include(el.text(), textNextBtn);
-      });
+      .contains("How did you learn about the opportunity for living organ donation?");
+
+    cy.get(referralPage.introStartSurBtn)
+      .click();
+
+    cy.get(referralPage.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+
 
     cy.get(referralPage.transplantCandidateRadioBtn)
       .should("be.visible")
@@ -183,7 +187,7 @@ describe("transplan kidney donor page test", () => {
       .get(referralPage.myOwnResearchRadioBtn)
       .check()
       .get(referralPage.nextBtn)
-      .should("have.text", textNextBtn)
+      .should("have.text", "Next")
       .click();
 
     cy.contains("Demographics")
@@ -2714,6 +2718,7 @@ describe("transplan kidney donor page test", () => {
       .and("contain", "Required");
 
     cy.get(illicitDrugsPage.quitYearSelector)
+      .scrollIntoView()
       .should("be.visible")
       .and("contain", selectorText)
     for (var i = 0; i < quitYearValues.length; i++) {
@@ -5797,6 +5802,344 @@ describe("transplan kidney donor page test", () => {
     cy.get(familyMedHistory1.headerBar)
       .should("be.visible")
       .and("have.text", "What is your blood type:"); //26. check the title of a header of the page
+
+  });
+
+  it("Should check the blood.0 page elements", () => {
+
+    /*
+    1. navigate to the "blood.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. check the title of the section
+    8. validation error message checking
+    9. check the visibility of the checkboxes
+    10. choose the necessary value
+    11. navigate to the next page
+    12. check the title of a header of the page
+    */
+
+    cy.visit("/blood.0")    //1. navigate to the "blood.0" dialog
+      .contains("What is your blood type:")    //2. check the title of the dialog
+      .get(typeBlood0.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(typeBlood0.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(typeBlood0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");    //4. validation error message checking
+
+    cy.get(typeBlood0.aBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "A")    //5. check the visibility of the checkboxes
+      .click()    //6. choose the necessary value
+
+      .get(typeBlood0.bBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "B")    //5. check the visibility of the checkboxes
+
+      .get(typeBlood0.abBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "AB")    //5. check the visibility of the checkboxes
+
+      .get(typeBlood0.zeroBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "O")    //5. check the visibility of the checkboxes
+
+      .get(typeBlood0.unknownBloodTypeRadioBtn)
+      .should("be.visible")
+      .and("have.text", "Unknown");    //5. check the visibility of the checkboxes
+
+    cy.contains("If necessary, would you be willing to accept a blood transfusion?");    //7. check the title of the section
+
+    cy.get(typeBlood0.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(typeBlood0.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");    //8. validation error message checking
+
+    cy.get(typeBlood0.yesTransfusionCheckBtn)
+      .should("be.visible")
+      .and("have.text", "Yes")    //9. check the visibility of the checkboxes
+      .click()   //10. choose the necessary value
+      .get(typeBlood0.noTransfusionCheckBtn)
+      .should("be.visible")
+      .and("have.text", "No");    //9. check the visibility of the checkboxes
+
+    cy.get(typeBlood0.nextBtn)
+      .click()    //11. navigate to the next page
+      .get(typeBlood0.headerBar)
+      .should("be.visible")
+      .and("have.text", "Within the previous 12 months, do any of the following situations apply to you?");    //12. check the title of a header of the page
+
+  });
+
+  it("Should check the highriskbehavior.1 page elements", () => {
+
+    /*
+    1. navigate to the "highriskbehavior.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the title of the section
+    6. check the title of the item
+    7. open the help modal
+    8. check the modal's content
+    9. close the help modal
+    10. check the visibility of the checkboxes
+    11. choose the necessary value
+    12. navigate to the next page
+    13. check the title of a header of the page
+    */
+
+    var dataTargetTitle = "ⓘWhy do I need to answer these questions?";
+    var helpModalContent = "×The following list of questions was developed using the Centers for Disease Control’s (CDC) Donor Exclusion Criteria guidelines. The CDC is a United States federal agency under the Department of Health and Human Services. You will be asked the below questions about high risk behavior on multiple occasions during the evaluation process. This is to protect you and to protect your recipient from possible harmful infectious disease that have been known to have been transmitted during the organ donation process.";
+
+    var escortServiceTwoBehaviorDescription = "I have had sexual intercourse with a person known to engage in acts of prostitution";
+    var bloodTransfusionBehaviorDescription = "I have received a blood transfusion";
+    var hemodialysisBehaviorDescription = "I have received hemodialysis treatment";
+    var hrbMaleSexBehaviorDescription = "I am a male who has had sex with other males (MSM)";
+    var hrbFemaleSexBehaviorDescription = "I am a female who has sex with a man with a history of having sex with other males (MSM)";
+    var hivSexBehaviorDescription = "I have had sexual intercourse with a person known to have HIV, HBV, and/or HCV infection(s)";
+    var escortServiceOneBehaviorDescription = "I have engaged in acts of prostitution";
+    var escortServiceThreeBehaviorDescription = "I have had sexual intercourse with an intravenous illicit drug user";
+    var illicitDrugInjectBehaviorDescription = "I have injected illicit drugs";
+    var prisonBehaviorDescription = "I have been incarcerated for 72 hours or longer";
+    var diagnoseBehaviorDescription = "I have been diagnosed with or treated for syphilis, gonorrhea, chlamydia, or genital ulcers";
+    var notApplyBehaviorDescription = "None of these situations apply to me";
+
+    var addInfoRequestHeadind = "We may need to request additional information such as laboratory or other diagnostic test from your other health care providers. Please provide us with the following information (OPTIONAL)";
+
+    cy.visit("/highriskbehavior.1")    //1. navigate to the "highriskbehavior.1" dialog
+      .contains("Within the previous 12 months, do any of the following situations apply to you?")    //2. check the title of the dialog
+      .get(highriskbehavior1.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(highriskbehavior1.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(highriskbehavior1.validationErrorMsg)
+      .should("be.visible")
+      .and("have.text", "Required");    //4. validation error message checking
+
+    cy.contains("Please check any that apply:");    //5. check the title of the section
+
+    cy.get(highriskbehavior1.dataTargetRiskBehavior)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", dataTargetTitle)    //6. check the title of the item
+      .click();    //7. open the help modal
+
+    cy.get(highriskbehavior1.helpModal)
+      .should("be.visible")
+      .and("have.text", helpModalContent)    //8. check the modal's content
+      .click("topLeft");    //9. close the help modal
+
+    cy.get(highriskbehavior1.escortServiceTwoBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", escortServiceTwoBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.bloodTransfusionBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", bloodTransfusionBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.hemodialysisBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", hemodialysisBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.hrbMaleSexBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", hrbMaleSexBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.hrbFemaleSexBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", hrbFemaleSexBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.hivSexBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", hivSexBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.escortServiceOneBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", escortServiceOneBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.escortServiceThreeBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", escortServiceThreeBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.illicitDrugInjectBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", illicitDrugInjectBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.prisonBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", prisonBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.diagnoseBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", diagnoseBehaviorDescription)    //10. check the visibility of the checkboxes
+
+      .get(highriskbehavior1.notApplyBehaviorCheckBox)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", notApplyBehaviorDescription)    //10. check the visibility of the checkboxes
+      .click();    //11. choose the necessary value
+
+    cy.get(highriskbehavior1.nextBtn)
+      .scrollIntoView()
+      .click();    //12. navigate to the next page
+
+    cy.get(highriskbehavior1.headerBar)
+      .should("be.visible")
+      .and("have.text", addInfoRequestHeadind);    //13. check the title of a header of the page
+
+  });
+
+  it("Should check the request-for-additional-info.1 page elements", () => {
+
+    /*
+    1. navigate to the "request-for-additional-info.1" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the title of the section
+    5. check the visibility of the item
+    6. type the requested information 
+    7. check the title of the section
+    8. check the visibility of the item
+    9. type the requested information 
+    10. check the title of the section
+    11. check the visibility of the item
+    12. type the requested information 
+    13. check the title of the section
+    14. check the visibility of the item
+    15. check the visibility of the item
+    16. check the visibility of the selector's content
+    17. choose the necessary value
+    18. navigate to the next page
+    19. check the title of a header of the page
+    */
+
+    var selectorText = "Select One";
+    var stateNames = [
+      "AL",
+      "AK",
+      "AZ",
+      "AR",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "ME",
+      "MD",
+      "MA",
+      "MI",
+      "MN",
+      "MS",
+      "MO",
+      "MT",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NM",
+      "NY",
+      "NC",
+      "ND",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VT",
+      "VA",
+      "WA",
+      "WV",
+      "WI",
+      "WY"
+    ];
+
+    cy.visit("/request-for-additional-info.1")    //1. navigate to the "request-for-additional-info.1" dialog
+      .contains("We may need to request additional information such as laboratory or other diagnostic test from your other health care providers. Please provide us with the following information (OPTIONAL)")    //2. check the title of the dialog
+      .get(requestForAdditionalInfo1.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.contains("Name:");    //4. check the title of the section
+    cy.get(requestForAdditionalInfo1.nameAddInfoInputField)    //5. check the visibility of the item
+      .should("be.visible")
+      .type("Donor Name");    //6. type the requested information 
+
+    cy.contains("Phone Number:");    //7. check the title of the section
+    cy.get(requestForAdditionalInfo1.phoneAddInfoInputField)    //8. check the visibility of the item
+      .should("be.visible")
+      .type("5555555555");    //9. type the requested information 
+
+    cy.contains("City:");    //10. check the title of the section
+    cy.get(requestForAdditionalInfo1.cityAddInfoInputField)    //11. check the visibility of the item
+      .should("be.visible")
+      .type("Racoon City");    //12. type the requested information 
+
+    cy.contains("State:");    //13. check the title of the section
+    cy.get(requestForAdditionalInfo1.stateSelectAddInfo)    //14. check the visibility of the item
+      .should("be.visible")
+      .and("contain", selectorText)
+    for (var i = 0; i < stateNames.length; i++) {
+      cy.get(requestForAdditionalInfo1.stateSelectAddInfo)    //15. check the visibility of the item
+        .select(stateNames[i])
+        .should("be.visible")
+    };    //16. check the visibility of the selector's content
+    cy.get(requestForAdditionalInfo1.stateSelectAddInfo)
+      .select("WA");    //17. choose the necessary value
+
+    cy.get(requestForAdditionalInfo1.nextBtn)
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click();    //18. navigate to the next page
+
+    cy.get(requestForAdditionalInfo1.headerBar)
+      .should("be.visible")
+      .and("have.text", "Please select which of the options below most closely matches your highest level of education.");    //19. check the title of a header of the page
 
   });
 

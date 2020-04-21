@@ -1,12 +1,10 @@
 import typeBlood0 from "../page-objects/24_blood0_01";
 
-// copy to UCSF_TransplantKidneyDonor.spec.js
-
 describe("transplan kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
-      "https://mobile-survey.patientfollowup.org.arcgmrqa.i.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
+      "https://mobile-survey.mymedsleuth.com/transplant-kidney/donor-prereq-1/dialogs"
     );
     cy.viewport(1280, 800);
   });
@@ -58,7 +56,7 @@ describe("transplan kidney donor page test", () => {
 
       .get(typeBlood0.zeroBloodTypeRadioBtn)
       .should("be.visible")
-      .and("have.text", "0")    //5. check the visibility of the checkboxes
+      .and("have.text", "O")    //5. check the visibility of the checkboxes
 
       .get(typeBlood0.unknownBloodTypeRadioBtn)
       .should("be.visible")
