@@ -36,7 +36,7 @@ describe("transplant kidney donor page test", () => {
     22. check the visibility of the selector
     23. check the visibility of the selector's content
     24. choose the necessary value
-    25. choose the necessary value
+    25. navigate to the next page
     26. check the title of a header of the page
     */
 
@@ -198,7 +198,7 @@ describe("transplant kidney donor page test", () => {
       .select("8");    //24. choose the necessary value
 
     cy.get(offspring0.nextBtn)
-      .click();    //25. choose the necessary value
+      .click();    //25. navigate to the next page
 
     cy.get(offspring0.headerBar)
       .should("be.visible")
@@ -220,7 +220,7 @@ describe("transplant kidney donor page test", () => {
       .click();    //4. choose the necessary value
 
     cy.get(offspring0.nextBtn)
-      .click();    //5. check the visibility of radio buttons
+      .click();    //5. navigate to the next page
 
     cy.get(offspring0.headerBar)
       .should("be.visible")
