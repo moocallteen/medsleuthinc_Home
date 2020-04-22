@@ -26,11 +26,10 @@ describe("transplant kidney donor page test", () => {
     12. type the requested information 
     13. check the title of the section
     14. check the visibility of the item
-    15. check the visibility of the item
-    16. check the visibility of the selector's content
-    17. choose the necessary value
-    18. navigate to the next page
-    19. check the title of a header of the page
+    15. check the visibility of the selector's content
+    16. choose the necessary value
+    17. navigate to the next page
+    18. check the title of a header of the page
     */
 
     var selectorText = "Select One";
@@ -114,21 +113,21 @@ describe("transplant kidney donor page test", () => {
       .should("be.visible")
       .and("contain", selectorText)
     for (var i = 0; i < stateNames.length; i++) {
-      cy.get(requestForAdditionalInfo1.stateSelectAddInfo)    //15. check the visibility of the item
+      cy.get(requestForAdditionalInfo1.stateSelectAddInfo)
         .select(stateNames[i])
         .should("be.visible")
-    };    //16. check the visibility of the selector's content
+    };    //15. check the visibility of the selector's content
     cy.get(requestForAdditionalInfo1.stateSelectAddInfo)
-      .select("WA");    //17. choose the necessary value
+      .select("WA");    //16. choose the necessary value
 
     cy.get(requestForAdditionalInfo1.nextBtn)
       .should("be.visible")
       .and("have.text", "Next")
-      .click();    //18. navigate to the next page
+      .click();    //17. navigate to the next page
 
     cy.get(requestForAdditionalInfo1.headerBar)
       .should("be.visible")
-      .and("have.text", "Please select which of the options below most closely matches your highest level of education.");    //19. check the title of a header of the page
+      .and("have.text", "Please select which of the options below most closely matches your highest level of education.");    //18. check the title of a header of the page
 
   });
 
