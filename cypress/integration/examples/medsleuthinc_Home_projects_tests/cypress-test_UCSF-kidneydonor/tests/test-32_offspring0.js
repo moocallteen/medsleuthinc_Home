@@ -208,6 +208,15 @@ describe("transplant kidney donor page test", () => {
 
   it("Should check the offspring.0 page elements - Has No Children scenario", () => {
 
+    /*
+    1. navigate to the "offspring.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. choose the necessary value
+    5. navigate to the next page
+    6. check the title of a header of the page
+    */
+
     cy.visit("/offspring.0")    //1. navigate to the "offspring.0" dialog
       .contains("Do you have children that you currently care for?")    //2. check the title of the dialog
       .get(offspring0.introStartSurBtn)
