@@ -8125,6 +8125,7 @@ describe("transplant kidney donor page test", () => {
       .and("have.text", nationalRegistry)    //5. check the visibility of the page's content
 
       .get(thankYou0.nationalFoundationEducationLink)
+      .scrollIntoView()
       .should("be.visible")
       .and("have.text", nationalFoundation)    //5. check the visibility of the page's content
 
