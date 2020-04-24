@@ -35,6 +35,10 @@ import motivation1 from "../page-objects/33_motivation1_01";
 import emergencycontact0 from "../page-objects/34_emergencycontact0_01";
 import emergencycontact1 from "../page-objects/35_emergencycontact1_01";
 import contact0 from "../page-objects/36_contact0_01";
+import contactSchedule01 from "../page-objects/37_contact-schedule01_01";
+import videoscreenYesNo from "../page-objects/38_videoscreenyn_01";
+import supplemental01 from "../page-objects/39_supplemental01_01";
+import thankYou0 from "../page-objects/40_thankyou0_01";
 
 
 
@@ -7668,6 +7672,7 @@ describe("transplant kidney donor page test", () => {
   });
 
   it("Should check the contact.0 page elements - Skip Optional Fields Scenario", () => {
+
     /*
     1. navigate to the "contact.0" dialog
     2. check the title of the dialog
@@ -7698,6 +7703,7 @@ describe("transplant kidney donor page test", () => {
     27. navigate to the next page
     28. check the title of a header of the page
     */
+
     var phoneTypeValues = [
       "Mobile",
       "Home",
@@ -7835,6 +7841,311 @@ describe("transplant kidney donor page test", () => {
     cy.get(contact0.headerBar)
       .should("be.visible")
       .and("have.text", "Please select the best days and times to contact you if necessary: (Optional)");    //28. check the title of a header of the page
+
+  });
+
+  it("Should check the contact-schedule.01 page elements - No Skip Scenario", () => {
+
+    /*
+    1. navigate to the "contact-schedule.01" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the title of the section
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. check the title of the section
+    8. check the visibility of the radio buttons
+    9. choose the necessary value
+    10. navigate to the next page
+    11. check the title of a header of the page
+    */
+
+    cy.visit("/contact-schedule.01")    //1. navigate to the "contact-schedule.01" dialog
+      .contains("Please select the best days and times to contact you if necessary: (Optional)")    //2. check the title of the dialog
+      .get(contactSchedule01.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.contains("In order to facilitate easier contact, please select as many options as possible");    //4. check the title of the section
+
+    cy.get(contactSchedule01.mondayCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "Monday")
+
+      .get(contactSchedule01.tuesdayCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "Tuesday")
+
+      .get(contactSchedule01.wednesdayCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "Wednesday")
+
+      .get(contactSchedule01.thursdayCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "Thursday")
+
+      .get(contactSchedule01.fridayCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "Friday")
+      .click()    //6. choose the necessary value
+
+      .get(contactSchedule01.morningCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "8:00 AM - 12:00 PM")
+      .click()    //6. choose the necessary value
+
+      .get(contactSchedule01.afternoonCheckBox)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "12:00 PM - 5:00 PM")
+      .click();    //6. choose the necessary value
+
+    cy.contains("What is your preferred method of contact?");    //7. check the title of the section
+
+    cy.get(contactSchedule01.phonePreferredContactMethod)    //8. check the visibility of the radio buttons
+      .should("be.visible")
+      .and("have.text", "Phone")
+      .click()    //9. choose the necessary value
+      .get(contactSchedule01.emailPreferredContactMethod)    //8. check the visibility of the radio buttons
+      .should("be.visible")
+      .and("have.text", "Email")
+      .get(contactSchedule01.noPreferredContactMethod)    //8. check the visibility of the radio buttons
+      .should("be.visible")
+      .and("have.text", "No Preference");
+
+    cy.get(contactSchedule01.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click();    //10. navigate to the next page
+
+    cy.get(contactSchedule01.headerBar)
+      .should("be.visible")
+      .and("have.text", "Have you watched the UCSF video about Living Kidney Donation, 'The Gift of Life'?");    //11. check the title of a header of the page
+
+  });
+
+  it("Should check the contact-schedule.01 page elements - Skip Scenario", () => {
+
+    /*
+    1. navigate to the "contact-schedule.01" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. navigate to the next page
+    5. check the title of a header of the page
+    */
+
+    cy.visit("/contact-schedule.01")    //1. navigate to the "contact-schedule.01" dialog
+      .contains("Please select the best days and times to contact you if necessary: (Optional)")    //2. check the title of the dialog
+      .get(contactSchedule01.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(contactSchedule01.nextBtn)
+      .scrollIntoView()
+      .click();    //4. navigate to the next page
+
+    cy.get(contactSchedule01.headerBar)
+      .should("be.visible")
+      .and("have.text", "Have you watched the UCSF video about Living Kidney Donation, 'The Gift of Life'?");    //5. check the title of a header of the page
+
+  });
+
+  it("Should check the videoscreen.yn page elements - Yes Scenario", () => {
+
+    /*
+    1. navigate to the "videoscreen.yn" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. validation error message checking
+    5. check the visibility of the checkboxes
+    6. choose the necessary value
+    7. navigate to the next page
+    8. check the title of a header of the page
+    */
+
+    var dialogHeaderTitle = "Have you watched the UCSF video about Living Kidney Donation, 'The Gift of Life'?";
+    var additionalInfoHeader = "Is there any additional information that you would like shared with your health care providers? (Optional) You must press the SUBMIT button below to complete this health questionnaire.";
+
+    cy.visit("/videoscreen.yn")    //1. navigate to the "videoscreen.yn" dialog
+      .contains(dialogHeaderTitle)    //2. check the title of the dialog
+      .get(videoscreenYesNo.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(videoscreenYesNo.nextBtn)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Next")
+      .click()
+      .get(videoscreenYesNo.validationErrorMsg)
+      .should("be.visible")
+      .and("contain", "Required");    //4. validation error message checking
+
+    cy.get(videoscreenYesNo.yesRadioBtn)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .click()    //6. choose the necessary value
+      .get(videoscreenYesNo.noRadioBtn)    //5. check the visibility of the checkboxes
+      .should("be.visible")
+      .and("have.text", "No");
+
+    cy.get(videoscreenYesNo.nextBtn)
+      .click();    //7. navigate to the next page
+
+    cy.get(videoscreenYesNo.headerBar)
+      .should("be.visible")
+      .and("have.text", additionalInfoHeader);    //8. check the title of a header of the page
+
+  });
+
+  it("Should check the videoscreen.yn page elements - No Scenario", () => {
+
+    /*
+    1. navigate to the "videoscreen.yn" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. choose the necessary value
+    5. navigate to the next page
+    6. check the title of a header of the page
+    */
+
+    var dialogHeaderTitle = "Have you watched the UCSF video about Living Kidney Donation, 'The Gift of Life'?";
+    var additionalInfoHeader = "Is there any additional information that you would like shared with your health care providers? (Optional) You must press the SUBMIT button below to complete this health questionnaire.";
+
+    cy.visit("/videoscreen.yn")    //1. navigate to the "videoscreen.yn" dialog
+      .contains(dialogHeaderTitle)    //2. check the title of the dialog
+      .get(videoscreenYesNo.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.get(videoscreenYesNo.noRadioBtn)
+      .should("have.text", "No")
+      .click();    //4. choose the necessary value
+
+    cy.get(videoscreenYesNo.nextBtn)
+      .click();    //5. navigate to the next page
+
+    cy.get(videoscreenYesNo.headerBar)
+      .should("be.visible")
+      .and("have.text", additionalInfoHeader);    //6. check the title of a header of the page
+
+  });
+
+  it("Should check the supplemental.01 page elements", () => {
+
+    /*
+    1. navigate to the "supplemental.01" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the title of the section
+    5. check the visibility of the item
+    6. type in the required information
+    7. check the visibility of the button
+    8. submit the questionnaire
+    9. check the title of a header of the page
+    */
+
+    var dialogHeaderTitle = "Is there any additional information that you would like shared with your health care providers? (Optional) You must press the SUBMIT button below to complete this health questionnaire.";
+
+    cy.visit("/supplemental.01")    //1. navigate to the "supplemental.01" dialog
+      .contains(dialogHeaderTitle)    //2. check the title of the dialog
+      .get(supplemental01.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.contains("Please write here...");    //4. check the title of the section
+
+    cy.get(supplemental01.textArea)    //5. check the visibility of the item 
+      .should("be.visible")
+      .type("Additional Information");    //6. type in the required information
+
+    cy.get(supplemental01.submitBtn)    //7. check the visibility of the button
+      .should("be.visible")
+      .and("have.text", "Submit")
+      .click();    //8. submit the questionnaire
+
+    cy.get(supplemental01.headerBar)
+      .should("be.visible")
+      .and("have.text", "Questionnaire Submitted");    //9. check the title of a header of the page
+
+  });
+
+  it("Should check the thankyou.0 page elements", () => {
+
+    /*
+    1. navigate to the "thankyou.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the visibility of the page's content
+    5. check the visibility of the page's content
+    6. check the visibility of the page's content
+    7. check the visibility of the page's content
+    */
+
+    var thankYouPrologue = "Thank you for your generous offer to be a living kidney donor. Our goal is to begin the formal evaluation process as soon as possible. Below are some useful educational materials about living kidney donation. Please take a moment to review these materials.";
+    var pleaseSendUsEmail = "If you wish to contact us please send an e-mail to:";
+
+    var donorMaterials = "UCSF Kidney Transplant Living Donor Educational Materials";
+    var donorOverview = "UCSF Kidney Transplant Living Donor Overview";
+    var giftOfLife = "UCSF 'The Gift of Life' Video";
+    var nationalRegistry = "National Kidney Registry";
+    var nationalFoundation = "National Kidney Foundation";
+    var practices = "UCSF Notice of Privacy Practices";
+    var patientSafety = "UCSF Patient Safety";
+    var patientResources = "NLDAC Patient Resources";
+
+    cy.visit("/thankyou.0")    //1. navigate to the "thankyou.0" dialog
+      .contains("Questionnaire Submitted")    //2. check the title of the dialog
+      .get(thankYou0.introStartSurBtn)
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();    //3. click to start survey
+
+    cy.contains(thankYouPrologue);    //4. check the visibility of the page's content
+
+    cy.get(thankYou0.donorMaterialsEducationLink)
+      .should("be.visible")
+      .and("have.text", donorMaterials)    //5. check the visibility of the page's content
+
+      .get(thankYou0.donorOverviewEducationLink)
+      .should("be.visible")
+      .and("have.text", donorOverview)    //5. check the visibility of the page's content
+
+      .get(thankYou0.giftOfLifeEducationLink)
+      .should("be.visible")
+      .and("have.text", giftOfLife)    //5. check the visibility of the page's content
+
+      .get(thankYou0.nationalRegistryEducationLink)
+      .should("be.visible")
+      .and("have.text", nationalRegistry)    //5. check the visibility of the page's content
+
+      .get(thankYou0.nationalFoundationEducationLink)
+      .should("be.visible")
+      .and("have.text", nationalFoundation)    //5. check the visibility of the page's content
+
+      .get(thankYou0.practicesEducationLink)
+      .should("be.visible")
+      .and("have.text", practices)    //5. check the visibility of the page's content
+
+      .get(thankYou0.patientSafetyEducationLink)
+      .should("be.visible")
+      .and("have.text", patientSafety)    //5. check the visibility of the page's content
+
+      .get(thankYou0.patientResourcesEducationLink)
+      .should("be.visible")
+      .and("have.text", patientResources);    //5. check the visibility of the page's content
+
+    cy.contains(pleaseSendUsEmail);    //6. check the visibility of the page's content
+
+    cy.get(thankYou0.contactEmail)
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "Living.Donor@ucsfmedctr.org");    //7. check the visibility of the page's content
 
   });
 

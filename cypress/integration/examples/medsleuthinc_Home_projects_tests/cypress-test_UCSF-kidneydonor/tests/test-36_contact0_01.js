@@ -245,6 +245,7 @@ describe("transplant kidney donor page test", () => {
   });
 
   it("Should check the contact.0 page elements - Skip Optional Fields Scenario", () => {
+
     /*
     1. navigate to the "contact.0" dialog
     2. check the title of the dialog
@@ -275,6 +276,7 @@ describe("transplant kidney donor page test", () => {
     27. navigate to the next page
     28. check the title of a header of the page
     */
+
     var phoneTypeValues = [
       "Mobile",
       "Home",
