@@ -8209,7 +8209,8 @@ describe("transplant kidney donor page test", () => {
         .should("be.visible")
     };    //9. check the visibility of the selector's content
 
-    cy.select(">2");    //10. choose the necessary value
+    cy.get(hardRejectPages.medicationQtyBar)
+      .select(">2");    //10. choose the necessary value
 
     cy.get(hardRejectPages.nextBtn)
       .click();    //11. navigate to the next page
