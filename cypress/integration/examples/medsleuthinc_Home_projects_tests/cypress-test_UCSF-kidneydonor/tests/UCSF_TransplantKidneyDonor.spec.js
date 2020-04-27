@@ -8162,10 +8162,9 @@ describe("transplant kidney donor page test", () => {
     7. check the title of the section
     8. check the visibility of the selector
     9. check the visibility of the selector's content
-    10. choose the necessary value
-    11. navigate to the next page
-    12. check the title of a header of the page
-    13. check the visibility of the page's content
+    10. navigate to the next page
+    11. check the title of a header of the page
+    12. check the visibility of the page's content
     */
 
     var medicationQtyTxt = "How many medications do you take to control your blood pressure?";
@@ -8209,25 +8208,22 @@ describe("transplant kidney donor page test", () => {
         .should("be.visible")
     };    //9. check the visibility of the selector's content
 
-    cy.get(hardRejectPages.medicationQtyBar)
-      .select(">2");    //10. choose the necessary value
-
     cy.get(hardRejectPages.nextBtn)
-      .click();    //11. navigate to the next page
+      .click();    //10. navigate to the next page
 
-    cy.get(hardRejectPages.headerBar)    //12. check the title of a header of the page
+    cy.get(hardRejectPages.headerBar)    //11. check the title of a header of the page
       .should("be.visible")
       .and("have.text", thanksRejectHeading);
 
-    cy.get(hardRejectPages.rejectionHeader)    //13. check the visibility of the page's content
+    cy.get(hardRejectPages.rejectionHeader)    //12. check the visibility of the page's content
       .should("be.visible")
       .and("have.text", rejectionHeaderText);
 
-    cy.get(hardRejectPages.rejectionReason)    //13. check the visibility of the page's content
+    cy.get(hardRejectPages.rejectionReason)    //12. check the visibility of the page's content
       .should("be.visible")
       .and("have.text", rejectionHighPressureText);
 
-    cy.get(hardRejectPages.rejectionFooter)    //13. check the visibility of the page's content
+    cy.get(hardRejectPages.rejectionFooter)    //12. check the visibility of the page's content
       .should("be.visible")
       .and("have.text", rejectionFooterText);
 
