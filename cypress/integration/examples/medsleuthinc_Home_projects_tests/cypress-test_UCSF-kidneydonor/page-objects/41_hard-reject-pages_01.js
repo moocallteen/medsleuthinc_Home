@@ -7,6 +7,11 @@ module.exports = {
   medicationQtyBar: 'div[class="select_field test"]',
   medicationQtySelector: 'select[name="donor_screen_rx_bp_3_query_entry_0"]',
 
+  afroRaceCheckBox: 'label[for="patsubj.race.afro"]',
+  noHispanicEthnicityRadioBtn: 'label[for="ethnicity.no"]',
+  languageSelector: 'select[name="entry_patsubj_primary_language"]',
+  noTranslatorNecessity: 'label[for="patsubj.needs.translator.no"]',
+
   yesDiabetesRadioBtn: 'label[for="screening.diabetesrx.item.yes"]',
 
   yesTobaccoRadioBtn: 'label[for="screening.tobacco.item.yes"]',

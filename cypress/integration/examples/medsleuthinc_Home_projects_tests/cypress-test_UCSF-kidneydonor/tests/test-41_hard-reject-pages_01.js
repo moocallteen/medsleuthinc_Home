@@ -88,6 +88,95 @@ describe("transplant kidney donor page test", () => {
 
   });
 
+  it("Should check the screening.htn.0 Hard Rejection - Black or African American scenario", () => {
+
+    /*
+    1. navigate to the "race.0" dialog
+    2. check the title of the dialog
+    3. click to start survey
+    4. check the visibility of the checkbox
+    5. choose the necessary value
+    6. check the visibility of the radio button
+    7. choose the necessary value
+    8. check the visibility of the selector
+    9. choose the necessary value
+    10. check the visibility of the radio button
+    11. choose the necessary value
+    12. navigate to the next page
+    13. check the title of a header of the page
+    14. check the visibility of the checkbox
+    15. choose the necessary value
+    16. navigate to the next page
+    17. check the title of a header of the page
+    18. check the visibility of the page's content
+    */
+
+    var thanksRejectHeading = "Thank you for your generous offer to be a kidney donor";
+    var rejectionHeaderText = "Unfortunately, you are not eligible to be a donor at this time";
+    var rejectionHighPressureText = "Your high blood pressure places you at increased risk of kidney disease and dangerous complications if you donate your kidney.";
+    var rejectionFooterText = "If you have any questions, you may email us at\nLiving.Donor@ucsfmedctr.org and a member of our transplant team will get back to you within 48 hours.";
+
+    cy.visit("/race.0")    //1. navigate to the "race.0" dialog
+      .contains("Demographics")    //2. check the title of the dialog
+      .should("be.visible");
+
+    cy.get(hardRejectPages.introStartSurBtn)
+      .should("be.visible")
+      .click();    //3. click to start survey
+
+    cy.get(hardRejectPages.afroRaceCheckBox)    //4. check the visibility of the checkbox
+      .should("be.visible")
+      .and("have.text", "Black or African American")
+      .click();    //5. choose the necessary value
+
+    cy.get(hardRejectPages.noHispanicEthnicityRadioBtn)    //6. check the visibility of the radio button
+      .scrollIntoView()
+      .should("be.visible")
+      .and("have.text", "No")
+      .click();    //7. choose the necessary value
+
+    cy.get(hardRejectPages.languageSelector)    //8. check the visibility of the selector
+      .should("be.visible")
+      .select("English");    //9. choose the necessary value
+
+    cy.get(hardRejectPages.noTranslatorNecessity)    //10. check the visibility of the radio button
+      .should("be.visible")
+      .and("have.text", "No")
+      .click();    //11. choose the necessary value
+
+    cy.get(hardRejectPages.nextBtn)
+      .click();    //12. navigate to the next page
+
+    cy.get(hardRejectPages.headerBar)    //13. check the title of a header of the page
+      .should("be.visible")
+      .and("have.text", "Do you take any medications to control your Blood Pressure?");
+
+    cy.get(hardRejectPages.yesBloodPressureRadioBtn)    //14. check the visibility of the checkbox
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .click();    //15. choose the necessary value
+
+    cy.get(hardRejectPages.nextBtn)
+      .click();    //16. navigate to the next page
+
+    cy.get(hardRejectPages.headerBar)    //17. check the title of a header of the page
+      .should("be.visible")
+      .and("have.text", thanksRejectHeading);
+
+    cy.get(hardRejectPages.rejectionHeader)    //18. check the visibility of the page's content
+      .should("be.visible")
+      .and("have.text", rejectionHeaderText);
+
+    cy.get(hardRejectPages.rejectionReason)    //18. check the visibility of the page's content
+      .should("be.visible")
+      .and("have.text", rejectionHighPressureText);
+
+    cy.get(hardRejectPages.rejectionFooter)    //18. check the visibility of the page's content
+      .should("be.visible")
+      .and("have.text", rejectionFooterText);
+
+  });
+
   it("Should check the screening.diabetesrx Hard Reject page elements", () => {
 
     /*
