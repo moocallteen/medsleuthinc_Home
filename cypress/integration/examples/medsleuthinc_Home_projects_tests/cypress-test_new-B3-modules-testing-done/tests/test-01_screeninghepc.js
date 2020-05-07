@@ -1,4 +1,4 @@
-import noHardRejectionB3Done from "../page-obects/01_screeninghepc";
+import noHardRejectionB3Done from "../page-objects/01_screeninghepc";
 
 describe("transplant kidney donor page test", () => {
   before(() => {

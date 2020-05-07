@@ -1,4 +1,4 @@
-import fontShiftButtons from "../page-obects/02_landing-page";
+import fontShiftButtons from "../page-objects/02_landing-page";
 
 describe("transplant kidney donor page test", () => {
   before(() => {
