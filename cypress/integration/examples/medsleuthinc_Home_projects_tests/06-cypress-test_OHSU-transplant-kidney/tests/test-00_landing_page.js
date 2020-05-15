@@ -15,6 +15,7 @@ describe("OHSU transplant kidney donor page test", () => {
     var firstName = "First name";
     var middleName = "Middle name";
     var lastName = "Last name";
+
     var selectorPlaceHolder = "Select One";
     var feetValues = [
       "3",
@@ -71,42 +72,43 @@ describe("OHSU transplant kidney donor page test", () => {
 
     var referralHeader = "How did you learn about the opportunity for living organ donation?";
 
-    cy.visit("/landing-page")
-      .get(ohsuLandingPage.logo)
+    cy.visit("/landing-page")    //.
+      .get(ohsuLandingPage.logo)    //.
       .should("be.visible")
-      .get(ohsuLandingPage.headerBar)
+      .get(ohsuLandingPage.headerBar)    //.
       .should("be.visible")
-      .get(ohsuLandingPage.increaseTextSizeBtn)
+      .get(ohsuLandingPage.increaseTextSizeBtn)    //.
       .should("be.visible")
-      .get(ohsuLandingPage.decreaseTextSizeBtn)
+      .get(ohsuLandingPage.decreaseTextSizeBtn)    //.
       .should("be.visible")
-      .get(ohsuLandingPage.dialogText)
+      .get(ohsuLandingPage.dialogText)    //.
       .then(el => {
         assert.include(el.text(), text);
       });
-    cy.get(ohsuLandingPage.dialogText)
+
+    cy.get(ohsuLandingPage.dialogText)    //.
       .should("have.css", "font-size", "27.2px");
 
-    cy.get(ohsuLandingPage.increaseTextSizeBtn)
+    cy.get(ohsuLandingPage.increaseTextSizeBtn)    //.
       .click()
-      .get(ohsuLandingPage.dialogText)
+      .get(ohsuLandingPage.dialogText)    //.
       .should("have.css", "font-size", "29.0133px");
 
-    cy.reload();
+    cy.reload();    //.
 
-    cy.get(ohsuLandingPage.decreaseTextSizeBtn)
+    cy.get(ohsuLandingPage.decreaseTextSizeBtn)    //.
       .click()
-      .get(ohsuLandingPage.dialogText)
+      .get(ohsuLandingPage.dialogText)    //.
       .should("have.css", "font-size", "25.3867px")
 
-    cy.get(ohsuLandingPage.termsLink)
+    cy.get(ohsuLandingPage.termsLink)    //.
       .should("be.visible")
-      .get(ohsuLandingPage.startSurveyBtn)
+      .get(ohsuLandingPage.startSurveyBtn)    //.
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
@@ -114,19 +116,19 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.yourFirstNameField)
+    cy.get(ohsuLandingPage.yourFirstNameField)    //.
       .should("be.visible")
-      .type(firstName)
-      .get(ohsuLandingPage.middleNameField)
+      .type(firstName)    //.
+      .get(ohsuLandingPage.middleNameField)    //.
       .should("be.visible")
-      .type(middleName)
-      .get(ohsuLandingPage.yourLastNameField)
+      .type(middleName)    //.
+      .get(ohsuLandingPage.yourLastNameField)    //.
       .should("be.visible")
-      .type(lastName)
-      .get(ohsuLandingPage.nextBtn)
+      .type(lastName)    //.
+      .get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
@@ -134,78 +136,78 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.monthField)
+    cy.get(ohsuLandingPage.monthField)    //.
       .should("be.visible")
-      .type("01")
-      .get(ohsuLandingPage.dayField)
+      .type("01")    //.
+      .get(ohsuLandingPage.dayField)    //.
       .should("be.visible")
-      .type("01")
-      .get(ohsuLandingPage.yearField)
+      .type("01")    //.
+      .get(ohsuLandingPage.yearField)    //.
       .should("be.visible")
-      .type("1991");
+      .type("1991");    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.maleRadioBtn)
+    cy.get(ohsuLandingPage.maleRadioBtn)    //.
       .should("be.visible")
-      .click()
-      .get(ohsuLandingPage.femaleRadioBtn)
+      .click()    //.
+      .get(ohsuLandingPage.femaleRadioBtn)    //.
       .should("be.visible")
-      .get(ohsuLandingPage.nextBtn)
+      .get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Not a whole number");
 
-    cy.get(ohsuLandingPage.yourHeightFeetSelect)
+    cy.get(ohsuLandingPage.yourHeightFeetSelect)    //.
       .should("be.visible")
       .and("contain", selectorPlaceHolder)
     for (var i = 0; i < feetValues.length; i++) {
       cy.get(ohsuLandingPage.yourHeightFeetSelect)
         .select(feetValues[i])
         .should("be.visible");
-    };
-    cy.get(ohsuLandingPage.yourHeightFeetSelect)
+    };    //.
+    cy.get(ohsuLandingPage.yourHeightFeetSelect)    //.
       .select("5");
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Not a whole number");
 
-    cy.get(ohsuLandingPage.yourHeightInchesSelect)
+    cy.get(ohsuLandingPage.yourHeightInchesSelect)    //.
       .should("be.visible")
       .and("contain", selectorPlaceHolder)
     for (var i = 0; i < inchesValues.length; i++) {
       cy.get(ohsuLandingPage.yourHeightInchesSelect)
         .select(inchesValues[i])
         .should("be.visible");
-    };
+    };    //.
     cy.get(ohsuLandingPage.yourHeightInchesSelect)
-      .select("8");
+      .select("8");    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("contain", "Not a whole number");
 
-    cy.get(ohsuLandingPage.yourWeightFiled)
+    cy.get(ohsuLandingPage.yourWeightFiled)    //.
       .should("be.visible")
-      .type("150")
-      .get(ohsuLandingPage.nextBtn)
+      .type("150")    //.
+      .get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
@@ -213,90 +215,88 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.primaryPhoneFiled)
+    cy.get(ohsuLandingPage.primaryPhoneFiled)    //.
       .should("be.visible")
-      .type("555-555-5533");
+      .type("555-555-5533");    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .first()
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.phoneNumberTypeSelect)
+    cy.get(ohsuLandingPage.phoneNumberTypeSelect)    //.
       .should("be.visible")
       .and("contain", selectorPlaceHolder)
     for (var i = 0; i < phoneTypesValues.length; i++) {
       cy.get(ohsuLandingPage.phoneNumberTypeSelect)
         .select(phoneTypesValues[i])
         .should("be.visible");
-    };
-
-    cy.get(ohsuLandingPage.phoneNumberTypeSelect)
+    };    //.
+    cy.get(ohsuLandingPage.phoneNumberTypeSelect)    //.
       .select("Mobile");
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .first()
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.yourEmailAddressFiled)
+    cy.get(ohsuLandingPage.yourEmailAddressFiled)    //.
       .should("be.visible")
-      .type("test@test.com");
+      .type("test@test.com");    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .first()
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.countrySelect)
+    cy.get(ohsuLandingPage.countrySelect)    //.
       .should("be.visible")
       .and("contain", selectorPlaceHolder)
     for (var i = 0; i < countrySelectValues.length; i++) {
       cy.get(ohsuLandingPage.countrySelect)
         .select(countrySelectValues[i])
         .should("be.visible");
-    };
-
+    };    //.
     cy.get(ohsuLandingPage.countrySelect)
-      .select("Other");
+      .select("Other");    //.
 
-    cy.get(ohsuLandingPage.otherCountryFiled)
+    cy.get(ohsuLandingPage.otherCountryFiled)    //.
       .should("be.visible")
-      .type("Austria");
+      .type("Austria");    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.contains("Donor Type")
+    cy.contains("Donor Type")    //.
       .should("be.visible")
-      .get(ohsuLandingPage.nextBtn)
+      .get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.iKnowRecipientRadioBtn)
+    cy.get(ohsuLandingPage.iKnowRecipientRadioBtn)    //.
       .should("be.visible")
       .and("have.text", "Named Recipient")
-      .click()
-      .get(ohsuLandingPage.iDontKnowRecipientRadioBtn)
+      .click()    //.
+      .get(ohsuLandingPage.iDontKnowRecipientRadioBtn)    //.
       .should("be.visible")
       .and("have.text", "Altruistic Donor (No Named Recipient)")
-      .get(ohsuLandingPage.nextBtn)
+      .get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.dialogHeaderBar)
+    cy.get(ohsuLandingPage.dialogHeaderBar)    //.
       .should("be.visible")
       .and("have.text", "Recipient Information");
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
@@ -304,73 +304,73 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.recipientFirstNameInput)
+    cy.get(ohsuLandingPage.recipientFirstNameInput)    //.
       .should("be.visible")
-      .type("Named");
+      .type("Named");    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.recipientLastNameInput)
+    cy.get(ohsuLandingPage.recipientLastNameInput)    //.
       .should("be.visible")
-      .type("Recipient");
+      .type("Recipient");    //.
 
-    cy.get(ohsuLandingPage.monthField)
+    cy.get(ohsuLandingPage.monthField)    //.
       .should("be.visible")
-      .type('02')
-      .get(ohsuLandingPage.dayField)
+      .type('02')    //.
+      .get(ohsuLandingPage.dayField)    //.
       .should("be.visible")
-      .type('28')
-      .get(ohsuLandingPage.yearField)
+      .type('28')    //.
+      .get(ohsuLandingPage.yearField)    //.
       .should("be.visible")
-      .type('1984')
-      .get(ohsuLandingPage.nextBtn)
+      .type('1984')    //.
+      .get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.dialogHeaderBar)
+    cy.get(ohsuLandingPage.dialogHeaderBar)    //.
       .should("be.visible")
       .and("have.text", relationshipHeader);
 
-    cy.contains(relationshipDescriptionTxt);
+    cy.contains(relationshipDescriptionTxt);    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .should("be.visible")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.immediateRadioBtn)
+    cy.get(ohsuLandingPage.immediateRadioBtn)    //.
       .should("be.visible")
       .and("have.text", immediateTitle)
-      .click();
+      .click();    //.
 
-    cy.get(ohsuLandingPage.extendedRadioBtn)
+    cy.get(ohsuLandingPage.extendedRadioBtn)    //.
       .should("be.visible")
       .and("have.text", extendedTitle);
 
-    cy.get(ohsuLandingPage.emotionallyRadioBtn)
+    cy.get(ohsuLandingPage.emotionallyRadioBtn)    //.
       .should("be.visible")
       .and("have.text", emotionallyTitle);
 
-    cy.get(ohsuLandingPage.notRelatedRadioBtn)
+    cy.get(ohsuLandingPage.notRelatedRadioBtn)    //.
       .should("be.visible")
       .and("have.text", notRelatedTitle);
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.dialogHeaderBar)
+    cy.get(ohsuLandingPage.dialogHeaderBar)    //.
       .should("be.visible")
       .and("have.text", immediateFamilyMembers);
 
-    cy.contains(chooseFromFollowing);
+    cy.contains(chooseFromFollowing);    //.
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. validation error message check
       .scrollIntoView()
       .should("be.visible")
       .click()
@@ -378,52 +378,52 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuLandingPage.parentRadioBtn)
+    cy.get(ohsuLandingPage.parentRadioBtn)    //.
       .scrollIntoView()
       .should("be.visible")
       .and("have.text", parentTitle);
 
-    cy.get(ohsuLandingPage.childRadioBtn)
+    cy.get(ohsuLandingPage.childRadioBtn)    //.
       .should("be.visible")
       .and("have.text", childTitle);
 
-    cy.get(ohsuLandingPage.spouseRadioBtn)
+    cy.get(ohsuLandingPage.spouseRadioBtn)    //.
       .should("be.visible")
       .and("have.text", spouseTitle);
 
-    cy.get(ohsuLandingPage.grandarentRadioBtn)
+    cy.get(ohsuLandingPage.grandarentRadioBtn)    //.
       .should("be.visible")
       .and("have.text", grandarentTitle)
-      .click();
+      .click();    //.
 
-    cy.get(ohsuLandingPage.fullSiblingRadioBtn)
+    cy.get(ohsuLandingPage.fullSiblingRadioBtn)    //.
       .should("be.visible")
       .and("have.text", fullSiblingTitle);
 
-    cy.get(ohsuLandingPage.halfSiblingRadioBtn)
+    cy.get(ohsuLandingPage.halfSiblingRadioBtn)    //.
       .should("be.visible")
       .and("have.text", halfSiblingTitle);
 
-    cy.get(ohsuLandingPage.stepParentRadioBtn)
+    cy.get(ohsuLandingPage.stepParentRadioBtn)    //.
       .should("be.visible")
       .and("have.text", stepParentTitle);
 
-    cy.get(ohsuLandingPage.stepChildRadioBtn)
+    cy.get(ohsuLandingPage.stepChildRadioBtn)    //.
       .should("be.visible")
       .and("have.text", stepChildTitle);
 
-    cy.get(ohsuLandingPage.stepSiblingRadioBtn)
+    cy.get(ohsuLandingPage.stepSiblingRadioBtn)    //.
       .should("be.visible")
       .and("have.text", stepSiblingTitle);
 
-    cy.get(ohsuLandingPage.grandChildRadioBtn)
+    cy.get(ohsuLandingPage.grandChildRadioBtn)    //.
       .should("be.visible")
       .and("have.text", grandChildTitle);
 
-    cy.get(ohsuLandingPage.nextBtn)
+    cy.get(ohsuLandingPage.nextBtn)    //. navigate to the next page
       .click();
 
-    cy.get(ohsuLandingPage.dialogHeaderBar)
+    cy.get(ohsuLandingPage.dialogHeaderBar)    //.
       .should("be.visible")
       .and("have.text", referralHeader)
 
