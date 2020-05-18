@@ -1,6 +1,6 @@
 import ohsuBloodScreening from "../page-objects/03_screening-htn_page";
 
-describe("transplant kidney donor page test", () => {
+describe("OHSU transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
@@ -46,6 +46,7 @@ describe("transplant kidney donor page test", () => {
 
     cy.get(ohsuBloodScreening.introStartSurBtn)    //3. click to start the survey
       .should("be.visible")
+      .and("have.text", "Start Survey")
       .click();
 
     cy.get(ohsuBloodScreening.nextBtn)    //4. validation error message check

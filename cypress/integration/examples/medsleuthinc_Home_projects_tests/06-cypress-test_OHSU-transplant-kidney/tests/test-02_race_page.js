@@ -1,7 +1,7 @@
 import ohsuLandingPage from "../page-objects/00_landing_page";
 import ohsuDemographics from "../page-objects/02_race_page";
 
-describe("transplant kidney donor page test", () => {
+describe("OHSU transplant kidney donor page test", () => {
   before(() => {
     Cypress.config(
       "baseUrl",
