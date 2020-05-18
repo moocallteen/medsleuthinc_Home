@@ -51,5 +51,12 @@ module.exports = {
   stepParentRadioBtn: 'label[for="donor.relationship.stepparent"]',
   stepChildRadioBtn: 'label[for="donor.relationship.stepchild"]',
   stepSiblingRadioBtn: 'label[for="donor.relationship.stepsibling"]',
-  grandChildRadioBtn: 'label[for="donor.relationship.grandchild"]'
+  grandChildRadioBtn: 'label[for="donor.relationship.grandchild"]',
+
+  auntuncleRadioBtn: 'label[for="donor.relationship.auntuncle"]',
+  nieceNephewRadioBtn: 'label[for="donor.relationship.niecenephew"]',
+  cousinRadioBtn: 'label[for="donor.relationship.cousin"]',
+  parentInLawRadioBtn: 'label[for="donor.relationship.FatherMotherInLaw"]',
+  siblingInLawRadioBtn: 'label[for="donor.relationship.SisterBrotherInLaw"]',
+  childInLawRadioBtn: 'label[for="donor.relationship.SonDaughterInLaw"]'
 }
