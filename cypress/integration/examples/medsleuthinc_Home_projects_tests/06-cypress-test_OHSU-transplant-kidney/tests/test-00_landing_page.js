@@ -211,6 +211,7 @@ describe("OHSU transplant kidney donor page test", () => {
 
     cy.get(ohsuLandingPage.nextBtn)    //15. validation error message check
       .should("be.visible")
+      .and("have.text", "Next")
       .click()
       .get(ohsuLandingPage.validationErrorMsg)
       .first()
