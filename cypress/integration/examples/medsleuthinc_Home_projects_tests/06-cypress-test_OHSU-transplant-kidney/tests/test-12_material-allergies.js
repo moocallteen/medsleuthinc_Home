@@ -164,7 +164,6 @@ describe("OHSU transplant kidney donor page test", () => {
     8. check the title of the current dialog
     */
 
-
     var matAllergiesHeading = "Are you allergic to any of the following?";
     var noMaterialAllergyTitle = "NO, I am NOT Allergic to ANY of the items on this list";
 
