@@ -30,44 +30,43 @@ describe("OHSU transplant kidney donor page test", () => {
     16. choose the necessary item
     17. navigate to the next page
     18. check the title of the current dialog
-    19. navigate to the next page
-    20. check the button visibility
-    21. click to make changes
-    22. click to delete an unnecessary medication
-    23. type in the medication name
-    24. check the autosuggest list visibility
-    25. choose the necessary item
-    26. expand to check an additional information of the medication
-    27. check the dosage heading visibility
-    28. check the frequency heading visibility
-    29. check the selector visibility
-    30. check the placeholder visibility
-    31. check the selector's content
-    32. choose the necessary value
-    33. check the input visibility
-    34. check the placeholder visibility
-    35. type in the required information
-    36. check the selector visibility
-    37. check the placeholder visibility
-    38. check the selector's content
-    39. choose the necessary value
-    40. validation error message check
-    41. check the input visibility
-    42. check the placeholder visibility
-    43. type in the required information
-    44. navigate to the next page
-    45. check the title of the current dialog
-    46. check the section description text
-    47. navigate to the next page
-    48. check the title of the current dialog
-    49. validation error message check
-    50. check the checkbox visibility
-    51. choose the necessary value
-    52. check the innput field
-    53. check the section description text
-    54. type in the required information
-    55. navigate to the next page
-    56. check the title of the current dialog
+    19. check the button visibility
+    20. click to make changes
+    21. click to delete an unnecessary medication
+    22. type in the medication name
+    23. check the autosuggest list visibility
+    24. choose the necessary item
+    25. expand to check an additional information of the medication
+    26. check the dosage heading visibility
+    27. check the frequency heading visibility
+    28. check the selector visibility
+    29. check the placeholder visibility
+    30. check the selector's content
+    31. choose the necessary value
+    32. check the input visibility
+    33. check the placeholder visibility
+    34. type in the required information
+    35. check the selector visibility
+    36. check the placeholder visibility
+    37. check the selector's content
+    38. choose the necessary value
+    39. validation error message check
+    40. check the input visibility
+    41. check the placeholder visibility
+    42. type in the required information
+    43. navigate to the next page
+    44. check the title of the current dialog
+    45. check the section description text
+    46. navigate to the next page
+    47. check the title of the current dialog
+    48. validation error message check
+    49. check the checkbox visibility
+    50. choose the necessary value
+    51. check the innput field
+    52. check the section description text
+    53. type in the required information
+    54. navigate to the next page
+    55. check the title of the current dialog
     */
 
     var instructionsHeading = "This health questionnaire will take approximately 15 to 20 minutes to complete.";
@@ -166,86 +165,86 @@ describe("OHSU transplant kidney donor page test", () => {
       .get(ohsuInstructions.headerBar)    //18. check the title of the current dialog
       .should("be.visible")
       .and("have.text", listConfirmHeaderTxt)
-      .get(ohsuInstructions.nextBtn)    //19. navigate to the next page
+      .get(ohsuInstructions.nextBtn)    //19. check the button visibility
       .should("be.visible")
       .and("have.text", "Next")
-      .get(ohsuInstructions.makeChangeBtn)    //20. check the button visibility
+      .get(ohsuInstructions.makeChangeBtn)    //19. check the button visibility
       .should("be.visible")
       .and("have.text", "Make Changes")
-      .click();    //21. click to make changes
+      .click();    //20. click to make changes
 
-    cy.get(ohsuInstructions.medsDropdownCloseBtn)    //22. click to delete an unnecessary medication
+    cy.get(ohsuInstructions.medsDropdownCloseBtn)    //21. click to delete an unnecessary medication
       .should("be.visible")
       .click();
 
-    cy.get(ohsuInstructions.medsInputField)    //23. type in the medication name
+    cy.get(ohsuInstructions.medsInputField)    //22. type in the medication name
       .type("Asacol")
       .wait(100)
-      .get(ohsuInstructions.medsListWrapper)    //24. check the autosuggest list visibility
+      .get(ohsuInstructions.medsListWrapper)    //23. check the autosuggest list visibility
       .should("be.visible")
       .and("contain", "Asacol")
-      .get(ohsuInstructions.suggestedItem)    //25. choose the necessary item
+      .get(ohsuInstructions.suggestedItem)    //24. choose the necessary item
       .should("be.visible")
       .and("contain", "Asacol")
       .click()
-      .get(ohsuInstructions.medsDropdownExpandBtn)    //26. expand to check an additional information of the medication
+      .get(ohsuInstructions.medsDropdownExpandBtn)    //25. expand to check an additional information of the medication
       .should("be.visible")
       .click();
 
     cy.get(ohsuInstructions.medsInfoBar)
-      .should("contain", dosageHeading)    //27. check the dosage heading visibility
-      .and("contain", frequencyHeading)    //28. check the frequency heading visibility
-      .get(ohsuInstructions.dosageSelector)    //29. check the selector visibility
+      .should("contain", dosageHeading)    //26. check the dosage heading visibility
+      .and("contain", frequencyHeading)    //27. check the frequency heading visibility
+      .get(ohsuInstructions.dosageSelector)    //28. check the selector visibility
       .should("be.visible")
-      .and("contain", selectorPlaceholder)    //30. check the placeholder visibility
+      .and("contain", selectorPlaceholder)    //29. check the placeholder visibility
     for (var i = 0; i < doses.length; i++) {
       cy.get(ohsuInstructions.dosageSelector)
         .select(doses[i])
         .should("be.visible");
-    };    //31. check the selector's content
+    };    //30. check the selector's content
     cy.get(ohsuInstructions.dosageSelector)
-      .select("Other");    //32. choose the necessary value
+      .select("Other");    //31. choose the necessary value
 
-    cy.get(ohsuInstructions.dosageOtherInput)    //33. check the input visibility
+    cy.get(ohsuInstructions.dosageOtherInput)    //32. check the input visibility
       .should("be.visible")
-      .and("have.attr", "placeholder", "Dosage")    //34. check the placeholder visibility
-      .type("Random Dosage");    //35. type in the required information
+      .and("have.attr", "placeholder", "Dosage")    //33. check the placeholder visibility
+      .type("Random Dosage");    //34. type in the required information
 
-    cy.get(ohsuInstructions.frequencySelector)    //36. check the selector visibility
+    cy.get(ohsuInstructions.frequencySelector)    //35. check the selector visibility
       .should("be.visible")
-      .and("contain", selectorPlaceholder)    //37. check the placeholder visibility
+      .and("contain", selectorPlaceholder)    //36. check the placeholder visibility
     for (var i = 0; i < frequences.length; i++) {
       cy.get(ohsuInstructions.frequencySelector)
         .select(frequences[i])
         .should("be.visible");
-    };    //38. check the selector's content
+    };    //37. check the selector's content
     cy.get(ohsuInstructions.frequencySelector)
-      .select("Other");    //39. choose the necessary value
+      .select("Other");    //38. choose the necessary value
 
-    cy.get(ohsuInstructions.nextBtn)    //40. validation error message check
+    cy.get(ohsuInstructions.nextBtn)    //39. validation error message check
       .click()
       .get(ohsuInstructions.validationErrorMsg)
       .should("be.visible")
       .and("have.text", "Please fill in dose and frequency information");
 
-    cy.get(ohsuInstructions.frequencyOtherInput)    //41. check the input visibility
+    cy.get(ohsuInstructions.frequencyOtherInput)    //40. check the input visibility
       .should("be.visible")
-      .and("have.attr", "placeholder", "Frequency")    //42. check the placeholder visibility
-      .type("Random Frequency");    //43. type in the required information
+      .and("have.attr", "placeholder", "Frequency")    //41. check the placeholder visibility
+      .type("Random Frequency");    //42. type in the required information
 
-    cy.get(ohsuInstructions.nextBtn)    //44. navigate to the next page
+    cy.get(ohsuInstructions.nextBtn)    //43. navigate to the next page
       .click()
-      .get(ohsuInstructions.headerBar)    //45. check the title of the current dialog
+      .get(ohsuInstructions.headerBar)    //44. check the title of the current dialog
       .should("be.visible")
-      .and("have.text", listConfirmHeaderTxt)    //46. check the section description text
-      .get(ohsuInstructions.nextBtn)    //47. navigate to the next page
+      .and("have.text", listConfirmHeaderTxt)    //45. check the section description text
+      .get(ohsuInstructions.nextBtn)    //46. navigate to the next page
       .click();
 
-    cy.get(ohsuInstructions.headerBar)    //48. check the title of the current dialog
+    cy.get(ohsuInstructions.headerBar)    //47. check the title of the current dialog
       .should("be.visible")
       .and("have.text", reasonHeaderTitle);
 
-    cy.get(ohsuInstructions.nextBtn)    //49. validation error message check
+    cy.get(ohsuInstructions.nextBtn)    //48. validation error message check
       .should("be.visible")
       .and("have.text", "Next")
       .click()
@@ -253,32 +252,32 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", "Required");
 
-    cy.get(ohsuInstructions.proctitisCheckBox)    //50. check the checkbox visibility
+    cy.get(ohsuInstructions.proctitisCheckBox)    //49. check the checkbox visibility
       .should("be.visible")
       .and("have.text", "Proctitis (Inflammation of the Rectum)")
-      .click()    //51. choose the necessary value
-      .get(ohsuInstructions.colitisCheckBox)    //50. check the checkbox visibility
+      .click()    //50. choose the necessary value
+      .get(ohsuInstructions.colitisCheckBox)    //49. check the checkbox visibility
       .should("be.visible")
       .and("have.text", "Ulcerative Colitis")
-      .get(ohsuInstructions.otherCheckBox)    //50. check the checkbox visibility
+      .get(ohsuInstructions.otherCheckBox)    //49. check the checkbox visibility
       .should("be.visible")
       .and("have.text", "Other")
-      .click()    //51. choose the necessary value
-      .get(ohsuInstructions.idkCheckBox)    //50. check the checkbox visibility
+      .click()    //50. choose the necessary value
+      .get(ohsuInstructions.idkCheckBox)    //49. check the checkbox visibility
       .should("be.visible")
       .and("have.text", "I do not know");
 
-    cy.get(ohsuInstructions.otherInputField)    //52. check the innput field
+    cy.get(ohsuInstructions.otherInputField)    //51. check the innput field
       .should("be.visible")
-      .contains(otherInputFieldHeading)    //53. check the section description text
+      .contains(otherInputFieldHeading)    //52. check the section description text
       .should("be.visible");
 
     cy.get(ohsuInstructions.otherInputField)
-      .type("Other Reason");    //54. type in the required information
+      .type("Other Reason");    //53. type in the required information
 
-    cy.get(ohsuInstructions.nextBtn)    //55. navigate to the next page
+    cy.get(ohsuInstructions.nextBtn)    //54. navigate to the next page
       .click()
-    cy.get(ohsuInstructions.headerBar)    //56. check the title of the current dialog
+    cy.get(ohsuInstructions.headerBar)    //55. check the title of the current dialog
       .should("be.visible")
       .and("have.text", conditionsHeading);
 
