@@ -45,6 +45,7 @@ describe("transplant kidney donor page test", () => {
     var heartChestSurgery = "Heart";
     var lungsChestSurgery = "Lungs";
     var ribsChestSurgery = "Ribs";
+    var proceduresListHeading = "Please select all surgical procedures performed on your Breast";
 
     var augumentationBrestSurgeryTitle = "Augmentation";
     var leftBiopsyBrestSurgeryTitle = "Biopsy, Left Breast";
@@ -301,7 +302,7 @@ describe("transplant kidney donor page test", () => {
 
     cy.get(waitlistInquiry.headerBar)
       .should("be.visible")
-      .and("have.text", "Please check all parts of your Chest listed below where you have had surgery:");        //20. check the title of a header of the page
+      .and("have.text", proceduresListHeading);        //20. check the title of a header of the page
 
     cy.get(waitlistInquiry.augumentationBrestSurgery)
       .should("be.visible")
