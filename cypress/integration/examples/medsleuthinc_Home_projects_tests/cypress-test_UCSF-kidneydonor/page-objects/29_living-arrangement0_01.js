@@ -17,15 +17,5 @@ module.exports = {
     parentsRadioBtn: 'label[for="livingarrangement.roommate.2"]',
     otherFamilyRadioBtn: 'label[for="livingarrangement.roommate.3"]',
     roommateRadioBtn: 'label[for="livingarrangement.roommate.4"]',
-    otherRoommateRadioBtn: 'label[for="livingarrangement.roommate.5"]',
-
-
-
-
-
-
-
-
-
-
+    otherRoommateRadioBtn: 'label[for="livingarrangement.roommate.5"]'
 }

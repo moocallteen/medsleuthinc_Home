@@ -96,10 +96,92 @@ module.exports = {
   breastChestCheckBox: 'label[for="choice.bodypart.id.entry.bodyparts.front.3.22"]',
   augumentationBrestSurgery: 'label[for="choice.surgery.id.143"]',
 
+  yesOtherMedCondRadioBtn: 'label[for="other_med_issues.yes"]',
+  inputOtherMedCond: 'textarea[name="other_med_issues_input"]',
 
+  yesOtherMedCondRadioBtn: 'label[for="other_med_issues.yes"]',
 
+  yesKidneyDisease: 'label[for="kidney.disease.query.yes"]',
+  noPolycystic: 'label[for="pckd.query.no"]',
+  noKidneyStones: 'label[for="ks.query.no"]',
+  noDiabetes: 'label[for="diabetes.query.no"]',
+  noSickleCell: 'label[for="sicklecell.query.no"]',
+  grandparentFamilyMemberCheckBox: 'label[for="kidney.disease.grandparent"]',
 
+  noCancerFamilyIssue: 'label[for="cancer.query.no"]',
+  yesBloodPressureFamilyIssue: 'label[for="hbp.query.yes"]',
+  noHeartDieseseFamilyIssue: 'label[for="heart.disease.query.no"]',
+  noLupusFamilyIssue: 'label[for="lupus.query.no"]',
+  noBloodClotsFamilyIssue: 'label[for="blood_clots.query.no"]',
+  noMentalIllFamilyIssue: 'label[for="mental_illness.query.no"]',
+  noDied50FamilyIssue: 'label[for="death_before_50.query.no"]',
+  fatherFamilyMemberCheckBox: 'label[for="hbp.query.father"]',
 
+  abBloodTypeRadioBtn: 'label[for="entry.donor.bloodtype.AB"]',
+  yesTransfusionCheckBtn: 'label[for="yes.donor.bloodtx"]',
 
+  escortServiceOneBehaviorCheckBox: 'label[for="donor.escortservice1.yes"]',
 
+  nameAddInfoInputField: 'input[id="pcpName"]',
+  phoneAddInfoInputField: 'input[id="pcpPhone"]',
+  cityAddInfoInputField: 'input[id="pcpCity"]',
+  stateSelectAddInfo: 'select[name="pcp_state"]',
+
+  masterEducationChechBox: 'label[for="item.education.query.1.1.6"]',
+
+  yesEmploymentRadioBtn: 'label[for="q.0.e.0.i.yes"]',
+  fullTimeStatusRadioBtn: 'label[for="query.employment.entry.0.item.0"]',
+  occupationInputField: 'input[id="occupation.entry"]',
+  employerInputField: 'input[id="employer.entry"]',
+
+  rentRadioBtn: 'label[for="livingarrangement.0"]',
+  aloneRadioBtn: 'label[for="livingarrangement.roommate.0"]',
+
+  yesInsurancePlan: 'label[for="donor.insurance.has.item.yes"]',
+  providerInsuranceInput: 'input[id="insurance.provider.input"]',
+  groupInsuranceInput: 'input[id="insurance.provider.group"]',
+  memberIDInsuranceInput: 'input[id="insurance.provider.member.id"]',
+  phoneNumberInsuranceInput: 'input[id="insurance.provider.phone"]',
+
+  maritalStatusSelector: 'select[id="selectID"]',
+
+  yesHasChildrenRadioBtn: 'label[for="family.history.entry.children.yes"]',
+  howManyChildrenSelector: 'select[name="family_history_children_count"]',
+  youngestChildYearsSelector: 'select[name="family_history_child_youngest"]',
+  oldestestChildYearsSelector: 'select[name="family_history_child_oldest"]',
+
+  whyInterestedTextArea: 'textarea[id="entry.donor.relationship.reason.text"]',
+  motivatedRadioBtn: 'label[for="donor.motivation.3"]',
+  yesDiscloseRadioBtn: 'label[for="donor.disclose.yes"]',
+  yesPreviouslyApplied: 'label[for="donor.priordonation.yes"]',
+
+  firstNameInputField: 'input[id="ice0NameGiven"]',
+  lastNameInputField: 'input[id="ice0NameFamily"]',
+  phoneNumberInputField: 'input[id="phonenumber"]',
+  phoneTypeSelector: 'select[name="ice_entry_phonetype"]',
+  relationshipSelector: 'select[name="ice_probe"]',
+
+  firstNameInputSecondary: 'input[id="ice1NameGiven"]',
+  lastNameInputSecondary: 'input[id="ice1NameFamily"]',
+  phoneNumberInputSecondary: 'input[id="phonenumber.1"]',
+  phoneTypeSelectorSecondary: 'select[name="ice_entry_1_phonetype"]',
+  relationshipSelectorSecondary: 'select[name="ice_probe_1"]',
+
+  phoneNumberInputVerify: 'input[id="phone-number"]',
+  phoneTypeSelectorVerify: 'select[name="entryPhoneType"]',
+  alternatePhoneNumberInput: 'input[id="home-phone"]',
+  alternatePhoneTypeSelector: 'select[name="survey_info_alternate_0_phone_type"]',
+  addressInput: 'input[id="contact.address.street"]',
+  cityInput: 'input[id="contact.address.city"]',
+  stateSelectorVerify: 'select[name="contact_0_state"]',
+  zipCodeInput: 'input[id="contact.address.zip"]',
+
+  fridayCheckBox: 'label[for="friday"]',
+  morningCheckBox: 'label[for="eight_ten"]',
+  afternoonCheckBox: 'label[for="ten_twelve"]',
+  phonePreferredContactMethod: 'label[for="choice.pref.phone"]',
+
+  yesRadioBtn: 'label[for="videoscreen.yes"]',
+  textArea: 'textarea[id="supplemental.01.q1.e2.f12"]',
+  submitBtn: 'button[id="next-button"]'
 }

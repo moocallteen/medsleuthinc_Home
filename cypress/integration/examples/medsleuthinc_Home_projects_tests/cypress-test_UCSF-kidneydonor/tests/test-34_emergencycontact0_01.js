@@ -104,7 +104,7 @@ describe("transplant kidney donor page test", () => {
     cy.contains("Phone");    //13. check the title of the section
     cy.get(emergencycontact0.phoneNumberInputField)    //14. check the visibility of the item
       .should("be.visible")
-      .type(555554321);    //15. type in a required information
+      .type("555554321");    //15. type in a required information
 
     cy.get(emergencycontact0.nextBtn)
       .click()

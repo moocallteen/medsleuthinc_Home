@@ -11,7 +11,50 @@ describe("transplant kidney donor page test", () => {
 
   it("should check the page transitions fix", () => {
 
-    // link to the ticket [https://trello.com/c/ASYjWVmH]
+    /*
+    1. navigate to the "landing-page" dialog
+    2. click to start the survey
+    3. "landing-page" gialog
+    4. "referral.0" gialog
+    5. "race.0" gialog
+    6. "screening.htn.0" gialog
+    7. "screening.diabetesrx" gialog
+    8. "screening.kidneystones" gialog
+    9. "screening.tobacco" gialog
+    10. "screening.ildrs" gialog
+    11. "what_to_expect.0" gialog
+    12. "thankyou_opt_out.0" gialog
+    13. "instructions.04" gialog
+    14. "shc-condition-category" gialog
+    15. "med-allergies" gialog
+    16. "material-allergies" gialog
+    17. "doyousmoke.0" gialog
+    18. "alcohol.0" gialog
+    19. "illicitdrugs.0" gialog
+    20. "activity.0" gialog
+    21. "waitlist-inquiry.4.1" gialog
+    22. "other-med-conditions.1" gialog
+    23. "med-service.0" gialog
+    24. "family-medical-history.0" gialog
+    25. "family-medical-history.1" gialog
+    26. "blood.0" gialog
+    27. "highriskbehavior.1" gialog
+    28. "request-for-additional-info.1" gialog
+    29. "education.0" gialog
+    30. "employment.yn" gialog
+    31. "living-arrangement.0" gialog
+    32. "insurance.0" gialog
+    33. "maritalstatus.0" gialog
+    34. "offspring.0" gialog
+    35. "motivation.1" gialog
+    36. "emergencycontact.0" gialog
+    37. "emergencycontact.1" gialog
+    38. "contact.0" gialog
+    39. "contact-schedule.01" gialog
+    40. "videoscreen.yn" gialog
+    41. "supplemental.01" gialog
+    42. "thankyou.0" gialog
+    */
 
     var text = "Welcome to the BREEZE TRANSPLANT online health";
     var referralHeader = "How did you learn about the opportunity for living organ donation?";
@@ -45,26 +88,53 @@ describe("transplant kidney donor page test", () => {
     var selectPartsHeading = "Please check all parts of your Chest listed below where you have had surgery:";
     var proceduresListHeading = "Please select all surgical procedures performed on your Breast";
     var otherIssuesListHeading = "Do you have any other medical issues that you have not already identified?";
+    var issuesDescriptionHeading = "Please describe all other medical issues:";
+    var ourTreatmentHeading = "Have you ever received treatment or care from one of our affiliated clinics?";
+    var familyMedHistoryHeading = "With regard to your Family's Medical History:";
+    var familyMembersHeading = "Which members of your family have Kidney Disease?";
+    var familyMembersBloodPrHeading = "Which members of your family have High Blood Pressure?";
+    var bloodTypeHeading = "What is your blood type:";
+    var hrBehaviorHeading = "Within the previous 12 months, do any of the following situations apply to you?";
+    var addInfoRequestHeadind = "We may need to request additional information such as laboratory or other diagnostic test from your other health care providers. Please provide us with the following information (OPTIONAL)";
+    var educationHeading = "Please select which of the options below most closely matches your highest level of education.";
+    var employmentHeading = "Are you currently working for income?";
+    var employmentStatusHeading = "Which of the following describes your current Employment Status?";
+    var livingArrangmentHeading = "With regard to your living arrangment:";
+    var insuranceCoverHeading = "Are you currently covered under a Medical Insurance plan?";
+    var regardsInsuranceHeading = "With regard to your Medical Insurance plan: (Optional)";
+    var maritalStatusHeading = "What is your current marital status?";
+    var childrenHeading = "Do you have children that you currently care for?";
+    var howManyChildrenHeading = "How many children do you care for currently?";
+    var agesChildrenHeading = "How old are your children?";
+    var motivationHeading = "With regard to your Kidney Donation:";
+    var emergencyContactHeading = "Please provide Emergency Contact Information";
+    var secondaryEmContactHeading = "Secondary Emergency Contact (Optional)";
+    var emailVerifyHeading = "Please enter your contact phone number and verify your email address: ";
+    var contactScheduleHeading = "Please select the best days and times to contact you if necessary: (Optional)";
+    var haveYouWatchedHeading = "Have you watched the UCSF video about Living Kidney Donation, 'The Gift of Life'?";
+    var additionalInfoHeader = "Is there any additional information that you would like shared with your health care providers? (Optional) You must press the SUBMIT button below to complete this health questionnaire.";
+    var submitHeading = "Questionnaire Submitted";
 
-
-    cy.visit("/landing-page")
+    cy.visit("/landing-page")    //1. navigate to the "landing-page" dialog
       .get(pageTransitions.dialogText)
       .then(el => {
         assert.include(el.text(), text);
       });
-    cy.get(pageTransitions.introStartSurBtn)
+    cy.get(pageTransitions.introStartSurBtn)    //2. click to start the survey
       .should("be.visible")
       .and("have.text", "Start Survey")
       .click();
 
-    cy.get(pageTransitions.yourFirstNameField)
+    cy.wait(200)
+      .get(pageTransitions.yourFirstNameField)    //3. "landing-page" gialog
       .type("qweqweqwe")
       .get(pageTransitions.yourLastNameField)
       .type("qweqweqwe")
       .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.dayField)
+    cy.wait(200)
+      .get(pageTransitions.dayField)
       .type("21")
       .get(pageTransitions.monthField)
       .type("09")
@@ -75,7 +145,8 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.yourHeightFeetFiled)
+    cy.wait(200)
+      .get(pageTransitions.yourHeightFeetFiled)
       .type("5")
       .get(pageTransitions.yourHeightInchesFiled)
       .type("10")
@@ -84,7 +155,8 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.primaryPhoneFiled)
+    cy.wait(200)
+      .get(pageTransitions.primaryPhoneFiled)
       .type('555-55-55')
       .get(pageTransitions.yourPhoneNumberTypeSelect)
       .select('Mobile')
@@ -93,77 +165,85 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.iKnowRecipientRadioBtn)
+    cy.wait(200)
+      .get(pageTransitions.iKnowRecipientRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.recipientFirstNameInput)    //. check the "First Name" innput field
-      .type("Named")    //. type in the required information
-      .get(pageTransitions.recipientLastNameInput)    //. check the "Last Name" innput field
-      .type("Recipient")    //. type in the required information
-      .get(pageTransitions.monthField)    //. check the "Month" innput field
-      .type('02')    //. type in the required information
-      .get(pageTransitions.dayField)    //. check the "Day" innput field
-      .type('28')    //. type in the required information
-      .get(pageTransitions.yearField)    //. check the "Year" innput field
-      .type('1984')    //. type in the required information
-      .get(pageTransitions.nextBtn)    //. navigate to the next page
+    cy.wait(200)
+      .get(pageTransitions.recipientFirstNameInput)
+      .type("Named")
+      .get(pageTransitions.recipientLastNameInput)
+      .type("Recipient")
+      .get(pageTransitions.monthField)
+      .type('02')
+      .get(pageTransitions.dayField)
+      .type('28')
+      .get(pageTransitions.yearField)
+      .type('1984')
+      .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.immediateRadioBtn)    //. check the radio button visibility
-      .click()    //. choose the necessary value
-      .get(pageTransitions.nextBtn)    //. navigate to the next page
+    cy.wait(200)
+      .get(pageTransitions.immediateRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
       .click();
 
-    cy.get(pageTransitions.fullSiblingRadioBtn)    //. check the radio button visibility
-      .click()    //. choose the necessary value
-      .get(pageTransitions.nextBtn)    //. navigate to the next page
-      .click();
+    cy.get(pageTransitions.fullSiblingRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //4. "referral.0" gialog
       .should("be.visible")
       .and("have.text", referralHeader);
 
-    cy.get(pageTransitions.transplantCandidateRadioBtn)    //. check the radio button visibility
-      .click()    //. choose the necessary value
-      .get(pageTransitions.nextBtn)    //. navigate to the next page
-      .click();
+    cy.get(pageTransitions.transplantCandidateRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //5. "race.0" gialog
       .should("be.visible")
       .and("have.text", "Demographics");
 
-    cy.get(pageTransitions.arabianCheckBox)    //. check the checkbox visibility
-      .click()    //. choose the necessary value
-      .get(pageTransitions.hispanicNoRadioBtn)    //. check the radio button visibility
-      .click()    //. choose the necessary value
+    cy.get(pageTransitions.arabianCheckBox)
+      .click()
+      .get(pageTransitions.hispanicNoRadioBtn)
+      .click()
       .get(pageTransitions.languageSelector)
-      .select("Vietnamese")    //. choose the necessary value
-      .get(pageTransitions.yesTranslatorRadioBtn)    //. check the radio button visibility
-      .click()    //. choose the necessary value
-      .get(pageTransitions.nextBtn)    //. navigate to the next page
-      .click();
+      .select("Vietnamese")
+      .get(pageTransitions.yesTranslatorRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //6. "screening.htn.0" gialog
       .should("be.visible")
       .and("have.text", bloodScreenTitle);
 
-    cy.get(pageTransitions.noBloodRadioBtn)    //. choose the necessary value
+    cy.get(pageTransitions.noBloodRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //7. "screening.diabetesrx" gialog
       .should("be.visible")
       .and("have.text", diabetesScreenTitle);
 
     cy.get(pageTransitions.noDiabetesRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //8. "screening.kidneystones" gialog
       .should("be.visible")
       .and("have.text", kidneyStonesScreenTitle);
 
@@ -171,26 +251,29 @@ describe("transplant kidney donor page test", () => {
       .click()
       .get(pageTransitions.nextBtn)
       .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //9. "screening.tobacco" gialog
       .should("be.visible")
       .and("have.text", smokingScreenTitle);
 
     cy.get(pageTransitions.noTobaccoRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //10. "screening.ildrs" gialog
       .should("be.visible")
       .and("have.text", ilDrugsScreenTitle);
 
     cy.get(pageTransitions.noIlDrugsRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //11. "what_to_expect.0" gialog
       .should("be.visible")
       .and("have.text", evaluationHeading);
 
@@ -198,22 +281,25 @@ describe("transplant kidney donor page test", () => {
       .scrollIntoView()
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //12. "thankyou_opt_out.0" gialog
       .should("be.visible")
       .and("have.text", thankYouHeading)
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)    //. check the title of the current dialog
+    cy.get(pageTransitions.headerBar)    //13. "instructions.04" gialog
       .should("be.visible")
       .and("have.text", instructionsHeading);
 
     cy.get(pageTransitions.enterMedicationsRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -226,15 +312,17 @@ describe("transplant kidney donor page test", () => {
       .and("contain", "Vitamin C")
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
       .and("have.text", makeChangesHeading)
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //14. "shc-condition-category" gialog
       .should("be.visible")
       .and("have.text", medConditionsHeading);
 
@@ -269,16 +357,19 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.noNeuroDefCondRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
+      .scrollIntoView()
       .should("be.visible")
       .and("have.text", conditionsApplyHeading);
 
     cy.get(pageTransitions.asthmaCheckBox)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -292,14 +383,17 @@ describe("transplant kidney donor page test", () => {
       .click()
       .get(pageTransitions.nextBtn)
       .click()
-      .get(pageTransitions.headerBar)
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //15. "med-allergies" gialog
       .should("be.visible")
       .and("have.text", medsAllergiesHeading);
 
     cy.get(pageTransitions.yesMedAllergies)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -312,7 +406,8 @@ describe("transplant kidney donor page test", () => {
       .and("contain", "Vitamin C")
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -323,16 +418,18 @@ describe("transplant kidney donor page test", () => {
     cy.get(pageTransitions.anxietyReactionCheckBox)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //16. "material-allergies" gialog
       .should("be.visible")
       .and("have.text", materialsAllergicHeading);
 
     cy.get(pageTransitions.betadineMaterialAllergyCheckBox)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -341,9 +438,10 @@ describe("transplant kidney donor page test", () => {
     cy.get(pageTransitions.breathIssuesReactionCheckBox)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //17. "doyousmoke.0" gialog
       .should("be.visible")
       .and("have.text", "Do you smoke cigarettes?")
 
@@ -351,6 +449,7 @@ describe("transplant kidney donor page test", () => {
       .click()
       .get(pageTransitions.nextBtn)
       .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -361,9 +460,10 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.packsSmokingSelector)
       .select("1/4 pack")
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //18. "alcohol.0" gialog
       .should("be.visible")
       .and("have.text", alcoholHeading);
 
@@ -372,16 +472,18 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.yesAbuseRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //19. "illicitdrugs.0" gialog
       .should("be.visible")
       .and("have.text", ilDrugsHeading);
 
     cy.get(pageTransitions.yesDrugsRadioBtn)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
@@ -392,104 +494,476 @@ describe("transplant kidney donor page test", () => {
       .get(pageTransitions.cocaineDrugsCheckBox)
       .click()
       .get(pageTransitions.nextBtn)
-      .click();
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //20. "activity.0" gialog
       .should("be.visible")
       .and("have.text", activityHeading);
 
     cy.get(pageTransitions.strenuousActivityRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", frequencyExerciseHeading);    //. check the title of a header of the page
+      .and("have.text", frequencyExerciseHeading);
 
     cy.get(pageTransitions.moreThreeFrequencyRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.nextBtn)
-      .click()    //. navigate to the next page
+      .click()
+      .wait(300)
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", regardsHeartHeading);    //. check the title of a header of the page
+      .and("have.text", regardsHeartHeading);
 
     cy.get(pageTransitions.noPainRestRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.noPainActivityRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.yesStressTestRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.yesCatheterizationRadioBtn)
-      .click();    //. choose the necessary value
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", regardsHeartHeading);    //. check the title of a header of the page
+      .and("have.text", regardsHeartHeading);
 
     cy.get(pageTransitions.stressTestsQtySelect)
-      .select("2")    //. choose the necessary value
+      .select("2")
       .get(pageTransitions.stressTestsDateInput)
-      .type("02281984")    //. input the necessary date
+      .type("02281984")
       .get(pageTransitions.yesNormalTest)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", regardsHeartHeading);    //. check the title of a header of the page
+      .and("have.text", regardsHeartHeading);
 
     cy.get(pageTransitions.catheterizationQtySelect)
-      .select("1")    //. choose the necessary value
+      .select("1")
       .get(pageTransitions.catheterizationDateInput)
-      .type("02281984")    //. input the necessary date
+      .type("02281984")
       .get(pageTransitions.angioplastyStentCathRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
 
-    cy.get(pageTransitions.headerBar)
+    cy.get(pageTransitions.headerBar)    //21. "waitlist-inquiry.4.1" gialog
       .should("be.visible")
-      .and("have.text", haveSurgeryHeading);    //. check the title of a header of the page
+      .and("have.text", haveSurgeryHeading);
 
     cy.get(pageTransitions.yesSurgeryRadioBtn)
-      .click()    //. choose the necessary value
+      .click()
     cy.get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page 
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", selectRegionsHeading);    //. check the title of a header of the page
+      .and("have.text", selectRegionsHeading);
 
     cy.get(pageTransitions.chestFrontRegion)
-      .click()    //. choose the body region
+      .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", selectPartsHeading);    //. check the title of a header of the page
+      .and("have.text", selectPartsHeading);
 
     cy.get(pageTransitions.breastChestCheckBox)
-      .click()    //. choose the operated body part
+      .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", proceduresListHeading);    //. check the title of a header of the page
+      .and("have.text", proceduresListHeading);
 
     cy.get(pageTransitions.augumentationBrestSurgery)
-      .click()    //. choose the surgery type
+      .click()
       .get(pageTransitions.nextBtn)
-      .click();    //. navigate to the next page
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //22. "other-med-conditions.1" gialog
+      .should("be.visible")
+      .and("have.text", otherIssuesListHeading);
+
+    cy.get(pageTransitions.yesOtherMedCondRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
 
     cy.get(pageTransitions.headerBar)
       .should("be.visible")
-      .and("have.text", otherIssuesListHeading);    //. check the title of a header of the page
+      .and("have.text", issuesDescriptionHeading);
+
+    cy.get(pageTransitions.inputOtherMedCond)
+      .type("Other Medical Condition")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //23. "med-service.0" gialog
+      .should("be.visible")
+      .and("have.text", ourTreatmentHeading);
+
+    cy.get(pageTransitions.yesOtherMedCondRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //24. "family-medical-history.0" gialog
+      .should("be.visible")
+      .and("have.text", familyMedHistoryHeading);
+
+    cy.get(pageTransitions.yesKidneyDisease)
+      .click()
+      .get(pageTransitions.noPolycystic)
+      .click()
+      .get(pageTransitions.noKidneyStones)
+      .click()
+      .get(pageTransitions.noDiabetes)
+      .click()
+      .get(pageTransitions.noSickleCell)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)
+      .should("be.visible")
+      .and("have.text", familyMembersHeading);
+
+    cy.get(pageTransitions.grandparentFamilyMemberCheckBox)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //25. "family-medical-history.1" gialog
+      .should("be.visible")
+      .and("have.text", familyMedHistoryHeading);
+
+    cy.get(pageTransitions.noCancerFamilyIssue)
+      .click()
+      .get(pageTransitions.yesBloodPressureFamilyIssue)
+      .click()
+      .get(pageTransitions.noHeartDieseseFamilyIssue)
+      .click()
+      .get(pageTransitions.noLupusFamilyIssue)
+      .click()
+      .get(pageTransitions.noBloodClotsFamilyIssue)
+      .click()
+      .get(pageTransitions.noMentalIllFamilyIssue)
+      .click()
+      .get(pageTransitions.noDied50FamilyIssue)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)
+      .should("be.visible")
+      .and("have.text", familyMembersBloodPrHeading);
+
+    cy.get(pageTransitions.fatherFamilyMemberCheckBox)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //26. "blood.0" gialog
+      .should("be.visible")
+      .and("have.text", bloodTypeHeading);
+
+    cy.get(pageTransitions.abBloodTypeRadioBtn)
+      .click()
+      .get(pageTransitions.yesTransfusionCheckBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //27. "highriskbehavior.1" gialog
+      .should("be.visible")
+      .and("have.text", hrBehaviorHeading);
+
+    cy.get(pageTransitions.escortServiceOneBehaviorCheckBox)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .scrollIntoView()
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //28. "request-for-additional-info.1" gialog
+      .should("be.visible")
+      .and("have.text", addInfoRequestHeadind);
+
+    cy.get(pageTransitions.nameAddInfoInputField)
+      .type("Donor Name")
+      .get(pageTransitions.phoneAddInfoInputField)
+      .type("5555555555")
+      .get(pageTransitions.cityAddInfoInputField)
+      .type("Racoon City")
+      .get(pageTransitions.stateSelectAddInfo)
+      .select("WA")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //29. "education.0" gialog
+      .should("be.visible")
+      .and("have.text", educationHeading);
+
+    cy.get(pageTransitions.masterEducationChechBox)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //30. "employment.yn" gialog
+      .should("be.visible")
+      .and("have.text", employmentHeading);
+
+    cy.get(pageTransitions.yesEmploymentRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)
+      .should("be.visible")
+      .and("have.text", employmentStatusHeading);
+
+    cy.get(pageTransitions.fullTimeStatusRadioBtn)
+      .click()
+      .get(pageTransitions.occupationInputField)
+      .type("Donor's Occupation")
+      .get(pageTransitions.employerInputField)
+      .type("Donor's Employer")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //31. "living-arrangement.0" gialog
+      .should("be.visible")
+      .and("have.text", livingArrangmentHeading);
+
+    cy.get(pageTransitions.rentRadioBtn)
+      .click()
+      .get(pageTransitions.aloneRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //32. "insurance.0" gialog
+      .should("be.visible")
+      .and("have.text", insuranceCoverHeading);
+
+    cy.get(pageTransitions.yesInsurancePlan)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)
+      .should("be.visible")
+      .and("have.text", regardsInsuranceHeading);
+
+    cy.get(pageTransitions.providerInsuranceInput)
+      .type("Medical Insurance Provider Name")
+      .get(pageTransitions.groupInsuranceInput)
+      .type("321654987")
+      .get(pageTransitions.memberIDInsuranceInput)
+      .type("Member #1")
+      .get(pageTransitions.phoneNumberInsuranceInput)
+      .type("555555132")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //33. "maritalstatus.0" gialog
+      .should("be.visible")
+      .and("have.text", maritalStatusHeading);
+
+    cy.get(pageTransitions.maritalStatusSelector)
+      .select("Married")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //34. "offspring.0" gialog
+      .should("be.visible")
+      .and("have.text", childrenHeading);
+
+    cy.get(pageTransitions.yesHasChildrenRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)
+      .should("be.visible")
+      .and("have.text", howManyChildrenHeading);
+
+    cy.get(pageTransitions.howManyChildrenSelector)
+      .select("2")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)
+      .should("be.visible")
+      .and("have.text", agesChildrenHeading);
+
+    cy.get(pageTransitions.youngestChildYearsSelector)
+      .select("5")
+      .get(pageTransitions.oldestestChildYearsSelector)
+      .select("8")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //35. "motivation.1" gialog
+      .should("be.visible")
+      .and("have.text", motivationHeading);
+
+    cy.get(pageTransitions.whyInterestedTextArea)
+      .type("Highly Motivated Donor")
+      .get(pageTransitions.motivatedRadioBtn)
+      .click()
+      .get(pageTransitions.yesDiscloseRadioBtn)
+      .click()
+      .get(pageTransitions.yesPreviouslyApplied)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .scrollIntoView()
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //36. "emergencycontact.0" gialog
+      .should("be.visible")
+      .and("have.text", emergencyContactHeading);
+
+    cy.get(pageTransitions.firstNameInputField)
+      .type("Donor's First Name")
+      .get(pageTransitions.lastNameInputField)
+      .type("Donor's Last Name")
+      .get(pageTransitions.phoneNumberInputField)
+      .type("555554321")
+      .get(pageTransitions.phoneTypeSelector)
+      .select("Home")
+      .get(pageTransitions.relationshipSelector)
+      .select("Friend or Other")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //37. "emergencycontact.1" gialog
+      .should("be.visible")
+      .and("have.text", secondaryEmContactHeading);
+
+    cy.get(pageTransitions.firstNameInputSecondary)
+      .type("Average First Name")
+      .get(pageTransitions.lastNameInputSecondary)
+      .type("Average Last Name")
+      .get(pageTransitions.phoneNumberInputSecondary)
+      .type("555554321")
+      .get(pageTransitions.phoneTypeSelectorSecondary)
+      .select("Work - Private")
+      .get(pageTransitions.relationshipSelectorSecondary)
+      .select("Grandparent")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //38. "contact.0" gialog
+      .should("be.visible")
+      .and("have.text", emailVerifyHeading);
+
+    cy.get(pageTransitions.phoneNumberInputVerify)
+      .type("555-554-321")
+      .get(pageTransitions.phoneTypeSelectorVerify)
+      .select("Mobile")
+      .get(pageTransitions.alternatePhoneNumberInput)
+      .type("555-567-098")
+      .get(pageTransitions.alternatePhoneTypeSelector)
+      .select("Work - Private")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.addressInput)
+      .type("742 Evergreen Terrace")
+      .get(pageTransitions.cityInput)
+      .type("Springfield")
+      .get(pageTransitions.stateSelectorVerify)
+      .select("IL")
+      .get(pageTransitions.zipCodeInput)
+      .type("62704")
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //39. "contact-schedule.01" gialog
+      .should("be.visible")
+      .and("have.text", contactScheduleHeading);
+
+    cy.get(pageTransitions.fridayCheckBox)
+      .click()
+      .get(pageTransitions.morningCheckBox)
+      .click()
+      .get(pageTransitions.afternoonCheckBox)
+      .click()
+      .get(pageTransitions.phonePreferredContactMethod)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //40. "videoscreen.yn" gialog
+      .should("be.visible")
+      .and("have.text", haveYouWatchedHeading);
+
+    cy.get(pageTransitions.yesRadioBtn)
+      .click()
+      .get(pageTransitions.nextBtn)
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //41. "supplemental.01" gialog
+      .should("be.visible")
+      .and("have.text", additionalInfoHeader);
+
+    cy.get(pageTransitions.textArea)
+      .type("Additional Information")
+      .get(pageTransitions.submitBtn)
+      .should("be.visible")
+      .and("have.text", "Submit")
+      .click()
+      .wait(300);
+
+    cy.get(pageTransitions.headerBar)    //42. "thankyou.0" gialog
+      .should("be.visible")
+      .and("have.text", submitHeading);
 
   });
 
