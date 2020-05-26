@@ -71,13 +71,13 @@ describe("OHSU transplant kidney donor page test", () => {
       .and("have.text", "Start Survey")
       .click();    //3. click to start survey
 
-    cy.get(ohsuWaitlistInquiry.nextBtn)
+    cy.get(ohsuWaitlistInquiry.nextBtn)    //4. validation error message checking
       .should("be.visible")
       .and("have.text", "Next")
       .click()
       .get(ohsuWaitlistInquiry.validationErrorMsg)
       .should("be.visible")
-      .and("have.text", "Required");    //4. validation error message checking
+      .and("have.text", "Required");
 
     cy.get(ohsuWaitlistInquiry.yesSurgeryRadioBtn)
       .should("be.visible")

@@ -14,6 +14,8 @@ module.exports = {
 
   yesDiabetesRadioBtn: 'label[for="screening.diabetesrx.item.yes"]',
 
+  yesKidneyStonesRadioBtn: 'label[for="screening.kidneystones.item.yes"]',
+
   yesTobaccoRadioBtn: 'label[for="screening.tobacco.item.yes"]',
   noTobaccoQuitRadioBtn: 'label[for="screening.tobacco.quit.item.no"]',
 

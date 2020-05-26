@@ -216,7 +216,54 @@ describe("OHSU transplant kidney donor page test", () => {
 
   });
 
-  // add kidneystone reject autotest after fixing
+  it("Should check the screening.kidneystones.everhadthem Hard Reject page elements", () => {
+
+    /*
+    1. navigate to the specified page
+    2. check the title of the current dialog
+    3. click to start the survey
+    4. check the radio button visibility
+    5. choose the necessary value
+    6. navigate to the next page
+    7. check the content visibility
+    */
+
+    var kidneyStonesScreeningHeading = "Have you had any kidney stones in the past 10 years?";
+    var rejectionHeader = "Thank you for your generous offer to be a kidney donor";
+    var rejectionContentHeader = "Unfortunately, you are not eligible to be a donor at this time";
+    var rejectionContentBody = "Your history of kidney stones places you at increased risk of kidney disease and dangerous complications if you donate your kidney";
+    var rejectionContentFooter = "If you have any questions, you may email us at livingdonation@ohsu.edu and a member of our transplant team will get back to you soon.";
+
+    cy.visit("/screening.kidneystones.everhadthem")    //1. navigate to the specified page
+      .contains(kidneyStonesScreeningHeading)    //2. check the title of the current dialog
+      .should("be.visible");
+
+    cy.get(ohsuHardRejection.introStartSurBtn)    //3. click to start the survey
+      .should("be.visible")
+      .and("have.text", "Start Survey")
+      .click();
+
+    cy.get(ohsuHardRejection.yesKidneyStonesRadioBtn)    //4. check the radio button visibility
+      .should("be.visible")
+      .and("have.text", "Yes")
+      .click()    //5. choose the necessary value
+      .get(ohsuHardRejection.nextBtn)
+      .click();    //6. navigate to the next page
+
+    cy.contains(rejectionHeader)
+      .should("be.visible");    //7. check the content visibility
+
+    cy.contains(rejectionContentHeader)
+      .should("be.visible");    //7. check the content visibility
+
+    cy.contains(rejectionContentBody)
+      .should("be.visible");    //7. check the content visibility
+
+    cy.contains(rejectionContentFooter)
+      .should("be.visible");    //7. check the content visibility
+
+  });
+
   // add tobacco reject autotest after fixing
 
   /*it("Should check the screening.tobacco.standard Hard Reject page elements", () => {

@@ -64,7 +64,7 @@ describe("OHSU transplant kidney donor page test", () => {
     var nauseaReactionCheckBoxTitle = "Nausea and/or Vomiting";
     var rashHivesReactionCheckBoxTitle = "Rash or Hives";
     var swellingReactionCheckBoxTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
-    var otherReactionCheckBoxTitle = "Other";
+    // var otherReactionCheckBoxTitle = "Other";
 
     var materialsAllergiesHeading = "Are you allergic to any of the following?";
 
@@ -206,10 +206,10 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", swellingReactionCheckBoxTitle);
 
-    cy.get(ohsuMedAllergies.otherReactionCheckBox)    //34. check the checkbox visibility
-      .should("be.visible")
-      .and("have.text", otherReactionCheckBoxTitle)
-      .click();    //35. choose the necessary value
+    // cy.get(ohsuMedAllergies.otherReactionCheckBox)    //34. check the checkbox visibility
+    // .should("be.visible")
+    // .and("have.text", otherReactionCheckBoxTitle)
+    // .click();    //35. choose the necessary value
 
     cy.get(ohsuMedAllergies.otherInputField)    //36. type in the required information
       .type("Other Reaction")
