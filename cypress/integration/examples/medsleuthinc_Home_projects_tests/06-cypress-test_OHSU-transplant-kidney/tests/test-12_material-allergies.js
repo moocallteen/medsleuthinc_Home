@@ -46,7 +46,6 @@ describe("OHSU transplant kidney donor page test", () => {
     var nauseaReactionTitle = "Nausea and/or Vomiting";
     var rashHivesReactionTitle = "Rash or Hives";
     var swellingReactionTitle = "Swelling of the eyes, face, lips, throat and/or tongue";
-    var otherReactionTitle = "Other";
 
     cy.visit("/material-allergies")    //1. navigate to the specified page
       .contains(matAllergiesHeading)    //2. check the title of the current dialog
@@ -132,20 +131,20 @@ describe("OHSU transplant kidney donor page test", () => {
       .should("be.visible")
       .and("have.text", swellingReactionTitle);
 
-    cy.get(ohsuMaterialAllergies.otherReactionCheckBox)    //11. check the checkbox visibility
-      .should("be.visible")
-      .and("have.text", otherReactionTitle)
-      .click();    //12. choose the necessary value
+    // cy.get(ohsuMaterialAllergies.otherReactionCheckBox)    //11. check the checkbox visibility
+    // .should("be.visible")
+    // .and("have.text", otherReactionTitle)
+    // .click();    //12. choose the necessary value
 
-    cy.contains("If Other, please explain:")    //13. check the section description text
+    cy.contains("If Other, please explain:")    //12. check the section description text
       .should("be.visible")
-      .get(ohsuMaterialAllergies.otherInputField)    //14. type in the required information
+      .get(ohsuMaterialAllergies.otherInputField)    //13. type in the required information
       .type("Other Reaction");
 
-    cy.get(ohsuMaterialAllergies.nextBtn)    //15. navigate to the next page
+    cy.get(ohsuMaterialAllergies.nextBtn)    //14. navigate to the next page
       .click();
 
-    cy.get(ohsuMaterialAllergies.headerBar)    //16. check the title of the current dialog
+    cy.get(ohsuMaterialAllergies.headerBar)    //15. check the title of the current dialog
       .should("be.visible")
       .and("have.text", "Do you smoke cigarettes?")
 

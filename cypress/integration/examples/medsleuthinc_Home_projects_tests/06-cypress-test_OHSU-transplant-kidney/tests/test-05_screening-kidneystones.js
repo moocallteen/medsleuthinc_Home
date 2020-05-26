@@ -19,11 +19,14 @@ describe("OHSU transplant kidney donor page test", () => {
     5. check the radio button visibility
     6. choose the necessary value
     7. navigate to the next page
-    8. check the title of the current dialog
+    8. check the content visibility
     */
 
     var kidneyStonesScreeningHeading = "Have you had any kidney stones in the past 10 years?";
-    var pageToCheckTitle = "Do you use tobacco (any type: chewing, vapor, e-cigarette, and/or cigarette) or marijuana?";
+    var rejectionHeader = "Thank you for your generous offer to be a kidney donor";
+    var rejectionContentHeader = "Unfortunately, you are not eligible to be a donor at this time";
+    var rejectionContentBody = "Your history of kidney stones places you at increased risk of kidney disease and dangerous complications if you donate your kidney";
+    var rejectionContentFooter = "If you have any questions, you may email us at livingdonation@ohsu.edu and a member of our transplant team will get back to you soon.";
 
     cy.visit("/screening.kidneystones.everhadthem")    //1. navigate to the specified page
       .contains(kidneyStonesScreeningHeading)    //2. check the title of the current dialog
@@ -52,10 +55,18 @@ describe("OHSU transplant kidney donor page test", () => {
       .get(ohsuKidneyStonesScreening.nextBtn)
       .click();    //7. navigate to the next page
 
-    cy.get(ohsuKidneyStonesScreening.headerBar)    //8. check the title of the current dialog
-      .then(el => {
-        assert.include(el.text(), pageToCheckTitle)
-      });
+    cy.contains(rejectionHeader)
+      .should("be.visible");    //8. check the content visibility
+
+    cy.contains(rejectionContentHeader)
+      .should("be.visible");    //8. check the content visibility
+
+    cy.contains(rejectionContentBody)
+      .should("be.visible");    //8. check the content visibility
+
+    cy.contains(rejectionContentFooter)
+      .should("be.visible");    //8. check the content visibility
+
 
   });
 
